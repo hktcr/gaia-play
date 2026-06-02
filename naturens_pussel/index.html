@@ -1,0 +1,1512 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naturens Pussel — Prick till Prick</title>
+    <meta name="description" content="Svara på frågor om djur och natur för att avslöja en dold bild — prick till prick med kunskapsfrågor.">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #070e0a;
+            --surface: rgba(255, 255, 255, 0.03);
+            --border: rgba(74, 222, 128, 0.12);
+            --primary: #4ade80;
+            --primary-dim: rgba(74, 222, 128, 0.4);
+            --secondary: #2dd4bf;
+            --accent: #fbbf24;
+            --text: #e0e0e0;
+            --text-dim: #777;
+            --correct: #4ade80;
+            --wrong: #ef4444;
+            --erase: #f97316;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Outfit', sans-serif;
+            overflow: hidden;
+            height: 100vh;
+            height: 100dvh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ─── Header ─── */
+        header {
+            background: linear-gradient(135deg, #0a1a0f 0%, #152d1a 50%, #0a1a0f 100%);
+            border-bottom: 2px solid rgba(74, 222, 128, 0.25);
+            padding: 8px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-shrink: 0;
+            z-index: 10;
+        }
+
+        header h1 {
+            font-size: 18px;
+            font-weight: 700;
+            background: linear-gradient(90deg, #4ade80, #2dd4bf, #fbbf24);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header-info {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            font-size: 13px;
+        }
+
+        .header-info span { display: flex; align-items: center; gap: 5px; }
+        .header-info .label { color: var(--text-dim); font-weight: 300; }
+        .header-info .value { font-weight: 600; color: #fff; }
+
+        /* ─── Main layout ─── */
+        main { flex: 1; display: flex; overflow: hidden; position: relative; }
+
+        #canvasWrap { flex: 1; position: relative; overflow: hidden; min-width: 0; }
+        canvas { display: block; }
+
+        /* ─── Overlays ─── */
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(5, 10, 6, 0.92);
+            backdrop-filter: blur(12px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 20;
+            transition: opacity 0.5s;
+        }
+
+        .overlay.hidden { opacity: 0; pointer-events: none; }
+
+        .overlay-content { text-align: center; max-width: 500px; padding: 30px; }
+
+        .overlay-content h2 {
+            font-size: 42px;
+            font-weight: 800;
+            background: linear-gradient(90deg, #4ade80, #2dd4bf, #fbbf24);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+        }
+
+        .overlay-content .subtitle {
+            font-size: 15px;
+            color: #aaa;
+            line-height: 1.7;
+            margin-bottom: 28px;
+        }
+
+        .overlay-content .subtitle strong { color: #4ade80; }
+
+        .btn-main {
+            background: linear-gradient(135deg, #4ade80, #2dd4bf);
+            border: none;
+            color: #070e0a;
+            font-family: 'Outfit', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            padding: 13px 44px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 20px rgba(74, 222, 128, 0.3);
+        }
+
+        .btn-main:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 30px rgba(74, 222, 128, 0.5);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+
+        .stat-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 12px;
+        }
+
+        .stat-box .stat-label { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: #888; }
+        .stat-box .stat-value { font-size: 22px; font-weight: 700; color: #fff; }
+
+        /* ─── Panel ─── */
+        #panel {
+            width: 320px;
+            background: linear-gradient(180deg, #0c1a10, #070e0a);
+            border-left: 1px solid var(--border);
+            padding: 12px;
+            overflow-y: auto;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            font-size: 13px;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 14px;
+        }
+
+        .card-header {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .q-text { font-size: 14px; line-height: 1.6; color: #ddd; margin-bottom: 14px; }
+
+        /* ─── Options ─── */
+        .options { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
+
+        .option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 13px;
+        }
+
+        .option:hover:not(.disabled) {
+            background: rgba(74, 222, 128, 0.08);
+            border-color: rgba(74, 222, 128, 0.2);
+        }
+
+        .option.selected {
+            background: rgba(74, 222, 128, 0.12);
+            border-color: var(--primary);
+        }
+
+        .option.correct { background: rgba(74, 222, 128, 0.2); border-color: var(--correct); }
+        .option.wrong { background: rgba(239, 68, 68, 0.15); border-color: var(--wrong); opacity: 0.5; }
+        .option.disabled { pointer-events: none; opacity: 0.35; }
+
+        .option-letter {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 12px;
+            color: #bbb;
+            flex-shrink: 0;
+        }
+
+        .option.selected .option-letter { background: var(--primary); color: #070e0a; }
+        .option.correct .option-letter { background: var(--correct); color: #070e0a; }
+        .option.wrong .option-letter { background: var(--wrong); color: #fff; }
+        .option-text { color: #ccc; line-height: 1.4; }
+
+        .btn-answer {
+            width: 100%;
+            padding: 10px;
+            background: linear-gradient(135deg, #4ade80, #2dd4bf);
+            border: none;
+            border-radius: 8px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: #070e0a;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-answer:disabled { background: rgba(255, 255, 255, 0.06); color: #555; cursor: not-allowed; }
+        .btn-answer:not(:disabled):hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(74, 222, 128, 0.3); }
+
+        .hint-box {
+            margin-top: 10px;
+            padding: 10px 12px;
+            background: rgba(251, 191, 36, 0.08);
+            border: 1px solid rgba(251, 191, 36, 0.2);
+            border-radius: 8px;
+            font-size: 12px;
+            color: #d4a017;
+            line-height: 1.5;
+        }
+
+        /* ─── Connect card ─── */
+        .connect-instruction {
+            font-size: 15px;
+            text-align: center;
+            line-height: 1.8;
+            color: #ddd;
+            margin-bottom: 8px;
+        }
+
+        .connect-instruction strong {
+            font-size: 18px;
+            color: var(--accent);
+            background: rgba(251, 191, 36, 0.12);
+            padding: 2px 8px;
+            border-radius: 6px;
+            letter-spacing: 1px;
+        }
+
+        .connect-hint { text-align: center; font-size: 11px; color: var(--text-dim); }
+
+        /* ─── Erase card ─── */
+        .erase-instruction {
+            font-size: 14px;
+            text-align: center;
+            line-height: 1.6;
+            color: #ddd;
+            margin-bottom: 8px;
+        }
+
+        .erase-codes {
+            text-align: center;
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--erase);
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .erase-hint { text-align: center; font-size: 11px; color: var(--text-dim); }
+
+        /* ─── Fact & Progress ─── */
+        .fact-text { font-size: 12px; line-height: 1.6; color: #aaa; }
+
+        .progress-track {
+            height: 10px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: 6px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4ade80, #2dd4bf);
+            border-radius: 5px;
+            transition: width 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .progress-text { font-size: 12px; color: var(--text-dim); text-align: center; }
+
+        .progress-details {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 6px;
+            font-size: 11px;
+            color: var(--text-dim);
+        }
+
+        .progress-details span { display: flex; align-items: center; gap: 4px; }
+
+        .score-popup { font-size: 16px; font-weight: 800; color: var(--accent); opacity: 0; }
+
+        .score-popup.show { animation: popScore 1.8s ease forwards; }
+
+        @keyframes popScore {
+            0% { opacity: 1; transform: translateY(0) scale(1.2); }
+            20% { transform: translateY(-5px) scale(1); }
+            100% { opacity: 0; transform: translateY(-18px); }
+        }
+
+        .hidden { display: none !important; }
+
+        /* ─── Responsive ─── */
+        @media (max-width: 800px) {
+            main { flex-direction: column; }
+            #canvasWrap { flex: 1.1; min-height: 45vh; }
+            #panel {
+                width: 100%;
+                max-height: 55vh;
+                border-left: none;
+                border-top: 1px solid var(--border);
+                gap: 8px;
+                padding: 10px;
+                overflow-y: auto;
+            }
+            #panel .card { flex: 1 1 100%; min-width: 0; }
+            #progressCard { order: -1; }
+            header h1 { font-size: 14px; }
+            .header-info { gap: 10px; font-size: 11px; }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>🐘 Naturens Pussel — Prick till Prick</h1>
+        <div class="header-info">
+            <span><span class="label">Fråga:</span> <span class="value" id="hdrQ">–</span></span>
+            <span><span class="label">Poäng:</span> <span class="value" id="hdrScore">0</span></span>
+            <span><span class="label">Rätt:</span> <span class="value" id="hdrCorrect">0</span></span>
+        </div>
+    </header>
+
+    <main>
+        <div id="canvasWrap">
+            <canvas id="puzzleCanvas"></canvas>
+
+            <div class="overlay" id="startOverlay">
+                <div class="overlay-content">
+                    <h2>Naturens Pussel</h2>
+                    <p class="subtitle">
+                        Framför dig ser du ett virrvarr av prickar med mystiska koder.
+                        Någonstans i kaoset döljer sig en <strong>hemlig bild</strong>!<br><br>
+                        Svara rätt på frågor om <strong>djur och natur</strong>
+                        för att ta reda på vilka prickar som ska kopplas — och vilka
+                        som är <strong>falska störprickar</strong> som ska raderas.<br><br>
+                        💡 <em>Steg för steg rensas bruset bort och bilden framträder!</em>
+                    </p>
+                    <button class="btn-main" id="btnStart">▶ Starta pusslet</button>
+                </div>
+            </div>
+
+            <div class="overlay hidden" id="celebrationOverlay">
+                <div class="overlay-content">
+                    <h2>🎉 Grattis!</h2>
+                    <p class="subtitle">Du har avslöjat den dolda bilden — en <strong>elefant</strong>!</p>
+                    <div class="stats-grid" id="finalStats"></div>
+                    <button class="btn-main" id="btnRestart">🔄 Spela igen</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="panel">
+            <div class="card" id="questionCard">
+                <div class="card-header">
+                    <span>❓ Fråga <span id="qNum">1</span> av <span id="qTotal">35</span></span>
+                    <span class="score-popup" id="scorePopup"></span>
+                </div>
+                <p id="qText" class="q-text"></p>
+                <div id="qOptions" class="options"></div>
+                <button id="btnAnswer" class="btn-answer" disabled>Svara</button>
+                <div id="hintBox" class="hint-box hidden">
+                    <span>💡 </span><span id="hintText"></span>
+                </div>
+            </div>
+
+            <div class="card hidden" id="connectCard">
+                <div class="card-header">🔗 Koppla ihop!</div>
+                <p class="connect-instruction">
+                    Dra ett streck mellan<br>
+                    <strong id="cFrom"></strong> → <strong id="cTo"></strong>
+                </p>
+                <p class="connect-hint">Klicka på de två pulsande prickarna</p>
+            </div>
+
+            <div class="card hidden" id="eraseCard">
+                <div class="card-header">🧹 Rensa störprickar!</div>
+                <p class="erase-instruction">Falska prickar försvinner:</p>
+                <p class="erase-codes" id="eDots"></p>
+                <p class="erase-hint">De raderas automatiskt…</p>
+            </div>
+
+            <div class="card hidden" id="factCard">
+                <div class="card-header">💡 Visste du?</div>
+                <p id="factText" class="fact-text"></p>
+            </div>
+
+            <div class="card" id="progressCard">
+                <div class="card-header">📊 Framsteg</div>
+                <div class="progress-track">
+                    <div class="progress-fill" id="progressFill" style="width:0%"></div>
+                </div>
+                <p class="progress-text" id="progressText">0 av 35 frågor</p>
+                <div class="progress-details">
+                    <span>✏️ <span id="edgesDone">0</span> streck</span>
+                    <span>🧹 <span id="eraseDone">0</span>/10 rensade</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+    'use strict';
+
+    // ═══════════════════════════════════════════════════════
+    //  FRÅGEBANK — REDIGERA HÄR FÖR ATT BYTA FRÅGOR!
+    //
+    //  Två typer:
+    //    type: 'connect'  — rätt svar avslöjar ett streck
+    //        edge: [fromId, toId]
+    //    type: 'erase'    — rätt svar raderar störprickar
+    //        eraseDots: [id1, id2, id3]
+    //
+    //  Ordningen i arrayen = ordningen frågorna ställs.
+    // ═══════════════════════════════════════════════════════
+
+    const PUZZLE_DATA = [
+      // ─── Elefantkonturen har 33 punkter (P0–P32) och 33 kanter.
+      //     25 connect-frågor ritar dessa 33 kanter (8 frågor ritar dubbelkanter via 'edges').
+      //     10 erase-frågor rensar störprickar (P33–P67).
+      //     Totalt 35 frågor.
+      // ───
+
+      // ── 1. Connect: hjässa → öra/kind ──
+      {
+        type: 'connect', edge: [0, 1],
+        question: "Vilket är världens största nu levande landdjur?",
+        options: ["Vit noshörning", "Afrikansk savannelefant", "Flodhäst", "Giraff"],
+        correct: 1,
+        hint: "Det lever på Afrikas savanner och har en lång snabel…",
+        fact: "En afrikansk savannelefant kan väga upp till 6 ton — lika tungt som en stor lastbil!"
+      },
+      // ── 2. Erase ──
+      {
+        type: 'erase', eraseDots: [33, 36, 40],
+        question: "Vad kallas den vätska som omger kroppens celler och förser dem med näring?",
+        options: ["Lymfa", "Blodplasma", "Vävnadsvätska", "Saliv"],
+        correct: 2,
+        hint: "Den finns i utrymmet mellan cellerna…",
+        fact: "Vävnadsvätskan bildas när blodplasma filtreras ut genom kapillärväggarna."
+      },
+      // ── 3. Connect: snabelfäste → snabel övre ──
+      {
+        type: 'connect', edges: [[1, 2], [2, 3]],
+        question: "Hur många ben har en insekt?",
+        options: ["4", "6", "8", "10"],
+        correct: 1,
+        hint: "Fler än en hund men färre än en spindel…",
+        fact: "Alla insekter har exakt 6 ben (tre par). Spindlar har 8 och tillhör spindeldjuren."
+      },
+      // ── 4. Connect: snabel övre → snabelspets → snabelkurl ──
+      {
+        type: 'connect', edges: [[3, 4], [4, 5]],
+        question: "Vad kallas den process i kloroplasten där växter bildar druvsocker av koldioxid och vatten med hjälp av solljus?",
+        options: ["Cellandning", "Fotosyntes", "Jäsning", "Transpiration"],
+        correct: 1,
+        hint: "'Foto' = ljus, 'syntes' = att sätta ihop…",
+        fact: "Fotosyntes: 6CO₂ + 6H₂O + ljusenergi → C₆H₁₂O₆ + 6O₂."
+      },
+      // ── 5. Erase ──
+      {
+        type: 'erase', eraseDots: [35, 48, 58],
+        question: "Vilket djur producerar honung?",
+        options: ["Humla", "Geting", "Honungsbi", "Myra"],
+        correct: 2,
+        hint: "De lever i samhällen med en drottning och arbetare…",
+        fact: "Ett honungsbisamhälle kan producera 20–30 kg honung per år!"
+      },
+      // ── 6. Connect: snabelkurl → snabelretur ──
+      {
+        type: 'connect', edge: [5, 6],
+        question: "Vad kallas djur som äter både växter och kött?",
+        options: ["Herbivorer", "Karnivorer", "Omnivorer", "Insektivorer"],
+        correct: 2,
+        hint: "'Omni' betyder 'allt' på latin…",
+        fact: "Björn, gris och människa är exempel på omnivorer — allätare."
+      },
+      // ── 7. Connect: snabel innerkurva → snabelslinga → underkäke ──
+      {
+        type: 'connect', edges: [[7, 8], [8, 9]],
+        question: "Vilken gas finns det mer av i utandningsluften jämfört med inandningsluften?",
+        options: ["Syre", "Koldioxid", "Metan", "Kväve"],
+        correct: 1,
+        hint: "Det är samma gas som växter behöver för fotosyntes…",
+        fact: "Utandningsluften innehåller ca 4 % koldioxid — 100× mer än de 0,04 % i inandningsluften."
+      },
+      // ── 8. Erase ──
+      {
+        type: 'erase', eraseDots: [38, 43, 65],
+        question: "Vad kallas det när igelkottar och björnar vilar med kraftigt sänkt ämnesomsättning under vintern?",
+        options: ["Migration", "Vinterdvala", "Metamorfos", "Diapaus"],
+        correct: 1,
+        hint: "De sover i princip hela vintern…",
+        fact: "Igelkottens hjärta slår bara 5 slag per minut under vinterdvalan — normalt 190!"
+      },
+      // ── 9. Connect: snabelretur → snabel innerkurva ──
+      {
+        type: 'connect', edge: [6, 7],
+        question: "Hur fortplantar sig svampar?",
+        options: ["Med frön", "Med sporer", "Med lökar", "Med avläggare"],
+        correct: 1,
+        hint: "De sprids med vinden, men det är inte frön…",
+        fact: "Svampar är varken växter eller djur — de bildar ett helt eget rike!"
+      },
+      // ── 10. Connect: underkäke → hals ──
+      {
+        type: 'connect', edge: [9, 10],
+        question: "Vilket djur är känt för att kunna ändra sin hudfärg?",
+        options: ["Gecko", "Groda", "Kameleont", "Leguan"],
+        correct: 2,
+        hint: "Den lever i tropiska träd och har ögon som rör sig oberoende av varandra…",
+        fact: "Kameleonter ändrar färg främst för kommunikation och temperaturreglering, inte kamouflage!"
+      },
+      // ── 11. Erase ──
+      {
+        type: 'erase', eraseDots: [39, 52, 55],
+        question: "Vilken organism tillhör INTE djurriket?",
+        options: ["Korall", "Sjöstjärna", "Champinjon", "Bläckfisk"],
+        correct: 2,
+        hint: "Den ser ut som en växt men är varken växt eller djur…",
+        fact: "Champinjoner tillhör svampriket — ett helt eget rike skilt från både växt- och djurriket."
+      },
+      // ── 12. Connect: hals → bröst → framben övre ──
+      {
+        type: 'connect', edges: [[10, 11], [11, 12]],
+        question: "Vad kallas organismer som bryter ner dött organiskt material?",
+        options: ["Producenter", "Konsumenter", "Nedbrytare", "Rovdjur"],
+        correct: 2,
+        hint: "De 'städar' i naturen genom att bryta ner löv och döda djur…",
+        fact: "Svampar och bakterier är de viktigaste nedbrytarna — utan dem skulle döda löv aldrig försvinna."
+      },
+      // ── 13. Connect: framben övre → framfot ──
+      {
+        type: 'connect', edge: [12, 13],
+        question: "Vad heter det gröna pigmentet i växtceller som absorberar ljusenergi?",
+        options: ["Keratin", "Melanin", "Klorofyll", "Hemoglobin"],
+        correct: 2,
+        hint: "'Kloro' = grön, 'fyll' = blad…",
+        fact: "Klorofyll absorberar rött och blått ljus men reflekterar grönt — därför ser växter gröna ut!"
+      },
+      // ── 14. Erase ──
+      {
+        type: 'erase', eraseDots: [41, 53, 59],
+        question: "Vad kallas rovdjur som står högst upp i en näringskedja?",
+        options: ["Primärkonsumenter", "Toppredatorer", "Producenter", "Herbivorer"],
+        correct: 1,
+        hint: "De jagas inte av några andra rovdjur…",
+        fact: "Exempel på toppredatorer: örn, varg, haj och isbjörn."
+      },
+      // ── 15. Connect: framfot → framfot bakkant ──
+      {
+        type: 'connect', edge: [13, 14],
+        question: "Hur många hjärtkammare har ett däggdjurshjärta (förmak + kammare)?",
+        options: ["2", "3", "4", "1"],
+        correct: 2,
+        hint: "Det är dubbelt så många som ett fiskhjärta har…",
+        fact: "2 förmak + 2 kammare = 4 hålrum, som separerar syrerikt och syrefattigt blod helt."
+      },
+      // ── 16. Connect: framfot bakkant → buk nedre → buk ──
+      {
+        type: 'connect', edges: [[14, 15], [15, 16]],
+        question: "Vilket biom finns i arktiska regioner, saknar träd och har permafrost?",
+        options: ["Savann", "Stäpp", "Tundra", "Prärie"],
+        correct: 2,
+        hint: "Marken under ytan är frusen året runt…",
+        fact: "I tundran lever ren, fjällräv, snöuggla och lämlar trots extrema förhållanden."
+      },
+      // ── 17. Erase ──
+      {
+        type: 'erase', eraseDots: [44, 45, 66],
+        question: "Vilket sinne använder fladdermöss för att navigera i mörkret?",
+        options: ["Syn", "Ekolokalisering", "Lukt", "Magnetsinne"],
+        correct: 1,
+        hint: "De sänder ut ljud och lyssnar efter ekot…",
+        fact: "Fladdermöss sänder ultraljud med upp till 140 000 Hz — vi hör max 20 000 Hz."
+      },
+      // ── 18. Connect: buk → buk bak ──
+      {
+        type: 'connect', edge: [16, 17],
+        question: "Vilken fågel kan simma men inte flyga?",
+        options: ["Pelikan", "Pingvin", "Albatross", "Lunnefågel"],
+        correct: 1,
+        hint: "Den lever bland is i Antarktis och har 'smoking'…",
+        fact: "Kejsarpingvinen kan dyka ner till 500 meters djup och hålla andan i 20 minuter!"
+      },
+      // ── 19. Connect: buk bak → bakben övre → bakfot 1 ──
+      {
+        type: 'connect', edges: [[17, 18], [18, 19]],
+        question: "Vad kallas ett samband mellan två arter där båda gynnas av samlevnaden?",
+        options: ["Parasitism", "Mutualism", "Kommensalism", "Predation"],
+        correct: 1,
+        hint: "'Mutual' = ömsesidig…",
+        fact: "Bin och blommor: biet får nektar, blomman pollineras — klassisk mutualism!"
+      },
+      // ── 20. Erase ──
+      {
+        type: 'erase', eraseDots: [46, 54, 60],
+        question: "Hur tar fiskar upp syre ur vattnet?",
+        options: ["Med lungor", "Med gälar", "Genom huden", "Med simblåsan"],
+        correct: 1,
+        hint: "De filtrerar syre genom speciella organ på huvudets sida…",
+        fact: "Gälarna har en enorm yta — hos en tonfisk ungefär lika stor som en tennisplan!"
+      },
+      // ── 21. Connect: bakfot 1 → bakfot 1 bakkant ──
+      {
+        type: 'connect', edge: [19, 20],
+        question: "Vilket vitamin bildar kroppen i huden med hjälp av UVB-strålning?",
+        options: ["A-vitamin", "B-vitamin", "C-vitamin", "D-vitamin"],
+        correct: 3,
+        hint: "Det kallas ibland 'solskenvitaminet' och är viktigt för skelettet…",
+        fact: "D-vitamin bildas i huden när UVB-strålar träffar 7-dehydrokolesterol."
+      },
+      // ── 22. Connect: bakfot 1 bakkant → bakben knä → bakben 2 övre ──
+      {
+        type: 'connect', edges: [[20, 21], [21, 22]],
+        question: "Hur många kromosomer har en vanlig mänsklig kroppscell?",
+        options: ["23", "46", "48", "44"],
+        correct: 1,
+        hint: "Det är 23 par…",
+        fact: "22 par autosomer + 1 par könskromosomer (XX eller XY) = 46 stycken totalt."
+      },
+      // ── 23. Erase ──
+      {
+        type: 'erase', eraseDots: [49, 50, 51],
+        question: "Vad kallas det yttersta cellskiktet som skyddar ett blads yta?",
+        options: ["Epidermis", "Dermis", "Bark", "Kambium"],
+        correct: 0,
+        hint: "Samma namn som det yttersta hudlagret hos människan…",
+        fact: "Bladets epidermis täcks av ett vaxlager (kutikula) som hindrar vattenförlust."
+      },
+      // ── 24. Connect: bakben 2 övre → bakfot 2 → bakfot 2 bakkant ──
+      {
+        type: 'connect', edges: [[22, 23], [23, 24]],
+        question: "Vad kallas ledaren i en elefantflock?",
+        options: ["Alfahannen", "Matriarken", "Patriarken", "Kungen"],
+        correct: 1,
+        hint: "Det är alltid en äldre hona som leder flocken…",
+        fact: "Elefantflockar leds av den äldsta honan — matriarken. Vuxna hanar lever ofta ensamma."
+      },
+      // ── 25. Connect: bakfot 2 bakkant → bakre lår ──
+      {
+        type: 'connect', edge: [24, 25],
+        question: "I vilken del av cellen finns DNA:t lagrat?",
+        options: ["Mitokondrien", "Ribosomen", "Cellkärnan", "Cellmembranet"],
+        correct: 2,
+        hint: "Den ritas ofta som en cirkel i mitten av cellen…",
+        fact: "Cellkärnan (nukleus) omsluter DNA:t med ett dubbelväggigt kärnhölje."
+      },
+      // ── 26. Erase ──
+      {
+        type: 'erase', eraseDots: [56, 37, 67],
+        question: "Vad kallas samlingen av alla levande organismer och deras miljö i ett avgränsat område?",
+        options: ["Population", "Ekosystem", "Samhälle", "Habitat"],
+        correct: 1,
+        hint: "Det omfattar alla biotiska och abiotiska faktorer…",
+        fact: "Ett ekosystem kan vara en hel sjö — eller en enda murkna stubbe!"
+      },
+      // ── 27. Connect: bakre lår → svansrot ──
+      {
+        type: 'connect', edge: [25, 26],
+        question: "Vad kallas den typ av skog som domineras av gran och tall?",
+        options: ["Lövskog", "Regnskog", "Barrskog", "Mangroveskog"],
+        correct: 2,
+        hint: "Träden har barr istället för löv…",
+        fact: "Barrskogsbältet (taigan) sträcker sig runt hela jorden — världens största landbiom."
+      },
+      // ── 28. Connect: svansrot → svanstofs → svansknick ──
+      {
+        type: 'connect', edges: [[26, 27], [27, 28]],
+        question: "Vad sker vid cellandning i mitokondrierna?",
+        options: ["Koldioxid omvandlas till syre", "Druvsocker oxideras och ATP bildas", "Proteiner bildas", "Cellen delar sig"],
+        correct: 1,
+        hint: "Det är i princip fotosyntesens omvända reaktion…",
+        fact: "Cellandning: C₆H₁₂O₆ + 6O₂ → 6CO₂ + 6H₂O + energi (ATP)."
+      },
+      // ── 29. Erase ──
+      {
+        type: 'erase', eraseDots: [57, 63, 64],
+        question: "Vilket grundämne (kemisk symbol C) ingår i alla organiska molekyler?",
+        options: ["Järn", "Kol", "Kväve", "Kalcium"],
+        correct: 1,
+        hint: "Det har symbol C och kan binda till fyra andra atomer…",
+        fact: "Kol kan binda till fyra andra atomer samtidigt — nyckeln till livets kemi."
+      },
+      // ── 30. Connect: svansknick → höft ──
+      {
+        type: 'connect', edge: [28, 29],
+        question: "Hur många halskotor har en giraff jämfört med en människa?",
+        options: ["Giraffen har fler", "Människan har fler", "Lika många (7 st)", "Giraffen har inga"],
+        correct: 2,
+        hint: "Svaret kanske överraskar dig…",
+        fact: "Båda har 7 halskotor! Giraffens kotor är bara mycket längre — upp till 25 cm var."
+      },
+      // ── 31. Connect: höft → ländrygg → mittrygg ──
+      {
+        type: 'connect', edges: [[29, 30], [30, 31]],
+        question: "Vad kallas vattnets kretslopp i naturen?",
+        options: ["Kvävecykeln", "Hydrologiska cykeln", "Kolets kretslopp", "Syrecykeln"],
+        correct: 1,
+        hint: "'Hydro' = vatten på grekiska…",
+        fact: "Avdunstning → moln → nederbörd → avrinning — vattnets eviga kretslopp."
+      },
+      // ── 32. Connect: mittrygg → nacke ──
+      {
+        type: 'connect', edge: [31, 32],
+        question: "Vilken är världens snabbaste fågel på marken?",
+        options: ["Strutsen", "Emun", "Nandun", "Kalkonen"],
+        correct: 0,
+        hint: "Den kan inte flyga men springer snabbare än de flesta djur…",
+        fact: "Strutsen springer i 70 km/h och är dessutom världens största fågel — upp till 2,7 m!"
+      },
+      // ── 33. Connect: nacke → hjässa (stänger konturen) ──
+      {
+        type: 'connect', edge: [32, 0],
+        question: "Vad kallas det skikt i atmosfären som skyddar oss mot UV-strålning?",
+        options: ["Troposfären", "Exosfären", "Ozonlagret", "Magnetosfären"],
+        correct: 2,
+        hint: "Det innehåller en gas med tre syreatomer: O₃…",
+        fact: "Ozonlagret ligger 15–35 km upp i stratosfären och absorberar skadlig UVB-strålning."
+      },
+      // ── 34. Erase ──
+      {
+        type: 'erase', eraseDots: [34, 42, 61],
+        question: "Vilken kroppstemperatur har de flesta friska människor?",
+        options: ["35 °C", "37 °C", "39 °C", "41 °C"],
+        correct: 1,
+        hint: "Det brukar stå på termometern som normalvärde…",
+        fact: "Däggdjur och fåglar är jämnvarma (endoterma) — de reglerar sin egen temperatur."
+      },
+      // ── 35. Erase ──
+      {
+        type: 'erase', eraseDots: [47, 62],
+        question: "Vad kallas det när en ofarlig art efterliknar en giftig arts varningsfärger?",
+        options: ["Kamouflage", "Batesisk mimikry", "Aposematism", "Symbios"],
+        correct: 1,
+        hint: "Den 'härmar' den giftiga artens mönster…",
+        fact: "Mjölkormen (ofarlig) liknar korallormen (giftig) — klassisk Batesisk mimikry!"
+      }
+    ];
+
+    const TOTAL_QUESTIONS = PUZZLE_DATA.length;
+    const TOTAL_CONNECTS = PUZZLE_DATA.filter(d => d.type === 'connect').length;
+    const TOTAL_ERASES   = PUZZLE_DATA.filter(d => d.type === 'erase').length;
+
+    // Helper: normalize edge/edges to array of [from, to] pairs
+    function getEdges(data) {
+      if (data.edges) return data.edges;
+      if (data.edge) return [data.edge];
+      return [];
+    }
+    // All unique point IDs involved in a connect question
+    function getEdgeDotIds(data) {
+      const ids = new Set();
+      for (const e of getEdges(data)) { ids.add(e[0]); ids.add(e[1]); }
+      return [...ids];
+    }
+
+
+    // ═══════════════════════════════════════════════════════
+    //  ELEFANTENS FORM + STÖRPRICKAR
+    //
+    //  33 konturpunkter (P0–P32) — Douglas-Peucker-optimerade från silhuett.
+    //  35 störprickar (P33–P67) — slumpade med minsta avstånd 0.045.
+    //
+    //  Konturen: 33 kanter i ordningen 0→1→…→32→0.
+    //  Douglas-Peucker behåller automatiskt de mest signifikanta
+    //  hörnen, vilket ger en tydligt igenkännbar elefantform.
+    //
+    //  P0 = hjässa, medsols runt konturen:
+    //   Huvud→snabel: 0→1→2→3→4→5→6→7→8→9→10
+    //   Framben: 10→11→12→13→14
+    //   Buk→bakben: 14→15→16→17→18→19→20
+    //   Bakben 2: 20→21→22→23→24
+    //   Svans→rygg: 24→25→26→27→28→29→30→31→32→0
+    // ═══════════════════════════════════════════════════════
+
+    const POINTS = [
+      // ── Elefantens kontur (33 punkter, Douglas-Peucker) ──
+      { id:  0, code: 'Ψ7', nx: 0.185, ny: 0.207, noise: false },  // hjässa
+      { id:  1, code: 'Σ3', nx: 0.098, ny: 0.461, noise: false },  // öra/kind
+      { id:  2, code: 'κ9', nx: 0.057, ny: 0.483, noise: false },  // snabelfäste
+      { id:  3, code: 'Δ1', nx: 0.098, ny: 0.490, noise: false },  // snabel övre
+      { id:  4, code: 'θ5', nx: 0.149, ny: 0.673, noise: false },  // snabelspets
+      { id:  5, code: 'Ω8', nx: 0.204, ny: 0.683, noise: false },  // snabelkurl
+      { id:  6, code: 'λ2', nx: 0.238, ny: 0.643, noise: false },  // snabelretur
+      { id:  7, code: 'ρ6', nx: 0.228, ny: 0.594, noise: false },  // snabel innerkurva
+      { id:  8, code: 'ξ4', nx: 0.196, ny: 0.645, noise: false },  // snabelslinga
+      { id:  9, code: 'α7', nx: 0.160, ny: 0.614, noise: false },  // underkäke
+      { id: 10, code: 'Φ3', nx: 0.173, ny: 0.446, noise: false },  // hals
+      { id: 11, code: 'ε9', nx: 0.282, ny: 0.409, noise: false },  // bröst
+      { id: 12, code: 'μ1', nx: 0.359, ny: 0.497, noise: false },  // framben övre
+      { id: 13, code: 'β5', nx: 0.328, ny: 0.823, noise: false },  // framfot
+      { id: 14, code: 'η8', nx: 0.476, ny: 0.838, noise: false },  // framfot bakkant
+      { id: 15, code: 'π2', nx: 0.472, ny: 0.636, noise: false },  // buk nedre
+      { id: 16, code: 'γ6', nx: 0.507, ny: 0.547, noise: false },  // buk
+      { id: 17, code: 'ζ4', nx: 0.683, ny: 0.591, noise: false },  // buk bak
+      { id: 18, code: 'Θ9', nx: 0.710, ny: 0.696, noise: false },  // bakben övre
+      { id: 19, code: 'δ3', nx: 0.670, ny: 0.827, noise: false },  // bakfot 1
+      { id: 20, code: 'τ7', nx: 0.770, ny: 0.823, noise: false },  // bakfot 1 bakkant
+      { id: 21, code: 'ν1', nx: 0.796, ny: 0.641, noise: false },  // bakben knä
+      { id: 22, code: 'χ5', nx: 0.830, ny: 0.734, noise: false },  // bakben 2 övre
+      { id: 23, code: 'ι8', nx: 0.806, ny: 0.837, noise: false },  // bakfot 2
+      { id: 24, code: 'σ2', nx: 0.907, ny: 0.837, noise: false },  // bakfot 2 bakkant
+      { id: 25, code: 'ω6', nx: 0.896, ny: 0.637, noise: false },  // bakre lår
+      { id: 26, code: 'Ψ1', nx: 0.918, ny: 0.449, noise: false },  // svansrot
+      { id: 27, code: 'Σ5', nx: 0.937, ny: 0.633, noise: false },  // svanstofs
+      { id: 28, code: 'κ3', nx: 0.936, ny: 0.423, noise: false },  // svansknick
+      { id: 29, code: 'Δ9', nx: 0.841, ny: 0.259, noise: false },  // höft
+      { id: 30, code: 'θ9', nx: 0.733, ny: 0.203, noise: false },  // ländrygg
+      { id: 31, code: 'Ω4', nx: 0.560, ny: 0.204, noise: false },  // mittrygg
+      { id: 32, code: 'λ7', nx: 0.414, ny: 0.154, noise: false },  // nacke
+
+      // ── Störprickar (35 st, min. avstånd 0.045) ──
+      { id: 33, code: 'ρ3', nx: 0.628, ny: 0.063, noise: true },
+      { id: 34, code: 'ξ6', nx: 0.293, ny: 0.245, noise: true },
+      { id: 35, code: 'α1', nx: 0.861, ny: 0.120, noise: true },
+      { id: 36, code: 'Φ9', nx: 0.428, ny: 0.067, noise: true },
+      { id: 37, code: 'ε2', nx: 0.241, ny: 0.505, noise: true },
+      { id: 38, code: 'μ7', nx: 0.064, ny: 0.223, noise: true },
+      { id: 39, code: 'β3', nx: 0.638, ny: 0.541, noise: true },
+      { id: 40, code: 'η4', nx: 0.785, ny: 0.046, noise: true },
+      { id: 41, code: 'π8', nx: 0.353, ny: 0.183, noise: true },
+      { id: 42, code: 'γ1', nx: 0.921, ny: 0.350, noise: true },
+      { id: 43, code: 'ζ9', nx: 0.125, ny: 0.129, noise: true },
+      { id: 44, code: 'Θ2', nx: 0.820, ny: 0.595, noise: true },
+      { id: 45, code: 'δ7', nx: 0.783, ny: 0.711, noise: true },
+      { id: 46, code: 'τ4', nx: 0.533, ny: 0.935, noise: true },
+      { id: 47, code: 'ν5', nx: 0.388, ny: 0.548, noise: true },
+      { id: 48, code: 'χ8', nx: 0.688, ny: 0.082, noise: true },
+      { id: 49, code: 'ι3', nx: 0.250, ny: 0.306, noise: true },
+      { id: 50, code: 'σ6', nx: 0.113, ny: 0.254, noise: true },
+      { id: 51, code: 'ω1', nx: 0.133, ny: 0.296, noise: true },
+      { id: 52, code: 'Ψ4', nx: 0.625, ny: 0.376, noise: true },
+      { id: 53, code: 'Σ1', nx: 0.381, ny: 0.233, noise: true },
+      { id: 54, code: 'κ5', nx: 0.286, ny: 0.902, noise: true },
+      { id: 55, code: 'Δ8', nx: 0.636, ny: 0.600, noise: true },
+      { id: 56, code: 'θ3', nx: 0.190, ny: 0.389, noise: true },
+      { id: 57, code: 'Ω6', nx: 0.552, ny: 0.670, noise: true },
+      { id: 58, code: 'λ9', nx: 0.251, ny: 0.070, noise: true },
+      { id: 59, code: 'ρ1', nx: 0.330, ny: 0.286, noise: true },
+      { id: 60, code: 'ξ7', nx: 0.234, ny: 0.907, noise: true },
+      { id: 61, code: 'α3', nx: 0.846, ny: 0.330, noise: true },
+      { id: 62, code: 'Φ1', nx: 0.556, ny: 0.282, noise: true },
+      { id: 63, code: 'ε5', nx: 0.578, ny: 0.866, noise: true },
+      { id: 64, code: 'μ9', nx: 0.958, ny: 0.509, noise: true },
+      { id: 65, code: 'γ4', nx: 0.124, ny: 0.083, noise: true },
+      { id: 66, code: 'ζ1', nx: 0.769, ny: 0.428, noise: true },
+      { id: 67, code: 'Θ6', nx: 0.098, ny: 0.391, noise: true },
+    ];
+
+    const EYE = { nx: 0.16, ny: 0.35 };
+
+
+    // ═══════════════════════════════════════════════════════
+    //  GAME STATE
+    // ═══════════════════════════════════════════════════════
+
+    const canvas = document.getElementById('puzzleCanvas');
+    const ctx = canvas.getContext('2d');
+    let W = 0, H = 0;
+    const PAD = 50;
+
+    let state = 'start';
+    let currentQ = 0;
+    let score = 0;
+    let firstTryCount = 0;
+    let attempts = 0;
+    let selectedOpt = null;
+    let completedEdges = [];
+    let completedErases = 0;
+    let firstDot = null;
+    let visibleNoiseIds = new Set();
+    let drawAnim = { active: false, t: 0, from: null, to: null, startTime: 0 };
+    let eraseAnim = { active: false, dots: [], startTime: 0 };
+    const DRAW_DURATION = 650;
+    const ERASE_DURATION = 1000;
+    let particles = [];
+    let celebrationTime = 0;
+    let showEye = false;
+
+    // Audio
+    let audioCtx = null;
+
+    function initAudio() {
+        try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
+        catch (e) { audioCtx = null; }
+    }
+
+    function playTone(freq, dur, type, vol, delay) {
+        if (!audioCtx) return;
+        const t = audioCtx.currentTime + (delay || 0);
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = type || 'sine';
+        osc.frequency.setValueAtTime(freq, t);
+        gain.gain.setValueAtTime(vol || 0.12, t);
+        gain.gain.exponentialRampToValueAtTime(0.001, t + dur);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start(t);
+        osc.stop(t + dur);
+    }
+
+    function sfxCorrect()  { playTone(523,.15,'sine',.1,0); playTone(659,.15,'sine',.1,.1); playTone(784,.2,'sine',.12,.2); }
+    function sfxWrong()    { playTone(220,.25,'sawtooth',.06); }
+    function sfxConnect()  { playTone(440,.08,'sine',.08,0); playTone(554,.08,'sine',.08,.07); playTone(659,.15,'sine',.1,.14); }
+    function sfxErase()    { playTone(600,.1,'sine',.08,0); playTone(500,.1,'sine',.07,.08); playTone(350,.2,'triangle',.06,.16); }
+    function sfxCelebration() { [523,659,784,1047,784,1047,1319].forEach((f,i) => playTone(f,.3,'sine',.1,i*.14)); }
+
+
+    // ═══════════════════════════════════════════════════════
+    //  HELPERS
+    // ═══════════════════════════════════════════════════════
+
+    function sx(nx) { return PAD + nx * (W - 2 * PAD); }
+    function sy(ny) { return PAD + ny * (H - 2 * PAD); }
+
+    function resize() {
+        const wrap = document.getElementById('canvasWrap');
+        const dpr = window.devicePixelRatio || 1;
+        W = wrap.clientWidth;
+        H = wrap.clientHeight;
+        canvas.width = W * dpr;
+        canvas.height = H * dpr;
+        canvas.style.width = W + 'px';
+        canvas.style.height = H + 'px';
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    window.addEventListener('resize', resize);
+    resize();
+
+    function isDotVisible(p) {
+        if (!p.noise) return true;
+        if (eraseAnim.active && eraseAnim.dots.includes(p.id)) return true;
+        return visibleNoiseIds.has(p.id);
+    }
+
+
+    // ═══════════════════════════════════════════════════════
+    //  PARTICLES
+    // ═══════════════════════════════════════════════════════
+
+    function emitParticles(x, y, color, count, speed) {
+        for (let i = 0; i < count; i++) {
+            const angle = Math.random() * Math.PI * 2;
+            const spd = speed * (0.3 + Math.random() * 0.7);
+            particles.push({ x, y, vx: Math.cos(angle)*spd, vy: Math.sin(angle)*spd,
+                life: 1, decay: 0.012 + Math.random() * 0.02,
+                radius: 1.5 + Math.random() * 2.5, color });
+        }
+    }
+
+    function updateParticles() {
+        for (let i = particles.length - 1; i >= 0; i--) {
+            const p = particles[i];
+            p.x += p.vx; p.y += p.vy; p.vy += 0.03; p.life -= p.decay;
+            if (p.life <= 0) particles.splice(i, 1);
+        }
+    }
+
+    function drawParticles() {
+        for (const p of particles) {
+            ctx.globalAlpha = p.life;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.radius * p.life, 0, Math.PI * 2);
+            ctx.fillStyle = p.color;
+            ctx.fill();
+        }
+        ctx.globalAlpha = 1;
+    }
+
+
+    // ═══════════════════════════════════════════════════════
+    //  RENDERING
+    // ═══════════════════════════════════════════════════════
+
+    function render() {
+        ctx.clearRect(0, 0, W, H);
+        drawBackground();
+        drawCompletedEdges();
+        drawDrawingAnimFrame();
+        drawDots();
+        if (showEye) drawEye();
+        drawParticles();
+        updateParticles();
+        updateAnimations();
+        requestAnimationFrame(render);
+    }
+
+    function drawBackground() {
+        const grad = ctx.createRadialGradient(W*.4, H*.4, 0, W*.5, H*.5, W*.75);
+        grad.addColorStop(0, '#0f1a12');
+        grad.addColorStop(1, '#070e0a');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, W, H);
+        ctx.fillStyle = 'rgba(74, 222, 128, 0.03)';
+        for (let gx = 40; gx < W; gx += 40)
+            for (let gy = 40; gy < H; gy += 40)
+                ctx.fillRect(gx, gy, 1, 1);
+    }
+
+    function drawGlowLine(x1, y1, x2, y2, alpha, width) {
+        const a = alpha || 1, w = width || 2;
+        ctx.lineCap = 'round';
+        ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2);
+        ctx.strokeStyle = `rgba(74,222,128,${0.15*a})`; ctx.lineWidth = w+6; ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2);
+        ctx.strokeStyle = `rgba(45,212,191,${0.35*a})`; ctx.lineWidth = w+2; ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2);
+        ctx.strokeStyle = `rgba(110,231,183,${0.85*a})`; ctx.lineWidth = w; ctx.stroke();
+    }
+
+    function drawCompletedEdges() {
+        const isCeleb = state === 'celebration';
+        const now = performance.now();
+        for (const idx of completedEdges) {
+            for (const e of getEdges(PUZZLE_DATA[idx])) {
+                const p1 = POINTS[e[0]], p2 = POINTS[e[1]];
+                if (isCeleb) {
+                    drawGlowLine(sx(p1.nx),sy(p1.ny), sx(p2.nx),sy(p2.ny), 0.7+Math.sin(now*.003+idx)*0.3, 3);
+                } else {
+                    drawGlowLine(sx(p1.nx),sy(p1.ny), sx(p2.nx),sy(p2.ny), 1, 2);
+                }
+            }
+        }
+    }
+
+    function drawDrawingAnimFrame() {
+        if (!drawAnim.active) return;
+        const p1 = POINTS[drawAnim.from], p2 = POINTS[drawAnim.to];
+        const x1=sx(p1.nx), y1=sy(p1.ny), x2=sx(p2.nx), y2=sy(p2.ny);
+        const et = drawAnim.t < 0.5 ? 2*drawAnim.t*drawAnim.t : 1-Math.pow(-2*drawAnim.t+2,2)/2;
+        const cx = x1+(x2-x1)*et, cy = y1+(y2-y1)*et;
+        drawGlowLine(x1,y1,cx,cy,1,2.5);
+        ctx.beginPath(); ctx.arc(cx,cy,5,0,Math.PI*2);
+        ctx.fillStyle = 'rgba(251,191,36,0.9)'; ctx.fill();
+        ctx.beginPath(); ctx.arc(cx,cy,10,0,Math.PI*2);
+        ctx.fillStyle = 'rgba(251,191,36,0.2)'; ctx.fill();
+        if (Math.random()<0.4) emitParticles(cx,cy,'#fbbf24',1,1);
+    }
+
+    function drawDots() {
+        const now = performance.now();
+        const activeIds = (state==='connecting'||state==='drawing') && PUZZLE_DATA[currentQ].type==='connect'
+            ? getEdgeDotIds(PUZZLE_DATA[currentQ]) : [];
+
+        for (const p of POINTS) {
+            if (!isDotVisible(p)) continue;
+
+            const x = sx(p.nx), y = sy(p.ny);
+            const isActive = activeIds.includes(p.id);
+            const isSelected = p.id === firstDot;
+            const isErasing = eraseAnim.active && eraseAnim.dots.includes(p.id);
+
+            let r = 7 + Math.sin(now*0.002 + p.id*1.7)*1.2;
+            let dotAlpha = 1;
+
+            // Erase animation: pulse red then shrink
+            if (isErasing) {
+                const t = (now - eraseAnim.startTime) / ERASE_DURATION;
+                if (t < 0.35) {
+                    const pulse = Math.sin(t/0.35 * Math.PI * 4);
+                    r = r + pulse * 3;
+                } else {
+                    const fadeT = (t - 0.35) / 0.65;
+                    r = r * (1 - fadeT);
+                    dotAlpha = 1 - fadeT;
+                }
+                if (dotAlpha <= 0.01) continue;
+
+                // Red glow
+                ctx.beginPath(); ctx.arc(x,y,r+10,0,Math.PI*2);
+                ctx.fillStyle = `rgba(249,115,22,${0.15*dotAlpha})`;
+                ctx.fill();
+            }
+
+            // Active dot pulse
+            if (isActive) {
+                const pulse = Math.sin(now*0.006)*0.5+0.5;
+                r = 9 + pulse*5;
+                ctx.beginPath(); ctx.arc(x,y,r+14,0,Math.PI*2);
+                ctx.fillStyle = `rgba(251,191,36,${0.06+pulse*0.06})`; ctx.fill();
+                ctx.beginPath(); ctx.arc(x,y,r+8,0,Math.PI*2);
+                ctx.fillStyle = `rgba(251,191,36,${0.1+pulse*0.1})`; ctx.fill();
+            }
+
+            // Selection ring
+            if (isSelected) {
+                ctx.beginPath(); ctx.arc(x,y,r+6,0,Math.PI*2);
+                ctx.strokeStyle = '#fbbf24'; ctx.lineWidth = 2.5;
+                ctx.setLineDash([4,3]); ctx.stroke(); ctx.setLineDash([]);
+            }
+
+            // Main dot gradient
+            ctx.globalAlpha = dotAlpha;
+            const grad = ctx.createRadialGradient(x-r*.2, y-r*.2, 0, x, y, r);
+            if (isErasing) {
+                grad.addColorStop(0, '#ffd5b0'); grad.addColorStop(0.5, '#f97316'); grad.addColorStop(1, '#c2410c');
+            } else if (isActive) {
+                grad.addColorStop(0, '#fff5c0'); grad.addColorStop(0.5, '#fbbf24'); grad.addColorStop(1, '#d97706');
+            } else if (state === 'celebration' && !p.noise) {
+                grad.addColorStop(0, '#b5f5d0'); grad.addColorStop(0.5, '#4ade80'); grad.addColorStop(1, '#16a34a');
+            } else {
+                grad.addColorStop(0, '#a7f3d0'); grad.addColorStop(0.5, '#6ee7b7'); grad.addColorStop(1, '#34d399');
+            }
+            ctx.beginPath(); ctx.arc(x,y,r,0,Math.PI*2);
+            ctx.fillStyle = grad; ctx.fill();
+
+            // Code label
+            const fontSize = isActive ? 14 : 11;
+            ctx.font = `${isActive?'700':'500'} ${fontSize}px 'Outfit',sans-serif`;
+            ctx.textAlign = 'center'; ctx.textBaseline = 'bottom';
+            ctx.fillStyle = isErasing ? `rgba(249,115,22,${dotAlpha})`
+                          : isActive ? '#fbbf24'
+                          : `rgba(255,255,255,${0.65*dotAlpha})`;
+            ctx.shadowColor = 'rgba(0,0,0,0.7)'; ctx.shadowBlur = 4;
+            ctx.fillText(p.code, x, y - r - 4);
+            ctx.shadowBlur = 0;
+            ctx.globalAlpha = 1;
+        }
+    }
+
+    function drawEye() {
+        const x=sx(EYE.nx), y=sy(EYE.ny);
+        const t = Math.min(1, (performance.now()-celebrationTime)/1200);
+        const r = 4*t;
+        if (r<0.5) return;
+        ctx.beginPath(); ctx.arc(x,y,r+1,0,Math.PI*2);
+        ctx.fillStyle = `rgba(255,255,255,${0.8*t})`; ctx.fill();
+        ctx.beginPath(); ctx.arc(x,y,r*0.6,0,Math.PI*2);
+        ctx.fillStyle = `rgba(20,30,20,${t})`; ctx.fill();
+        ctx.beginPath(); ctx.arc(x-r*.3,y-r*.3,r*.25,0,Math.PI*2);
+        ctx.fillStyle = `rgba(255,255,255,${0.7*t})`; ctx.fill();
+    }
+
+    function updateAnimations() {
+        const now = performance.now();
+        if (drawAnim.active) {
+            drawAnim.t = Math.min(1, (now-drawAnim.startTime)/DRAW_DURATION);
+            if (drawAnim.t >= 1) { drawAnim.active = false; onDrawComplete(); }
+        }
+        if (eraseAnim.active) {
+            const t = (now-eraseAnim.startTime)/ERASE_DURATION;
+            // Emit particles during erase
+            if (t > 0.4 && t < 0.9 && Math.random() < 0.15) {
+                const dotId = eraseAnim.dots[Math.floor(Math.random()*eraseAnim.dots.length)];
+                const p = POINTS[dotId];
+                if (p) emitParticles(sx(p.nx), sy(p.ny), '#f97316', 2, 2);
+            }
+            if (t >= 1) { eraseAnim.active = false; onEraseComplete(); }
+        }
+    }
+
+
+    // ═══════════════════════════════════════════════════════
+    //  QUESTION PANEL LOGIC
+    // ═══════════════════════════════════════════════════════
+
+    const $questionCard = document.getElementById('questionCard');
+    const $connectCard  = document.getElementById('connectCard');
+    const $eraseCard    = document.getElementById('eraseCard');
+    const $factCard     = document.getElementById('factCard');
+    const $btnAnswer    = document.getElementById('btnAnswer');
+    const $hintBox      = document.getElementById('hintBox');
+
+    function showQuestion(idx) {
+        const data = PUZZLE_DATA[idx];
+        state = 'question';
+        selectedOpt = null;
+        attempts = 0;
+        firstDot = null;
+
+        $questionCard.classList.remove('hidden');
+        $connectCard.classList.add('hidden');
+        $eraseCard.classList.add('hidden');
+        $factCard.classList.add('hidden');
+        $hintBox.classList.add('hidden');
+        $btnAnswer.disabled = true;
+        $btnAnswer.textContent = 'Svara';
+
+        document.getElementById('qNum').textContent = idx + 1;
+        document.getElementById('qText').textContent = data.question;
+
+        const container = document.getElementById('qOptions');
+        container.innerHTML = '';
+        const letters = ['A','B','C','D'];
+        data.options.forEach((text, i) => {
+            const div = document.createElement('div');
+            div.className = 'option';
+            div.dataset.index = i;
+            div.innerHTML = `<span class="option-letter">${letters[i]}</span><span class="option-text">${text}</span>`;
+            div.addEventListener('click', () => selectOption(i, div));
+            container.appendChild(div);
+        });
+
+        updateHeader();
+    }
+
+    function selectOption(idx, el) {
+        if (el.classList.contains('disabled')) return;
+        selectedOpt = idx;
+        $btnAnswer.disabled = false;
+        document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+        el.classList.add('selected');
+    }
+
+    function submitAnswer() {
+        if (selectedOpt === null || state !== 'question') return;
+        const data = PUZZLE_DATA[currentQ];
+        attempts++;
+        const optEl = document.querySelector(`.option[data-index="${selectedOpt}"]`);
+
+        if (selectedOpt === data.correct) {
+            optEl.classList.add('correct');
+            document.querySelectorAll('.option').forEach(o => { if (!o.classList.contains('correct')) o.classList.add('disabled'); });
+
+            const pts = attempts===1?50 : attempts===2?25 : attempts===3?10 : 5;
+            score += pts;
+            if (attempts === 1) firstTryCount++;
+
+            const popup = document.getElementById('scorePopup');
+            popup.textContent = `+${pts}`;
+            popup.classList.remove('show');
+            void popup.offsetWidth;
+            popup.classList.add('show');
+
+            $factCard.classList.remove('hidden');
+            document.getElementById('factText').innerHTML = data.fact;
+            $btnAnswer.disabled = true;
+            $btnAnswer.textContent = '✓ Rätt!';
+            $hintBox.classList.add('hidden');
+
+            sfxCorrect();
+            updateHeader();
+
+            if (data.type === 'connect') {
+                const edgeList = getEdges(data);
+                if (edgeList.length === 1) {
+                    // Single edge: show connect card with click interaction
+                    const fromP = POINTS[edgeList[0][0]], toP = POINTS[edgeList[0][1]];
+                    document.getElementById('cFrom').textContent = fromP.code;
+                    document.getElementById('cTo').textContent = toP.code;
+                    $connectCard.classList.remove('hidden');
+                    state = 'connecting';
+                    firstDot = null;
+                } else {
+                    // Multi-edge: auto-draw all edges sequentially
+                    $connectCard.classList.remove('hidden');
+                    const codes = edgeList.map(e => POINTS[e[0]].code + ' → ' + POINTS[e[1]].code).join(', ');
+                    document.getElementById('cFrom').textContent = '';
+                    document.getElementById('cTo').textContent = codes;
+                    startMultiDraw(edgeList);
+                }
+            } else {
+                const codes = data.eraseDots.map(id => POINTS[id].code).join('  ');
+                document.getElementById('eDots').textContent = codes;
+                $eraseCard.classList.remove('hidden');
+                state = 'erasing';
+                sfxErase();
+                eraseAnim = { active: true, dots: [...data.eraseDots], startTime: performance.now() };
+            }
+
+        } else {
+            optEl.classList.add('wrong');
+            optEl.classList.add('disabled');
+            selectedOpt = null;
+            $btnAnswer.disabled = true;
+            $hintBox.classList.remove('hidden');
+            document.getElementById('hintText').textContent = data.hint;
+            sfxWrong();
+        }
+    }
+
+    function updateHeader() {
+        document.getElementById('hdrQ').textContent = `${currentQ+1}/${TOTAL_QUESTIONS}`;
+        document.getElementById('hdrScore').textContent = score;
+        document.getElementById('hdrCorrect').textContent = firstTryCount;
+    }
+
+    function updateProgress() {
+        const total = completedEdges.length + completedErases;
+        const pct = (total / TOTAL_QUESTIONS) * 100;
+        document.getElementById('progressFill').style.width = pct + '%';
+        document.getElementById('progressText').textContent = `${total} av ${TOTAL_QUESTIONS} frågor`;
+        document.getElementById('edgesDone').textContent = completedEdges.length;
+        document.getElementById('eraseDone').textContent = completedErases;
+    }
+
+
+    // ═══════════════════════════════════════════════════════
+    //  DOT INTERACTION
+    // ═══════════════════════════════════════════════════════
+
+    function handleCanvasClick(e) {
+        if (state !== 'connecting') return;
+        const rect = canvas.getBoundingClientRect();
+        const cx = (e.clientX-rect.left)*(W/rect.width);
+        const cy = (e.clientY-rect.top)*(H/rect.height);
+        const dotIds = getEdgeDotIds(PUZZLE_DATA[currentQ]);
+        for (const pid of dotIds) {
+            const p = POINTS[pid];
+            if (Math.hypot(cx-sx(p.nx), cy-sy(p.ny)) < 22) { onDotClicked(pid); return; }
+        }
+    }
+
+    function onDotClicked(pid) {
+        const edgeList = getEdges(PUZZLE_DATA[currentQ]);
+        if (edgeList.length > 1) return; // multi-edge auto-draws
+        const edge = edgeList[0];
+        if (firstDot === null) {
+            firstDot = pid;
+            sfxConnect();
+            emitParticles(sx(POINTS[pid].nx), sy(POINTS[pid].ny), '#fbbf24', 8, 2);
+        } else if (firstDot === pid) {
+            firstDot = null;
+        } else {
+            const other = edge[0]===firstDot ? edge[1] : edge[0];
+            if (pid === other) startDrawing(firstDot, pid);
+        }
+    }
+
+
+    // ═══════════════════════════════════════════════════════
+    //  ANIMATIONS
+    // ═══════════════════════════════════════════════════════
+
+    function startDrawing(fromId, toId) {
+        state = 'drawing';
+        drawAnim = { active: true, t: 0, from: fromId, to: toId, startTime: performance.now() };
+        sfxConnect();
+    }
+
+    // Multi-edge: auto-draw edges one after another
+    let multiDrawQueue = [];
+    function startMultiDraw(edgeList) {
+        state = 'drawing';
+        multiDrawQueue = edgeList.slice(1); // remaining after first
+        startDrawing(edgeList[0][0], edgeList[0][1]);
+    }
+
+    function onDrawComplete() {
+        // Emit particles along the just-drawn edge
+        const p1=POINTS[drawAnim.from], p2=POINTS[drawAnim.to];
+        for (let t=0; t<=1; t+=0.15)
+            emitParticles(sx(p1.nx)+(sx(p2.nx)-sx(p1.nx))*t, sy(p1.ny)+(sy(p2.ny)-sy(p1.ny))*t, '#4ade80', 3, 2);
+        firstDot = null;
+        drawAnim.active = false;
+
+        if (multiDrawQueue.length > 0) {
+            // Draw the next edge in the queue
+            const next = multiDrawQueue.shift();
+            setTimeout(() => startDrawing(next[0], next[1]), 200);
+        } else {
+            completedEdges.push(currentQ);
+            updateProgress();
+            advanceQuestion();
+        }
+    }
+
+    function onEraseComplete() {
+        for (const id of eraseAnim.dots) {
+            visibleNoiseIds.delete(id);
+            const p = POINTS[id];
+            emitParticles(sx(p.nx), sy(p.ny), '#f97316', 10, 3);
+        }
+        completedErases++;
+        updateProgress();
+        eraseAnim.active = false;
+        advanceQuestion();
+    }
+
+    function advanceQuestion() {
+        if (currentQ + 1 >= PUZZLE_DATA.length) {
+            setTimeout(startCelebration, 600);
+        } else {
+            currentQ++;
+            setTimeout(() => showQuestion(currentQ), 500);
+        }
+    }
+
+
+    // ═══════════════════════════════════════════════════════
+    //  CELEBRATION
+    // ═══════════════════════════════════════════════════════
+
+    function startCelebration() {
+        state = 'celebration';
+        celebrationTime = performance.now();
+        showEye = true;
+        sfxCelebration();
+
+        for (let i = 0; i < 10; i++) {
+            const x = PAD + Math.random()*(W-2*PAD), y = PAD + Math.random()*(H-2*PAD);
+            emitParticles(x, y, ['#4ade80','#fbbf24','#2dd4bf','#f472b6'][i%4], 15, 4);
+        }
+
+        let burst = 0;
+        const confetti = setInterval(() => {
+            if (burst > 8) { clearInterval(confetti); return; }
+            emitParticles(Math.random()*W, Math.random()*H*0.5,
+                ['#4ade80','#fbbf24','#f472b6','#818cf8'][burst%4], 10, 3);
+            burst++;
+        }, 400);
+
+        $questionCard.classList.add('hidden');
+        $connectCard.classList.add('hidden');
+        $eraseCard.classList.add('hidden');
+
+        setTimeout(() => {
+            document.getElementById('finalStats').innerHTML = `
+                <div class="stat-box"><div class="stat-label">Poäng</div><div class="stat-value">${score}</div></div>
+                <div class="stat-box"><div class="stat-label">Rätt på första</div><div class="stat-value">${firstTryCount}/${TOTAL_QUESTIONS}</div></div>
+                <div class="stat-box"><div class="stat-label">Streck</div><div class="stat-value">${TOTAL_CONNECTS}/${TOTAL_CONNECTS}</div></div>
+                <div class="stat-box"><div class="stat-label">Djuret</div><div class="stat-value">🐘</div></div>`;
+            document.getElementById('celebrationOverlay').classList.remove('hidden');
+        }, 2500);
+    }
+
+
+    // ═══════════════════════════════════════════════════════
+    //  LIFECYCLE
+    // ═══════════════════════════════════════════════════════
+
+    function startGame() {
+        initAudio();
+        currentQ = 0; score = 0; firstTryCount = 0; attempts = 0;
+        selectedOpt = null; completedEdges = []; completedErases = 0;
+        firstDot = null; particles = []; showEye = false; multiDrawQueue = [];
+        drawAnim = { active:false, t:0, from:null, to:null, startTime:0 };
+        eraseAnim = { active:false, dots:[], startTime:0 };
+        visibleNoiseIds = new Set(POINTS.filter(p=>p.noise).map(p=>p.id));
+
+        document.getElementById('startOverlay').classList.add('hidden');
+        document.getElementById('celebrationOverlay').classList.add('hidden');
+        document.getElementById('qTotal').textContent = TOTAL_QUESTIONS;
+        updateProgress();
+        showQuestion(0);
+    }
+
+    document.getElementById('btnStart').addEventListener('click', startGame);
+    document.getElementById('btnRestart').addEventListener('click', startGame);
+    document.getElementById('btnAnswer').addEventListener('click', submitAnswer);
+    canvas.addEventListener('click', handleCanvasClick);
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && state === 'question' && selectedOpt !== null) submitAnswer();
+        if (state === 'question') {
+            const n = parseInt(e.key);
+            if (n >= 1 && n <= 4) {
+                const el = document.querySelector(`.option[data-index="${n-1}"]`);
+                if (el && !el.classList.contains('disabled')) selectOption(n-1, el);
+            }
+        }
+    });
+
+    requestAnimationFrame(render);
+    </script>
+</body>
+</html>

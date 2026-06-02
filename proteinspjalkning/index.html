@@ -1,0 +1,1453 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magsäckens Försvarare — Proteinspjälkning</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: #0a0a12;
+            color: #e0e0e0;
+            font-family: 'Outfit', sans-serif;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1a0a2e 0%, #2d1b4e 50%, #1a0a2e 100%);
+            border-bottom: 2px solid rgba(180, 60, 100, 0.4);
+            padding: 8px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-shrink: 0;
+            z-index: 10;
+        }
+
+        header h1 {
+            font-size: 18px;
+            font-weight: 700;
+            background: linear-gradient(90deg, #ff6b9d, #c44dff, #6bdfff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header-info {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            font-size: 13px;
+        }
+
+        .header-info span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .header-info .label { color: #888; font-weight: 300; }
+        .header-info .value { font-weight: 600; color: #fff; }
+
+        main {
+            flex: 1;
+            display: flex;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #gameArea {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        canvas { display: block; width: 100%; height: 100%; }
+
+        .hud {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            display: flex;
+            justify-content: space-between;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .hud-left, .hud-right {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .hud-bar {
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 6px 12px;
+            font-size: 13px;
+            min-width: 170px;
+        }
+
+        .hud-bar .bar-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #888;
+            margin-bottom: 3px;
+        }
+
+        .bar-track {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 3px;
+        }
+
+        .bar-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .bar-fill.hcl { background: linear-gradient(90deg, #ff4444, #ffaa00, #44ff44); }
+        .bar-fill.energy { background: linear-gradient(90deg, #ff4444, #ffaa00, #44ff44); }
+
+        #sidePanel {
+            width: 260px;
+            background: linear-gradient(180deg, #12081f, #0d0618);
+            border-left: 1px solid rgba(180, 60, 100, 0.2);
+            padding: 12px;
+            overflow-y: auto;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            font-size: 12px;
+        }
+
+        .panel-section {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 8px;
+            padding: 10px;
+        }
+
+        .panel-section h3 {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #c44dff;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .fact-text { font-size: 11px; line-height: 1.5; color: #aaa; }
+        .fact-text strong { color: #ff6b9d; }
+
+        .legend-item { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+        .legend-dot { width: 14px; height: 14px; border-radius: 3px; flex-shrink: 0; }
+        .legend-label { font-size: 11px; color: #bbb; }
+
+        .controls-list { list-style: none; }
+        .controls-list li { margin-bottom: 4px; color: #999; }
+        .controls-list kbd {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 3px;
+            padding: 1px 5px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 11px;
+            color: #ddd;
+        }
+
+        .overlay-screen {
+            position: absolute;
+            inset: 0;
+            background: rgba(5, 2, 15, 0.92);
+            backdrop-filter: blur(12px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 20;
+            text-align: center;
+            transition: opacity 0.4s;
+        }
+
+        .overlay-screen.hidden { opacity: 0; pointer-events: none; }
+
+        .overlay-screen h2 {
+            font-size: 42px;
+            font-weight: 800;
+            background: linear-gradient(90deg, #ff6b9d, #c44dff, #6bdfff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .overlay-screen .subtitle {
+            font-size: 16px;
+            color: #888;
+            max-width: 520px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .overlay-screen .score-display {
+            font-size: 28px;
+            font-weight: 700;
+            color: #ffaa00;
+            margin-bottom: 20px;
+        }
+
+        .btn-start {
+            background: linear-gradient(135deg, #c44dff, #ff6b9d);
+            border: none;
+            color: white;
+            font-family: 'Outfit', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 12px 40px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 20px rgba(196, 77, 255, 0.3);
+        }
+
+        .btn-start:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 30px rgba(196, 77, 255, 0.5);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .stat-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            padding: 10px;
+        }
+
+        .stat-box .stat-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #888;
+        }
+
+        .stat-box .stat-value { font-size: 20px; font-weight: 700; color: #fff; }
+
+        @media (max-width: 900px) { #sidePanel { display: none; } }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>🧪 Magsäckens Försvarare — Proteinspjälkning</h1>
+        <div class="header-info">
+            <span><span class="label">Poäng:</span> <span class="value" id="hdrScore">0</span></span>
+            <span><span class="label">Nivå:</span> <span class="value" id="hdrLevel">1</span></span>
+            <span><span class="label">Aminosyror:</span> <span class="value" id="hdrAmino">0</span></span>
+        </div>
+    </header>
+
+    <main>
+        <div id="gameArea">
+            <canvas id="gameCanvas"></canvas>
+            <div class="hud">
+                <div class="hud-left">
+                    <div class="hud-bar">
+                        <div class="bar-label">🧪 Saltsyra (HCl) — pH-nivå</div>
+                        <div class="bar-track"><div class="bar-fill hcl" id="hclBar" style="width:100%"></div></div>
+                        <div style="font-size:11px; margin-top:2px; color:#aaa">pH <span id="phValue">2.0</span> · Skotteffekt: <span id="shotEffect">100%</span></div>
+                    </div>
+                    <div class="hud-bar">
+                        <div class="bar-label">🔋 Kroppens Aminosyra-pool</div>
+                        <div class="bar-track"><div class="bar-fill energy" id="energyBar" style="width:100%"></div></div>
+                        <div style="font-size:11px; margin-top:2px; color:#aaa">Kroppen förbrukar ständigt! Spjälka!</div>
+                    </div>
+                </div>
+                <div class="hud-right">
+                    <div class="hud-bar" style="text-align:right">
+                        <div class="bar-label">Spjälkade aminosyror</div>
+                        <div style="font-size:18px; font-weight:700; color:#6bdfff" id="aminoDisplay">0</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="overlay-screen" id="startScreen">
+                <h2>Magsäckens Försvarare</h2>
+                <p class="subtitle">
+                    Du är enzymet <strong>pepsin</strong> i magsäcken!
+                    Skjut proteiner för att spjälka dem till aminosyror.
+                    Men se till att <strong>saltsyran (HCl)</strong> hålls på rätt nivå —
+                    utan lågt pH kan pepsin inte fungera effektivt!
+                    <br><br>
+                    💡 <em>Bakgrunden visar syranivån: gul = bra pH, svart = för lite syra!
+                    <br>Aminosyrapoolen sjunker ständigt. Spjälka proteiner för att fylla på!</em>
+                </p>
+                <button class="btn-start" id="btnStart">▶ Starta spelet</button>
+            </div>
+
+            <div class="overlay-screen hidden" id="gameOverScreen">
+                <h2>Kroppen fick energibrist!</h2>
+                <p class="subtitle">Du hann inte spjälka fram tillräckligt med aminosyror.</p>
+                <div class="stats-grid" id="goStats"></div>
+                <div class="score-display" id="goScore"></div>
+                <button class="btn-start" id="btnRestart">🔄 Spela igen</button>
+            </div>
+        </div>
+
+        <div id="sidePanel">
+            <div class="panel-section">
+                <h3>Kontroller</h3>
+                <ul class="controls-list">
+                    <li><kbd>←</kbd> <kbd>→</kbd> Flytta pepsin</li>
+                    <li><kbd>Mellanslag</kbd> Skjut</li>
+                    <li><kbd>P</kbd> Pausa</li>
+                </ul>
+            </div>
+
+            <div class="panel-section">
+                <h3>Förklaring</h3>
+                <div class="legend-item">
+                    <div class="legend-dot" style="background: linear-gradient(135deg, #e84393, #a855f7)"></div>
+                    <span class="legend-label">Stort protein (svårspjälkat)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot" style="background: linear-gradient(135deg, #ff7675, #fd79a8)"></div>
+                    <span class="legend-label">Peptid (mellansvår)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot" style="background: linear-gradient(135deg, #ffeaa7, #fdcb6e)"></div>
+                    <span class="legend-label">Liten peptid (lätt)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot" style="background: linear-gradient(135deg, #55efc4, #00cec9)"></div>
+                    <span class="legend-label">Aminosyra ✓ (fyller på energin)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot" style="background: linear-gradient(135deg, #00b894, #00cec9)"></div>
+                    <span class="legend-label">HCl-behållare (fyller pH)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot" style="background: linear-gradient(135deg, #a29bfe, #6c5ce7)"></div>
+                    <span class="legend-label">Gastrin-hormon (fryser syraförlust)</span>
+                </div>
+            </div>
+
+            <div class="panel-section">
+                <h3>Bakgrundsfärg = pH!</h3>
+                <p class="fact-text">
+                    <strong>Gul bakgrund</strong> = tillräckligt med saltsyra, pepsin fungerar fullt ut.
+                    <br><br>
+                    <strong>Svart bakgrund</strong> = för lite saltsyra, skotten gör mindre skada!
+                    <br><br>
+                    Håll koll på färgen — den visar din "magsaftshälsa"!
+                </p>
+            </div>
+
+            <div class="panel-section">
+                <h3>Fakta: Magsäcken</h3>
+                <p class="fact-text">
+                    <strong>Pepsin</strong> bryter ned proteiner till peptider och aminosyror.
+                    <br><br>
+                    Pepsin fungerar bäst vid <strong>pH 1,5–2,5</strong>. Magsäckens parietalceller producerar
+                    <strong>saltsyra (HCl)</strong> som sänker pH.
+                    <br><br>
+                    Utan tillräcklig saltsyra aktiveras inte pepsinogen till pepsin och nedbrytningen går mycket långsammare.
+                    <br><br>
+                    <strong>Protein → Peptider → Aminosyror</strong>
+                </p>
+            </div>
+
+            <div class="panel-section">
+                <h3>Koppling till munnen</h3>
+                <p class="fact-text">
+                    I munnen börjar nedbrytningen av <strong>stärkelse</strong> med enzymet <strong>amylas</strong>
+                    (finns i saliv). Amylas klyver stärkelse till maltossocker.
+                    <br><br>
+                    Amylas fungerar vid <strong>neutralt pH</strong> (~7) — tvärtemot pepsin!
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+    'use strict';
+
+    // ═══════════════════════════════════════════
+    // CONFIG
+    // ═══════════════════════════════════════════
+    const CONFIG = {
+        PLAYER_WIDTH: 54,
+        PLAYER_HEIGHT: 34,
+        PLAYER_SPEED: 6,
+        BULLET_SPEED: 9,
+        BULLET_WIDTH: 4,
+        BULLET_HEIGHT: 16,
+        MAX_BULLETS: 5,
+        SHOOT_COOLDOWN: 140,
+
+        // Tiers: each protein tier has properties
+        // hp is at FULL effectiveness; without HCl you need more shots
+        PROTEIN_TIERS: [
+            { name: 'Protein',      radius: 32, hp: 3, speed: 0.55, missWeight: 3,
+              color1: '#e84393', color2: '#a855f7', helices: 4, sheets: 2, chainLen: 18 },
+            { name: 'Peptid',       radius: 22, hp: 2, speed: 0.8,  missWeight: 2,
+              color1: '#ff7675', color2: '#fd79a8', helices: 2, sheets: 1, chainLen: 10 },
+            { name: 'Liten peptid', radius: 15, hp: 1, speed: 1.1,  missWeight: 1,
+              color1: '#ffeaa7', color2: '#fdcb6e', helices: 0, sheets: 0, chainLen: 5  },
+        ],
+        AMINO_ACID: { radius: 8, speed: 1.4, color1: '#55efc4', color2: '#00cec9', points: 50 },
+        HCL_CONTAINER: { radius: 18, speed: 0.9, color1: '#00b894', color2: '#00cec9', hclRestore: 22 },
+        GASTRIN_DROP: { radius: 14, speed: 1.1, color1: '#a29bfe', color2: '#6c5ce7', duration: 8.0 },
+
+        ENERGY_MAX: 100,
+        ENERGY_DRAIN_BASE: 1.5,
+        AMINO_ENERGY: 8.0,
+
+        HCL_MAX: 100,
+        HCL_DRAIN_PER_SECOND: 1.8,
+        HCL_SHOT_PENALTY: 0.15,
+
+        // Shot effectiveness by HCl ratio
+        // hclRatio >= 0.5 → full damage (1.0)
+        // hclRatio  0.0   → 0.25 damage (need 4x shots)
+        SHOT_DMG_MIN: 0.25,
+        SHOT_DMG_FULL_THRESHOLD: 0.5,
+
+        PH_MIN: 1.5,
+        PH_MAX: 7.0,
+
+        PROTEIN_SPAWN_BASE: 2600,
+        HCL_SPAWN_BASE: 3200,
+        LEVEL_AMINO_TARGET: 10,
+
+        // Physics for splitting
+        SPLIT_SPEED_MIN: 2.0,
+        SPLIT_SPEED_MAX: 4.5,
+    };
+
+    // ═══════════════════════════════════════════
+    // STATE
+    // ═══════════════════════════════════════════
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+
+    let W, H;
+    let gameState = 'start';
+    let score = 0, level = 1, aminoCount = 0, aminoThisLevel = 0;
+    let energy = CONFIG.ENERGY_MAX, hcl = CONFIG.HCL_MAX, gastrinTimer = 0;
+    let lastTime = 0, lastShot = 0, lastProteinSpawn = 0, lastHclSpawn = 0;
+    let bgHue = 0; // smooth background transition
+
+    const player = { x: 0, y: 0, w: CONFIG.PLAYER_WIDTH, h: CONFIG.PLAYER_HEIGHT };
+    let bullets = [], proteins = [], hclContainers = [], aminoAcids = [], particles = [], bonusDrops = [];
+
+    const keys = {};
+    let touchX = null, touchShooting = false;
+
+    // Pre-generate protein chain shapes (for realistic look)
+    function generateChainShape(numPoints, radius) {
+        const pts = [];
+        let x = 0, y = 0, angle = -Math.PI / 2;
+        for (let i = 0; i < numPoints; i++) {
+            pts.push({ x, y });
+            const segLen = radius * 0.2 + Math.random() * radius * 0.15;
+            angle += (Math.random() - 0.5) * 1.2;
+            x += Math.cos(angle) * segLen;
+            y += Math.sin(angle) * segLen;
+        }
+        // Center the chain
+        let cx = 0, cy = 0;
+        pts.forEach(p => { cx += p.x; cy += p.y; });
+        cx /= pts.length; cy /= pts.length;
+        pts.forEach(p => { p.x -= cx; p.y -= cy; });
+        return pts;
+    }
+
+    // Pre-generate helix positions for a protein
+    function generateHelices(count, radius) {
+        const helices = [];
+        for (let i = 0; i < count; i++) {
+            const angle = (i / count) * Math.PI * 2 + Math.random() * 0.5;
+            const dist = radius * 0.3 + Math.random() * radius * 0.35;
+            helices.push({
+                x: Math.cos(angle) * dist,
+                y: Math.sin(angle) * dist,
+                len: 8 + Math.random() * 10,
+                rot: Math.random() * Math.PI * 2,
+                amplitude: 2 + Math.random() * 2,
+                freq: 0.4 + Math.random() * 0.3,
+            });
+        }
+        return helices;
+    }
+
+    function generateSheets(count, radius) {
+        const sheets = [];
+        for (let i = 0; i < count; i++) {
+            const angle = Math.random() * Math.PI * 2;
+            const dist = radius * 0.2 + Math.random() * radius * 0.3;
+            sheets.push({
+                x: Math.cos(angle) * dist,
+                y: Math.sin(angle) * dist,
+                w: 6 + Math.random() * 8,
+                h: 3 + Math.random() * 4,
+                rot: Math.random() * Math.PI,
+            });
+        }
+        return sheets;
+    }
+
+    // ═══════════════════════════════════════════
+    // RESIZE
+    // ═══════════════════════════════════════════
+    function resize() {
+        const area = document.getElementById('gameArea');
+        W = area.clientWidth;
+        H = area.clientHeight;
+        canvas.width = W;
+        canvas.height = H;
+        player.x = W / 2;
+        player.y = H - 55;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    // ═══════════════════════════════════════════
+    // INPUT
+    // ═══════════════════════════════════════════
+    document.addEventListener('keydown', e => {
+        keys[e.code] = true;
+        if (e.code === 'KeyP' && gameState === 'playing') gameState = 'paused';
+        else if (e.code === 'KeyP' && gameState === 'paused') gameState = 'playing';
+        if (e.code === 'Space') e.preventDefault();
+    });
+    document.addEventListener('keyup', e => { keys[e.code] = false; });
+
+    canvas.addEventListener('touchstart', e => {
+        e.preventDefault();
+        const r = canvas.getBoundingClientRect();
+        touchX = e.touches[0].clientX - r.left;
+        touchShooting = true;
+    }, { passive: false });
+    canvas.addEventListener('touchmove', e => {
+        e.preventDefault();
+        const r = canvas.getBoundingClientRect();
+        touchX = e.touches[0].clientX - r.left;
+    }, { passive: false });
+    canvas.addEventListener('touchend', () => { touchX = null; touchShooting = false; });
+
+    // ═══════════════════════════════════════════
+    // BUTTONS
+    // ═══════════════════════════════════════════
+    document.getElementById('btnStart').addEventListener('click', startGame);
+    document.getElementById('btnRestart').addEventListener('click', startGame);
+
+    function startGame() {
+        score = 0; level = 1; aminoCount = 0; aminoThisLevel = 0;
+        energy = CONFIG.ENERGY_MAX; hcl = CONFIG.HCL_MAX; gastrinTimer = 0;
+        bullets = []; proteins = []; hclContainers = []; aminoAcids = []; particles = []; bonusDrops = [];
+        player.x = W / 2; player.y = H - 55;
+        gameState = 'playing';
+        lastTime = performance.now();
+        lastProteinSpawn = lastTime; lastHclSpawn = lastTime;
+        document.getElementById('startScreen').classList.add('hidden');
+        document.getElementById('gameOverScreen').classList.add('hidden');
+        requestAnimationFrame(gameLoop);
+    }
+
+    // ═══════════════════════════════════════════
+    // HELPERS
+    // ═══════════════════════════════════════════
+    function getpH() {
+        const ratio = hcl / CONFIG.HCL_MAX;
+        return CONFIG.PH_MAX - ratio * (CONFIG.PH_MAX - CONFIG.PH_MIN);
+    }
+
+    function getShotEffectiveness() {
+        const ratio = hcl / CONFIG.HCL_MAX;
+        if (ratio >= CONFIG.SHOT_DMG_FULL_THRESHOLD) return 1.0;
+        // Linear interpolation from SHOT_DMG_MIN at 0 to 1.0 at threshold
+        return CONFIG.SHOT_DMG_MIN + (ratio / CONFIG.SHOT_DMG_FULL_THRESHOLD) * (1.0 - CONFIG.SHOT_DMG_MIN);
+    }
+
+    function emitParticles(x, y, color, count, speed) {
+        for (let i = 0; i < count; i++) {
+            const angle = Math.random() * Math.PI * 2;
+            const spd = speed * (0.3 + Math.random() * 0.7);
+            particles.push({
+                x, y,
+                vx: Math.cos(angle) * spd,
+                vy: Math.sin(angle) * spd,
+                life: 1.0,
+                decay: 0.012 + Math.random() * 0.022,
+                radius: 1.5 + Math.random() * 3,
+                color,
+            });
+        }
+    }
+
+    // ═══════════════════════════════════════════
+    // SPAWNING
+    // ═══════════════════════════════════════════
+    function spawnProtein() {
+        const tier = 0;
+        const cfg = CONFIG.PROTEIN_TIERS[tier];
+        const speedMult = 1 + (level - 1) * 0.1;
+        const chain = generateChainShape(cfg.chainLen, cfg.radius);
+        const helices = generateHelices(cfg.helices, cfg.radius);
+        const sheets = generateSheets(cfg.sheets, cfg.radius);
+        proteins.push({
+            x: cfg.radius + Math.random() * (W - cfg.radius * 2),
+            y: -cfg.radius - 10,
+            vx: (Math.random() - 0.5) * 0.6,
+            vy: cfg.speed * speedMult * (0.85 + Math.random() * 0.3),
+            tier, hp: cfg.hp, maxHp: cfg.hp,
+            radius: cfg.radius,
+            wobble: Math.random() * Math.PI * 2,
+            rotation: Math.random() * Math.PI * 2,
+            rotSpeed: (Math.random() - 0.5) * 0.015,
+            chain, helices, sheets,
+            dmgAccum: 0, // accumulated fractional damage
+            flash: 0,    // hit flash timer
+        });
+    }
+
+    function spawnChildProtein(tier, x, y, angle, speed) {
+        const cfg = CONFIG.PROTEIN_TIERS[tier];
+        const chain = generateChainShape(cfg.chainLen, cfg.radius);
+        const helices = generateHelices(cfg.helices, cfg.radius);
+        const sheets = generateSheets(cfg.sheets, cfg.radius);
+        const speedMult = 1 + (level - 1) * 0.1;
+        proteins.push({
+            x, y,
+            vx: Math.cos(angle) * speed,
+            vy: Math.sin(angle) * speed + cfg.speed * speedMult * 0.5,
+            tier, hp: cfg.hp, maxHp: cfg.hp,
+            radius: cfg.radius,
+            wobble: Math.random() * Math.PI * 2,
+            rotation: Math.random() * Math.PI * 2,
+            rotSpeed: (Math.random() - 0.5) * 0.03,
+            chain, helices, sheets,
+            dmgAccum: 0,
+            flash: 0,
+        });
+    }
+
+    function spawnHcl() {
+        const cfg = CONFIG.HCL_CONTAINER;
+        hclContainers.push({
+            x: cfg.radius + Math.random() * (W - cfg.radius * 2),
+            y: -cfg.radius - 5,
+            vy: cfg.speed * (0.85 + Math.random() * 0.3) + (level - 1) * 0.04,
+            radius: cfg.radius,
+            wobble: Math.random() * Math.PI * 2,
+        });
+    }
+
+    function spawnBonus() {
+        const cfg = CONFIG.GASTRIN_DROP;
+        bonusDrops.push({
+            x: cfg.radius + Math.random() * (W - cfg.radius * 2),
+            y: -cfg.radius - 5,
+            vy: cfg.speed * (0.85 + Math.random() * 0.3),
+            radius: cfg.radius,
+            wobble: Math.random() * Math.PI * 2,
+        });
+    }
+
+    function spawnAminoAcid(x, y) {
+        aminoAcids.push({
+            x, y,
+            vy: CONFIG.AMINO_ACID.speed,
+            vx: (Math.random() - 0.5) * 2.5,
+            radius: CONFIG.AMINO_ACID.radius,
+            sparkle: Math.random() * Math.PI * 2,
+        });
+    }
+
+    function splitProtein(protein) {
+        const nextTier = protein.tier + 1;
+        if (nextTier >= CONFIG.PROTEIN_TIERS.length) {
+            // Becomes amino acids
+            const numAminos = 2 + Math.floor(Math.random() * 2);
+            for (let i = 0; i < numAminos; i++) {
+                spawnAminoAcid(
+                    protein.x + (Math.random() - 0.5) * 25,
+                    protein.y + (Math.random() - 0.5) * 25,
+                );
+            }
+            score += 40;
+            return;
+        }
+
+        // Split into 2-3 fragments flying in stochastic directions
+        const numFragments = 2 + (Math.random() < 0.3 ? 1 : 0);
+        const baseAngle = Math.random() * Math.PI * 2;
+        for (let i = 0; i < numFragments; i++) {
+            const angle = baseAngle + (i / numFragments) * Math.PI * 2 + (Math.random() - 0.5) * 1.0;
+            const speed = CONFIG.SPLIT_SPEED_MIN + Math.random() * (CONFIG.SPLIT_SPEED_MAX - CONFIG.SPLIT_SPEED_MIN);
+            spawnChildProtein(
+                nextTier,
+                protein.x + Math.cos(angle) * protein.radius * 0.5,
+                protein.y + Math.sin(angle) * protein.radius * 0.5,
+                angle,
+                speed,
+            );
+        }
+        score += 15 * (nextTier + 1);
+    }
+
+    // ═══════════════════════════════════════════
+    // UPDATE
+    // ═══════════════════════════════════════════
+    function update(dt) {
+        if (gameState !== 'playing') return;
+        const now = performance.now();
+
+        // Player
+        let moveDir = 0;
+        if (keys['ArrowLeft'] || keys['KeyA']) moveDir = -1;
+        if (keys['ArrowRight'] || keys['KeyD']) moveDir = 1;
+        if (touchX !== null) {
+            const diff = touchX - player.x;
+            if (Math.abs(diff) > 5) moveDir = diff > 0 ? 1 : -1;
+        }
+        player.x += moveDir * CONFIG.PLAYER_SPEED * dt * 60;
+        player.x = Math.max(player.w / 2, Math.min(W - player.w / 2, player.x));
+
+        // Shoot
+        const wantsShoot = keys['Space'] || touchShooting;
+        if (wantsShoot && now - lastShot > CONFIG.SHOOT_COOLDOWN && bullets.length < CONFIG.MAX_BULLETS) {
+            bullets.push({ x: player.x, y: player.y - player.h / 2, active: true });
+            lastShot = now;
+            hcl = Math.max(0, hcl - CONFIG.HCL_SHOT_PENALTY);
+            emitParticles(player.x, player.y - player.h / 2, '#6bdfff', 3, 2);
+        }
+
+        // Gastrin timer
+        if (gastrinTimer > 0) {
+            gastrinTimer -= dt;
+        }
+
+        // HCl drain (only if Gastrin is inactive)
+        if (gastrinTimer <= 0) {
+            hcl = Math.max(0, hcl - CONFIG.HCL_DRAIN_PER_SECOND * dt);
+        }
+
+        // Energy drain
+        energy -= (CONFIG.ENERGY_DRAIN_BASE + (level - 1) * 0.4) * dt;
+
+        // Smooth background transition (track visually)
+        const targetBgHue = hcl / CONFIG.HCL_MAX; // 1 = yellow, 0 = black
+        bgHue += (targetBgHue - bgHue) * 0.04;
+
+        // Bullets
+        bullets.forEach(b => { b.y -= CONFIG.BULLET_SPEED * dt * 60; });
+        bullets = bullets.filter(b => b.y > -20 && b.active);
+
+        // Spawn
+        const spawnInterval = CONFIG.PROTEIN_SPAWN_BASE / (1 + (level - 1) * 0.18);
+        if (now - lastProteinSpawn > spawnInterval) {
+            spawnProtein();
+            if (level >= 3 && Math.random() < 0.25) spawnProtein();
+            if (level >= 6 && Math.random() < 0.2) spawnProtein();
+            lastProteinSpawn = now;
+        }
+        const hclInterval = CONFIG.HCL_SPAWN_BASE / (1 + (level - 1) * 0.07);
+        if (now - lastHclSpawn > hclInterval) {
+            spawnHcl();
+            if (Math.random() < 0.15) spawnBonus();
+            lastHclSpawn = now;
+        }
+
+        // Proteins
+        const effectiveness = getShotEffectiveness();
+        for (let i = proteins.length - 1; i >= 0; i--) {
+            const p = proteins[i];
+            p.x += p.vx * dt * 60;
+            p.y += p.vy * dt * 60;
+            p.wobble += 0.025;
+            p.rotation += p.rotSpeed;
+            if (p.flash > 0) p.flash -= dt * 5;
+
+            // Dampen horizontal velocity (stochastic split drift settles)
+            p.vx *= 0.997;
+
+            // Bounce walls
+            if (p.x < p.radius) { p.x = p.radius; p.vx = Math.abs(p.vx); }
+            if (p.x > W - p.radius) { p.x = W - p.radius; p.vx = -Math.abs(p.vx); }
+
+            // Bullet collision
+            for (let j = bullets.length - 1; j >= 0; j--) {
+                const b = bullets[j];
+                if (!b.active) continue;
+                const dx = b.x - p.x, dy = b.y - p.y;
+                if (Math.sqrt(dx * dx + dy * dy) < p.radius + 6) {
+                    b.active = false;
+                    // Apply damage based on HCl effectiveness
+                    p.dmgAccum += effectiveness;
+                    p.flash = 1.0;
+
+                    // Emit colored particles
+                    const cfg = CONFIG.PROTEIN_TIERS[p.tier];
+                    emitParticles(b.x, b.y, cfg.color1, 6, 2.5);
+
+                    if (effectiveness < 0.5) {
+                        // Weak shot feedback
+                        emitParticles(b.x, b.y, '#555', 3, 1);
+                    }
+
+                    // Check if full HP worth of damage accumulated
+                    while (p.dmgAccum >= 1.0) {
+                        p.dmgAccum -= 1.0;
+                        p.hp--;
+                    }
+
+                    if (p.hp <= 0) {
+                        splitProtein(p);
+                        const cfg2 = CONFIG.PROTEIN_TIERS[p.tier];
+                        emitParticles(p.x, p.y, cfg2.color2, 18, 5);
+                        emitParticles(p.x, p.y, '#fff', 6, 3);
+                        proteins.splice(i, 1);
+                    }
+                    break;
+                }
+            }
+
+            // Missed
+            if (proteins[i] && proteins[i].y > H + proteins[i].radius) {
+                emitParticles(proteins[i].x, H, '#555', 8, 2);
+                proteins.splice(i, 1);
+            }
+        }
+
+        // HCl containers
+        for (let i = hclContainers.length - 1; i >= 0; i--) {
+            const h = hclContainers[i];
+            h.y += h.vy * dt * 60;
+            h.wobble += 0.04;
+
+            for (let j = bullets.length - 1; j >= 0; j--) {
+                const b = bullets[j];
+                if (!b.active) continue;
+                const dx = b.x - h.x, dy = b.y - h.y;
+                if (Math.sqrt(dx * dx + dy * dy) < h.radius + 6) {
+                    b.active = false;
+                    hcl = Math.min(CONFIG.HCL_MAX, hcl + CONFIG.HCL_CONTAINER.hclRestore);
+                    score += 15;
+                    emitParticles(h.x, h.y, '#00b894', 14, 4);
+                    emitParticles(h.x, h.y, '#fff', 5, 2);
+                    hclContainers.splice(i, 1);
+                    break;
+                }
+            }
+            if (hclContainers[i] && hclContainers[i].y > H + 30) {
+                hclContainers.splice(i, 1);
+            }
+        }
+
+        // Bonus drops
+        for (let i = bonusDrops.length - 1; i >= 0; i--) {
+            const b = bonusDrops[i];
+            b.y += b.vy * dt * 60;
+            b.wobble += 0.05;
+
+            const dx = player.x - b.x, dy = player.y - b.y;
+            if (Math.sqrt(dx * dx + dy * dy) < b.radius + player.w / 2) {
+                gastrinTimer = CONFIG.GASTRIN_DROP.duration;
+                score += 100;
+                emitParticles(b.x, b.y, CONFIG.GASTRIN_DROP.color1, 15, 4);
+                bonusDrops.splice(i, 1);
+                continue;
+            }
+            if (b.y > H + 20) bonusDrops.splice(i, 1);
+        }
+
+        // Amino acids
+        for (let i = aminoAcids.length - 1; i >= 0; i--) {
+            const a = aminoAcids[i];
+            a.y += a.vy * dt * 60;
+            a.x += a.vx * dt * 60;
+            a.vx *= 0.97;
+            a.sparkle += 0.1;
+
+            // Absorberas av tunntarmen när de lämnar magsäcken (når botten)
+            if (a.y > H) {
+                aminoCount++; aminoThisLevel++;
+                score += CONFIG.AMINO_ACID.points;
+                energy = Math.min(CONFIG.ENERGY_MAX, energy + CONFIG.AMINO_ENERGY);
+                emitParticles(a.x, H - 10, '#55efc4', 10, 2);
+                aminoAcids.splice(i, 1);
+            }
+        }
+
+        // Particles
+        for (let i = particles.length - 1; i >= 0; i--) {
+            const p = particles[i];
+            p.x += p.vx * dt * 60;
+            p.y += p.vy * dt * 60;
+            p.vy += 0.02;
+            p.life -= p.decay;
+            if (p.life <= 0) particles.splice(i, 1);
+        }
+
+        // Level up
+        if (aminoThisLevel >= CONFIG.LEVEL_AMINO_TARGET + (level - 1) * 3) {
+            level++; aminoThisLevel = 0;
+            energy = Math.min(CONFIG.ENERGY_MAX, energy + 20); // Heal on level up
+            emitParticles(W / 2, H / 2, '#ffeaa7', 35, 6);
+        }
+
+        // Game over
+        if (energy <= 0) {
+            gameState = 'gameover';
+            showGameOver();
+        }
+
+        updateHUD();
+    }
+
+    // ═══════════════════════════════════════════
+    // HUD
+    // ═══════════════════════════════════════════
+    function updateHUD() {
+        document.getElementById('hdrScore').textContent = score;
+        document.getElementById('hdrLevel').textContent = level;
+        document.getElementById('hdrAmino').textContent = aminoCount;
+        document.getElementById('hclBar').style.width = (hcl / CONFIG.HCL_MAX * 100) + '%';
+        document.getElementById('phValue').textContent = getpH().toFixed(1);
+        document.getElementById('shotEffect').textContent = Math.round(getShotEffectiveness() * 100) + '%';
+        document.getElementById('energyBar').style.width = Math.max(0, (energy / CONFIG.ENERGY_MAX * 100)) + '%';
+        document.getElementById('aminoDisplay').textContent = aminoCount;
+    }
+
+    function showGameOver() {
+        document.getElementById('gameOverScreen').classList.remove('hidden');
+        document.getElementById('goScore').textContent = `Poäng: ${score}`;
+        document.getElementById('goStats').innerHTML = `
+            <div class="stat-box"><div class="stat-label">Nivå</div><div class="stat-value">${level}</div></div>
+            <div class="stat-box"><div class="stat-label">Aminosyror</div><div class="stat-value">${aminoCount}</div></div>
+            <div class="stat-box"><div class="stat-label">Slutligt pH</div><div class="stat-value">${getpH().toFixed(1)}</div></div>
+        `;
+    }
+
+    // ═══════════════════════════════════════════
+    // DRAW
+    // ═══════════════════════════════════════════
+    function draw() {
+        ctx.clearRect(0, 0, W, H);
+        drawBackground();
+
+        // pH warning
+        const eff = getShotEffectiveness();
+        if (eff < 0.8 && gameState === 'playing') {
+            ctx.save();
+            const urgency = 1.0 - eff;
+            ctx.globalAlpha = 0.3 + Math.sin(performance.now() / 250) * 0.15 * urgency;
+            ctx.fillStyle = '#ff4444';
+            ctx.font = `600 ${16 + urgency * 6}px Outfit`;
+            ctx.textAlign = 'center';
+            const pct = Math.round(eff * 100);
+            ctx.fillText(`⚠️ pH FÖR HÖGT — skotteffekt ${pct}%! Skjut HCl-behållare!`, W / 2, 95);
+            ctx.restore();
+        }
+
+        // Pause
+        if (gameState === 'paused') {
+            ctx.fillStyle = 'rgba(0,0,0,0.55)';
+            ctx.fillRect(0, 0, W, H);
+            ctx.fillStyle = '#fff';
+            ctx.font = '700 36px Outfit';
+            ctx.textAlign = 'center';
+            ctx.fillText('PAUSAD', W / 2, H / 2);
+            ctx.font = '300 16px Outfit';
+            ctx.fillText('Tryck P för att fortsätta', W / 2, H / 2 + 35);
+        }
+
+        // Particles (behind entities)
+        particles.forEach(p => {
+            ctx.globalAlpha = p.life;
+            ctx.fillStyle = p.color;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.radius * p.life, 0, Math.PI * 2);
+            ctx.fill();
+        });
+        ctx.globalAlpha = 1;
+
+        // HCl containers
+        hclContainers.forEach(h => drawHclContainer(h));
+
+        // Proteins
+        proteins.forEach(p => drawProtein(p));
+
+        // Bonus drops
+        bonusDrops.forEach(b => drawBonusDrop(b));
+
+        // Amino acids
+        aminoAcids.forEach(a => drawAminoAcid(a));
+
+        // Bullets
+        const shotEff = getShotEffectiveness();
+        bullets.forEach(b => {
+            const grad = ctx.createLinearGradient(b.x, b.y - CONFIG.BULLET_HEIGHT, b.x, b.y);
+            if (shotEff > 0.5) {
+                grad.addColorStop(0, 'rgba(107, 223, 255, 0.1)');
+                grad.addColorStop(1, '#6bdfff');
+            } else {
+                const g = Math.floor(shotEff * 200);
+                grad.addColorStop(0, `rgba(${g},${g},${g}, 0.1)`);
+                grad.addColorStop(1, `rgb(${g + 50},${g + 50},${g + 50})`);
+            }
+            ctx.fillStyle = grad;
+            ctx.fillRect(b.x - CONFIG.BULLET_WIDTH / 2, b.y - CONFIG.BULLET_HEIGHT, CONFIG.BULLET_WIDTH, CONFIG.BULLET_HEIGHT);
+            if (shotEff > 0.5) {
+                ctx.shadowColor = '#6bdfff';
+                ctx.shadowBlur = 8;
+                ctx.fillRect(b.x - 1, b.y - CONFIG.BULLET_HEIGHT, 2, CONFIG.BULLET_HEIGHT);
+                ctx.shadowBlur = 0;
+            }
+        });
+
+        // Player
+        drawPlayer();
+    }
+
+    // ── BACKGROUND: Yellow ↔ Black based on HCl ──
+    function drawBackground() {
+        const t = performance.now() / 3000;
+        const acid = bgHue; // 0 = no acid (black), 1 = full acid (yellow)
+
+        // Base color: interpolate from black to warm amber/yellow
+        let r = Math.floor(acid * 180 + (1 - acid) * 8);
+        let g = Math.floor(acid * 145 + (1 - acid) * 5);
+        let b = Math.floor(acid * 30  + (1 - acid) * 10);
+
+        let r2 = Math.floor(acid * 140 + (1 - acid) * 4);
+        let g2 = Math.floor(acid * 100 + (1 - acid) * 3);
+        let b2 = Math.floor(acid * 15  + (1 - acid) * 6);
+
+        // If gastrin is active, add a slight purple hormonal tint
+        let gastrinTint = 0;
+        if (gastrinTimer > 0) {
+             gastrinTint = Math.min(1.0, gastrinTimer); // fade out at the end
+        }
+
+        if (gastrinTint > 0) {
+            r = Math.floor(r * (1 - gastrinTint * 0.4) + 90 * gastrinTint);
+            g = Math.floor(g * (1 - gastrinTint * 0.4) + 20 * gastrinTint);
+            b = Math.floor(b * (1 - gastrinTint * 0.4) + 120 * gastrinTint);
+
+            r2 = Math.floor(r2 * (1 - gastrinTint * 0.4) + 50 * gastrinTint);
+            g2 = Math.floor(g2 * (1 - gastrinTint * 0.4) + 10 * gastrinTint);
+            b2 = Math.floor(b2 * (1 - gastrinTint * 0.4) + 80 * gastrinTint);
+        }
+
+        const bg = ctx.createLinearGradient(0, 0, 0, H);
+        bg.addColorStop(0, `rgb(${r}, ${g}, ${b})`);
+        bg.addColorStop(0.5, `rgb(${r2}, ${g2}, ${b2})`);
+        bg.addColorStop(1, `rgb(${Math.floor(r * 0.7)}, ${Math.floor(g * 0.6)}, ${Math.floor(b * 0.5)})`);
+        ctx.fillStyle = bg;
+        ctx.fillRect(0, 0, W, H);
+
+        // Stomach wall folds (more visible when acidic)
+        ctx.save();
+        ctx.globalAlpha = 0.06 + acid * 0.06;
+        for (let side = 0; side < 2; side++) {
+            const baseX = side === 0 ? 0 : W;
+            const dir = side === 0 ? 1 : -1;
+            ctx.beginPath();
+            ctx.moveTo(baseX, 0);
+            for (let y = 0; y < H; y += 5) {
+                const wave = Math.sin(y * 0.007 + t) * 30 + Math.sin(y * 0.018 + t * 1.3) * 12;
+                ctx.lineTo(baseX + dir * (35 + wave), y);
+            }
+            ctx.lineTo(baseX, H);
+            ctx.closePath();
+            const foldR = Math.floor(acid * 200 + (1 - acid) * 60);
+            const foldG = Math.floor(acid * 100 + (1 - acid) * 20);
+            ctx.fillStyle = `rgb(${foldR}, ${foldG}, 40)`;
+            ctx.fill();
+        }
+        ctx.restore();
+
+        // Subtle gastric texture dots
+        ctx.globalAlpha = 0.025 + acid * 0.02;
+        ctx.fillStyle = acid > 0.3 ? '#ffcc44' : '#444';
+        for (let x = 0; x < W; x += 32) {
+            for (let y = 0; y < H; y += 32) {
+                const ox = Math.sin(y * 0.01 + t) * 3;
+                ctx.beginPath();
+                ctx.arc(x + ox, y, 1, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+        ctx.globalAlpha = 1;
+    }
+
+    // ── DRAW PROTEIN (realistic with secondary structure) ──
+    function drawProtein(p) {
+        const cfg = CONFIG.PROTEIN_TIERS[p.tier];
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rotation);
+
+        const r = p.radius;
+
+        // Hit flash
+        if (p.flash > 0) {
+            ctx.shadowColor = '#fff';
+            ctx.shadowBlur = 20 * p.flash;
+        }
+
+        // 1) Draw the backbone chain (polymer chain)
+        ctx.strokeStyle = cfg.color2;
+        ctx.lineWidth = 2.5;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+        ctx.globalAlpha = 0.5;
+        ctx.beginPath();
+        p.chain.forEach((pt, idx) => {
+            const wx = pt.x + Math.sin(p.wobble + idx * 0.4) * 1.5;
+            const wy = pt.y + Math.cos(p.wobble + idx * 0.3) * 1.5;
+            if (idx === 0) ctx.moveTo(wx, wy);
+            else ctx.lineTo(wx, wy);
+        });
+        ctx.stroke();
+        ctx.globalAlpha = 1;
+
+        // 2) Draw alpha-helices (coiled spirals)
+        p.helices.forEach(h => {
+            ctx.save();
+            ctx.translate(h.x, h.y);
+            ctx.rotate(h.rot + p.wobble * 0.2);
+            const helixGrad = ctx.createLinearGradient(0, -h.len / 2, 0, h.len / 2);
+            helixGrad.addColorStop(0, cfg.color1);
+            helixGrad.addColorStop(1, cfg.color2);
+            ctx.strokeStyle = helixGrad;
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            for (let t = -h.len / 2; t <= h.len / 2; t += 0.8) {
+                const sx = Math.sin(t * h.freq + p.wobble) * h.amplitude;
+                if (t === -h.len / 2) ctx.moveTo(sx, t);
+                else ctx.lineTo(sx, t);
+            }
+            ctx.stroke();
+
+            // Draw helix "ribbons" (thicker behind)
+            ctx.globalAlpha = 0.3;
+            ctx.lineWidth = 5;
+            ctx.stroke();
+            ctx.globalAlpha = 1;
+            ctx.restore();
+        });
+
+        // 3) Draw beta-sheets (flat arrow shapes)
+        p.sheets.forEach(s => {
+            ctx.save();
+            ctx.translate(s.x, s.y);
+            ctx.rotate(s.rot + Math.sin(p.wobble) * 0.1);
+            ctx.fillStyle = cfg.color1;
+            ctx.globalAlpha = 0.7;
+            // Arrow shape
+            ctx.beginPath();
+            ctx.moveTo(-s.w / 2, -s.h / 2);
+            ctx.lineTo(s.w / 2 - 3, -s.h / 2);
+            ctx.lineTo(s.w / 2, 0);
+            ctx.lineTo(s.w / 2 - 3, s.h / 2);
+            ctx.lineTo(-s.w / 2, s.h / 2);
+            ctx.closePath();
+            ctx.fill();
+            ctx.globalAlpha = 1;
+            ctx.restore();
+        });
+
+        // 4) Draw the main globular body (transparent blob over structure)
+        const mainGrad = ctx.createRadialGradient(0, 0, r * 0.1, 0, 0, r);
+        mainGrad.addColorStop(0, hexToRGBA(cfg.color1, 0.3));
+        mainGrad.addColorStop(0.7, hexToRGBA(cfg.color2, 0.15));
+        mainGrad.addColorStop(1, hexToRGBA(cfg.color2, 0.05));
+        ctx.fillStyle = mainGrad;
+
+        ctx.beginPath();
+        const lobes = 6 + p.tier * 2;
+        for (let i = 0; i <= lobes * 2; i++) {
+            const angle = (i / (lobes * 2)) * Math.PI * 2;
+            const wobble = Math.sin(p.wobble + i * 1.3) * r * 0.12;
+            const dist = r + wobble;
+            if (i === 0) ctx.moveTo(Math.cos(angle) * dist, Math.sin(angle) * dist);
+            else ctx.lineTo(Math.cos(angle) * dist, Math.sin(angle) * dist);
+        }
+        ctx.closePath();
+        ctx.fill();
+
+        // 5) Border glow
+        ctx.strokeStyle = hexToRGBA(cfg.color1, 0.3 + p.flash * 0.5);
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+
+        ctx.shadowBlur = 0;
+
+        // HP dots
+        ctx.fillStyle = 'rgba(255,255,255,0.85)';
+        const totalDots = p.maxHp;
+        for (let i = 0; i < totalDots; i++) {
+            const dotX = (i - (totalDots - 1) / 2) * 8;
+            ctx.beginPath();
+            ctx.arc(dotX, r + 8, i < p.hp ? 3 : 1.5, 0, Math.PI * 2);
+            ctx.fillStyle = i < p.hp ? 'rgba(255,255,255,0.85)' : 'rgba(255,255,255,0.2)';
+            ctx.fill();
+        }
+
+        // Label
+        ctx.fillStyle = 'rgba(255,255,255,0.8)';
+        ctx.font = '600 8px Outfit';
+        ctx.textAlign = 'center';
+        ctx.fillText(cfg.name.toUpperCase(), 0, 3);
+
+        ctx.restore();
+    }
+
+    // ── DRAW HCl CONTAINER ──
+    function drawHclContainer(h) {
+        ctx.save();
+        ctx.translate(h.x, h.y);
+        const r = h.radius;
+        const w = Math.sin(h.wobble) * 2;
+
+        const grad = ctx.createLinearGradient(-r, -r, r, r);
+        grad.addColorStop(0, CONFIG.HCL_CONTAINER.color1);
+        grad.addColorStop(1, CONFIG.HCL_CONTAINER.color2);
+        ctx.fillStyle = grad;
+
+        // Flask shape
+        ctx.beginPath();
+        ctx.moveTo(-5, -r);
+        ctx.lineTo(5, -r);
+        ctx.lineTo(5, -r * 0.45);
+        ctx.quadraticCurveTo(r + w, -r * 0.15, r * 0.9, r * 0.35);
+        ctx.lineTo(r * 0.75, r * 0.8);
+        ctx.quadraticCurveTo(0, r + 3, -r * 0.75, r * 0.8);
+        ctx.lineTo(-r * 0.9, r * 0.35);
+        ctx.quadraticCurveTo(-r - w, -r * 0.15, -5, -r * 0.45);
+        ctx.closePath();
+        ctx.fill();
+
+        // Liquid inside (bubbly)
+        ctx.fillStyle = 'rgba(0, 255, 150, 0.25)';
+        ctx.beginPath();
+        ctx.ellipse(0, r * 0.3, r * 0.55, r * 0.35, 0, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Bubbles
+        const bt = performance.now() / 500;
+        for (let i = 0; i < 3; i++) {
+            const bx = Math.sin(bt + i * 2) * r * 0.3;
+            const by = r * 0.1 - Math.abs(Math.sin(bt * 0.7 + i)) * r * 0.4;
+            ctx.fillStyle = 'rgba(255,255,255,0.3)';
+            ctx.beginPath();
+            ctx.arc(bx, by, 1.5 + Math.sin(bt + i) * 0.5, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        // Highlight
+        ctx.fillStyle = 'rgba(255,255,255,0.2)';
+        ctx.beginPath();
+        ctx.ellipse(-r * 0.3, -r * 0.1, 2.5, r * 0.35, -0.3, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Label
+        ctx.fillStyle = '#fff';
+        ctx.font = '700 9px Outfit';
+        ctx.textAlign = 'center';
+        ctx.fillText('HCl', 0, r * 0.55);
+
+        // Glow
+        ctx.shadowColor = '#00b894';
+        ctx.shadowBlur = 10;
+        ctx.strokeStyle = 'rgba(0, 184, 148, 0.3)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+        ctx.shadowBlur = 0;
+
+        ctx.restore();
+    }
+
+    // ── DRAW AMINO ACID ──
+    function drawAminoAcid(a) {
+        ctx.save();
+        ctx.translate(a.x, a.y);
+        const r = a.radius;
+        const sparkle = Math.sin(a.sparkle) * 0.3 + 0.7;
+
+        ctx.shadowColor = '#00cec9';
+        ctx.shadowBlur = 14 * sparkle;
+
+        const grad = ctx.createRadialGradient(0, 0, 0, 0, 0, r);
+        grad.addColorStop(0, CONFIG.AMINO_ACID.color2);
+        grad.addColorStop(0.5, CONFIG.AMINO_ACID.color1);
+        grad.addColorStop(1, 'rgba(0, 206, 201, 0.2)');
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.arc(0, 0, r, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Inner glow
+        ctx.fillStyle = 'rgba(255,255,255,0.45)';
+        ctx.beginPath();
+        ctx.arc(-r * 0.2, -r * 0.2, r * 0.3, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.shadowBlur = 0;
+        ctx.fillStyle = '#fff';
+        ctx.font = '700 7px Outfit';
+        ctx.textAlign = 'center';
+        ctx.fillText('AA', 0, 2.5);
+
+        ctx.restore();
+    }
+
+    // ── DRAW GASTRIN (Bonus) ──
+    function drawBonusDrop(b) {
+        ctx.save();
+        ctx.translate(b.x, b.y);
+        const r = b.radius;
+        const w = Math.sin(b.wobble) * 2;
+
+        ctx.shadowColor = CONFIG.GASTRIN_DROP.color1;
+        ctx.shadowBlur = 12 + Math.sin(performance.now() / 150) * 5;
+
+        const grad = ctx.createRadialGradient(0, 0, 0, 0, 0, r);
+        grad.addColorStop(0, CONFIG.GASTRIN_DROP.color2);
+        grad.addColorStop(1, CONFIG.GASTRIN_DROP.color1);
+        ctx.fillStyle = grad;
+
+        // Diamond shape
+        ctx.beginPath();
+        ctx.moveTo(0, -r - w);
+        ctx.lineTo(r + w, 0);
+        ctx.lineTo(0, r + w);
+        ctx.lineTo(-r - w, 0);
+        ctx.closePath();
+        ctx.fill();
+
+        ctx.fillStyle = '#fff';
+        ctx.font = '700 12px Outfit';
+        ctx.textAlign = 'center';
+        ctx.fillText('+', 0, 4.5);
+
+        ctx.restore();
+    }
+
+    // ── DRAW PLAYER ──
+    function drawPlayer() {
+        const x = player.x, y = player.y;
+        const w = player.w, h = player.h;
+        const eff = getShotEffectiveness();
+
+        ctx.save();
+        ctx.translate(x, y);
+
+        ctx.shadowColor = eff > 0.5 ? '#c44dff' : '#553333';
+        ctx.shadowBlur = eff > 0.5 ? 15 : 5;
+
+        const bodyGrad = ctx.createLinearGradient(-w / 2, -h / 2, w / 2, h / 2);
+        if (eff > 0.5) {
+            bodyGrad.addColorStop(0, '#c44dff');
+            bodyGrad.addColorStop(0.5, '#9933cc');
+            bodyGrad.addColorStop(1, '#6622aa');
+        } else {
+            const dim = eff * 1.5;
+            bodyGrad.addColorStop(0, `rgb(${Math.floor(80 * dim + 30)}, ${Math.floor(30 * dim + 20)}, ${Math.floor(80 * dim + 30)})`);
+            bodyGrad.addColorStop(1, `rgb(${Math.floor(40 * dim + 15)}, ${Math.floor(15 * dim + 10)}, ${Math.floor(40 * dim + 15)})`);
+        }
+        ctx.fillStyle = bodyGrad;
+
+        // Enzyme Y-shape body
+        const bw = w * 0.5, bh = h * 0.7;
+        ctx.beginPath();
+        ctx.roundRect(-bw / 2, -bh / 2, bw, bh, 6);
+        ctx.fill();
+
+        // Left arm
+        ctx.beginPath();
+        ctx.moveTo(-bw / 2, -bh / 4);
+        ctx.lineTo(-w / 2, -h / 2);
+        ctx.lineTo(-w / 2 + 9, -h / 2);
+        ctx.lineTo(-bw / 2 + 3, -bh / 4 + 3);
+        ctx.closePath();
+        ctx.fill();
+
+        // Right arm
+        ctx.beginPath();
+        ctx.moveTo(bw / 2, -bh / 4);
+        ctx.lineTo(w / 2, -h / 2);
+        ctx.lineTo(w / 2 - 9, -h / 2);
+        ctx.lineTo(bw / 2 - 3, -bh / 4 + 3);
+        ctx.closePath();
+        ctx.fill();
+
+        // Active site cleft
+        ctx.fillStyle = eff > 0.5 ? '#220044' : '#111';
+        ctx.beginPath();
+        ctx.arc(0, -bh / 2 + 2, 7, 0, Math.PI, true);
+        ctx.fill();
+
+        ctx.shadowBlur = 0;
+        ctx.fillStyle = '#fff';
+        ctx.font = '600 9px Outfit';
+        ctx.textAlign = 'center';
+        ctx.fillText('PEPSIN', 0, 4);
+
+        ctx.restore();
+    }
+
+    // ── HELPER: hex to rgba ──
+    function hexToRGBA(hex, alpha) {
+        const r = parseInt(hex.slice(1, 3), 16);
+        const g = parseInt(hex.slice(3, 5), 16);
+        const b = parseInt(hex.slice(5, 7), 16);
+        return `rgba(${r},${g},${b},${alpha})`;
+    }
+
+    // ═══════════════════════════════════════════
+    // GAME LOOP
+    // ═══════════════════════════════════════════
+    function gameLoop(timestamp) {
+        if (gameState === 'start' || gameState === 'gameover') return;
+        const dt = Math.min((timestamp - lastTime) / 1000, 0.05);
+        lastTime = timestamp;
+        update(dt);
+        draw();
+        requestAnimationFrame(gameLoop);
+    }
+
+    // Initial background
+    (function () {
+        resize();
+        bgHue = 1;
+        drawBackground();
+    })();
+    </script>
+</body>
+</html>
