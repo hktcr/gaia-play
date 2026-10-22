@@ -1,0 +1,2532 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="application-version" content="1.2.0">
+<meta name="theme-color" content="#25483c">
+<meta name="description" content="Ett stort repetitionskorsord om matens väg, blodet och andningen. Lös, få ledtrådar och upptäck hur kroppen hänger ihop.">
+<title>Höstskogens hemligheter · Kroppens stora korsord</title>
+<style>:root{--ink:#244339;--muted:#647066;--paper:#f8f4e9;--cream:#fffdf5;--gold:#e5bb68;--rust:#a45332;--line:#dadcce;--cell:30px;font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:var(--paper);font-synthesis:none;color-scheme:light}*{box-sizing:border-box}body{margin:0}button,input,select{font:inherit}button,select{cursor:pointer}button{color:inherit}button{border:0;background:none}button:disabled{opacity:.45;cursor:default}button:hover:not(:disabled){filter:brightness(.94)}button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible,[tabindex]:focus-visible{outline:3px solid #b57822;outline-offset:3px}button,input,select{touch-action:manipulation}h1,h2,h3,p{margin:0}h1,h2{font-family:Georgia,"Times New Roman",serif;font-weight:500}h2{font-size:24px}p{line-height:1.6}button{min-height:42px}main,.masthead{width:min(1430px,calc(100% - 72px));margin:auto}.canopy{height:7px;background:linear-gradient(90deg,#234637 0 35%,#788052 35% 57%,#ba7640 57% 83%,#d2ab5b 83%)}.masthead{height:76px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:10px;font-size:10px;font-weight:750;letter-spacing:1.9px}.brand-icon{font-size:33px;font-weight:400;line-height:1;color:#9e6737}.brand-sep{margin:0 10px;color:#a6a995}.masthead nav{display:flex;align-items:center;gap:22px}.text-button{font-size:12px;font-weight:600;padding:8px 0}.text-button span{margin-left:10px}.icon-button{height:36px;min-height:36px;width:36px;border:1px solid #c7cdbd;border-radius:50%;font:20px Georgia,serif}.intro{display:flex;position:relative;align-items:center;justify-content:space-between;padding:29px 0 27px;gap:20px}.eyebrow{font-size:10px;font-weight:750;letter-spacing:1.75px;color:#6b795d;line-height:1.5}h1{font-size:clamp(32px,3.25vw,49px);letter-spacing:-1.7px;line-height:1.2;margin:8px 0 9px}h1 em{font-weight:400;color:var(--rust)}.intro-copy>p{font-size:13px;max-width:650px;color:#607065}.intro-meta{display:flex;align-items:center;gap:12px;font-size:10px;letter-spacing:.3px;margin-top:16px;color:#79806c}.intro-meta i{width:3px;height:3px;background:#a89673;border-radius:50%}.forest-art{width:290px;flex:none;margin-right:25px}.progress-strip{display:flex;align-items:center;gap:22px;margin-bottom:20px;border:1px solid #d7decd;border-radius:9px;padding:13px 19px;background:#eef0e3;font-size:11px}.progress-label{display:flex;gap:9px;align-items:center;white-space:nowrap}.little-leaf{font-size:22px;color:#738455}.progress-track{height:5px;background:#d7dfcd;flex:1;max-width:390px;border-radius:8px;overflow:hidden}.progress-track div{height:100%;width:0;background:#758854;transition:width .3s}#save-status{margin-left:auto;font-size:10px;color:#61735a}.workspace{display:grid;grid-template-columns:minmax(0,1fr) 355px;gap:22px;align-items:start}.board-card{border:1px solid #d7d8ca;background:var(--cream);border-radius:13px;overflow:hidden;box-shadow:0 5px 18px #263c3005}.board-toolbar{display:flex;align-items:center;justify-content:space-between;padding:18px 21px;gap:10px}.board-toolbar h2{font-size:21px}.board-toolbar p{font-size:11px;color:var(--muted);margin-top:4px}.zoom-controls{display:flex;align-items:center;border:1px solid var(--line);border-radius:6px;flex:none;font-size:10px}.zoom-controls button{width:32px;min-height:32px;font-size:19px}.zoom-controls span{min-width:38px;text-align:center}.board-viewport{overflow:auto;background:#294b3e;max-height:min(76vh,1050px);padding:16px;scrollbar-color:#a7b59c #294b3e;overscroll-behavior:contain;scroll-padding:22px;position:relative}#grid{display:grid;grid-template-columns:repeat(var(--cols),var(--cell));grid-template-rows:repeat(var(--rows),var(--cell));width:max-content;margin:auto;gap:1px;background:#294b3e;user-select:none}.cell{position:relative;background:#fcf9ef;border-radius:1px;min-width:0;min-height:0}.cell input{display:block;padding:7px 0 0;border:0;border-radius:1px;outline:none;width:100%;height:100%;background:transparent;text-transform:uppercase;text-align:center;font-size:calc(var(--cell)*.52);font-weight:650;line-height:1;caret-color:transparent;color:#233f32;user-select:text}.cell-number{position:absolute;pointer-events:none;font-size:calc(var(--cell)*.26);font-weight:600;left:2px;top:1px;line-height:1;color:#617258}.cell.word-active{background:#f0dbaa}.cell.cell-active{background:#ddb26a;box-shadow:inset 0 0 0 2px #985c28;z-index:1}.cell:focus-within{outline:2px solid #bb6d34;outline-offset:0;z-index:2}.cell.wrong{box-shadow:inset 0 -3px #b04834}.cell.checked-correct{box-shadow:inset 0 -3px #6a8b56}.board-foot{display:flex;justify-content:space-between;gap:12px;padding:12px 19px;color:#71806d;font-size:10px}.board-foot>span:first-child{display:flex;align-items:center;gap:7px}.legend-dot{height:9px;width:9px;background:#f0dbaa;border:1px solid #ddc68f;display:inline-block}.cursor-dot{background:#ddb26a;border-color:#985c28;margin-left:5px}.clue-panel{background:#fffdf6;border:1px solid #d9ddce;border-radius:13px;padding:23px 24px 19px;position:sticky;top:18px;box-shadow:0 6px 20px #263c3005}.word-heading{display:flex;align-items:center;justify-content:space-between;margin-bottom:11px;gap:10px}.word-heading .eyebrow{font-size:9px;letter-spacing:1.4px}.word-navigation{display:flex;gap:6px}.word-navigation button{border:1px solid var(--line);border-radius:50%;width:30px;min-height:30px;font-size:15px}.clue-panel h2{font-size:29px;letter-spacing:-.6px;margin-bottom:5px}.word-format{font-size:11px;color:#758169;min-height:18px;margin-bottom:23px}.clue-box{margin-bottom:18px}.step-label{font-size:9px;letter-spacing:1.5px;font-weight:750;color:#8d7753}.clue-box p{font-family:Georgia,serif;font-size:20px;line-height:1.45;margin-top:8px}.extra-hint{border-top:1px dashed #d8d9c8;padding-top:16px}.extra-hint p{font-family:inherit;font-size:13px}.source-hint{padding:14px 15px;background:#edf0e5;border-radius:8px}.source-hint p{font-family:inherit;font-size:12px}.source-hint .step-label{color:#657a51}.hint-button{border:1px solid #dbbf88;background:#fff8e7;border-radius:6px;width:100%;font-size:12px;text-align:left;padding:10px 14px}.hint-button span{font-size:19px;vertical-align:middle;margin-right:7px;color:#aa7a35}#word-form{margin-top:24px}#word-form label{font-size:11px;font-weight:650;display:block;margin-bottom:8px}.answer-row{display:flex;border:1px solid #bfc8b4;border-radius:7px;overflow:hidden;background:white}.answer-row input{width:0;flex:1;border:0;min-width:0;padding:12px;font-size:16px;letter-spacing:2px;color:var(--ink);text-transform:uppercase;background:transparent}.answer-row input::placeholder{font-size:12px;letter-spacing:.5px;text-transform:none;color:#8b9482}.answer-row button{width:41px;flex:none;background:#edf0e5;border-left:1px solid #d2d9c8;font-size:20px}.answer-row:focus-within{outline:2px solid #b57822;outline-offset:2px}.answer-row input:focus{outline:none}#entry-help{font-size:10px;color:#7c8674;margin-top:6px}.word-actions{display:flex;gap:8px;margin-top:16px}.primary-button,.secondary-button{padding:10px 15px;font-size:12px;border-radius:6px;font-weight:600}.primary-button{background:#284e3f;color:#fffdf3}.secondary-button{background:#f2f3e9;border:1px solid #d5dccb}.word-actions .primary-button{flex:1}.word-actions .secondary-button{font-size:10px;padding:10px}.inline-link{font-size:12px;text-decoration:underline;text-underline-offset:4px;text-align:left;padding:8px 0;color:#36563f}#feedback{font-size:12px;line-height:1.5;min-height:18px;margin-top:12px}#feedback:empty{margin-top:0;min-height:0}#feedback.error{color:#a14730}#feedback.success{color:#426638}.small-note{display:flex;gap:9px;margin-top:23px;border-top:1px solid #e5e6d9;padding-top:15px;color:#7f856f;font-size:10px;line-height:1.5}.small-note span{font-size:23px;color:#9b8b5b}.clue-directory{margin-top:36px}.directory-header{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:22px}.directory-header h2{font-size:30px;margin-top:5px}.filter-label{font-size:10px;color:#6c7962;display:flex;align-items:center;gap:10px}.filter-label select{font-size:12px;color:#36533d;padding:10px 30px 10px 12px;border:1px solid #cfd5c2;border-radius:6px;background:#fffdf4;max-width:180px}.clue-columns{display:grid;grid-template-columns:1fr 1fr;gap:32px}.clue-columns h3{font-family:Georgia,serif;font-weight:400;font-size:22px;border-bottom:1px solid #ccd2bf;padding-bottom:13px;margin-bottom:4px}.clue-columns h3 span{font-family:system-ui;font-size:17px;color:#879275;margin-right:7px}.clue-list button{display:grid;grid-template-columns:30px 1fr auto;text-align:left;align-items:start;width:100%;gap:11px;border-bottom:1px solid #e2e2d4;padding:13px 7px;border-radius:3px;font-size:12px;line-height:1.55}.clue-list button:hover{background:#eeefdf}.clue-list button[aria-pressed=true]{background:#eee4cc}.list-number{font:20px Georgia,serif;color:#7d865f}.list-length{color:#899079;font-size:10px;white-space:nowrap}.list-text{display:block}.list-solved{display:none;font-size:10px;color:#587b45}.is-solved .list-solved{display:inline;margin-left:6px}.is-solved .list-number{color:#517445}.connections-teaser{display:flex;align-items:center;justify-content:space-between;gap:28px;background:#e8ecdc;border:1px solid #d5dcc4;border-radius:12px;padding:26px 29px;margin:35px 0 27px}.connections-teaser h2{font-size:28px;margin:7px 0}.connections-teaser p{font-size:12px;color:#6c7b60}.connections-teaser button{white-space:nowrap}.connections-teaser button span{margin-left:18px}footer{border-top:1px solid var(--line);padding:20px 0 28px;display:flex;justify-content:space-between;flex-wrap:wrap;align-items:center;gap:8px;font-size:10px;color:#7e856e}footer>div{display:flex;gap:20px}footer .text-button{font-size:10px;color:#647056}footer p{flex-basis:100%;font-size:10px}dialog{padding:28px;border:1px solid #c9d3bc;border-radius:14px;background:#fffdf4;color:var(--ink);width:min(680px,calc(100% - 28px));max-height:88vh;box-shadow:0 25px 100px #10251e40}dialog::backdrop{background:#1e372c90;backdrop-filter:blur(3px)}.dialog-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:15px}dialog h2{font-size:30px;line-height:1.2;margin-bottom:20px}dialog h3{font-size:16px;margin:20px 0 8px}dialog p,dialog li{font-size:14px;line-height:1.65;margin:9px 0}dialog ol,dialog ul{padding-left:22px}dialog .support-label{color:#976b31;font-size:11px;font-weight:700;letter-spacing:.4px}.reaction{padding:17px 14px;border:1px solid #d6ddc8;background:#edf0e3;border-radius:7px;text-align:center;font-size:17px;line-height:1.7;margin:17px 0;color:#416039}.connections{padding:0;list-style:none;counter-reset:prompts}.connections>li{counter-increment:prompts;padding:18px 0 17px 42px;border-bottom:1px solid #dfe2d3;position:relative}.connections>li::before{content:counter(prompts,decimal-leading-zero);font:23px Georgia,serif;color:#9e8a54;position:absolute;left:0;top:20px}.connections h3{margin:0 0 5px}.connections .source-label{font-size:11px;color:#77816b}.connection-support{margin-top:15px}.reset-actions{display:flex;gap:12px;margin-top:22px;justify-content:flex-end}.skip{position:absolute;top:-60px;left:20px;background:white;padding:10px;z-index:10}.skip:focus{top:10px}[hidden]{display:none!important}
+@media(min-width:1500px){.workspace{grid-template-columns:minmax(0,1fr) 365px}.clue-panel{padding:26px}.intro{padding:34px 0}}
+@media(max-width:1100px){main,.masthead{width:calc(100% - 40px)}.workspace{grid-template-columns:minmax(0,1fr) 310px;gap:17px}.clue-panel{padding:19px}.forest-art{width:220px;margin-right:0}.intro-copy>p{max-width:550px}.board-toolbar{padding:15px}.board-toolbar h2{font-size:18px}.zoom-controls span{display:none}.board-foot{font-size:9px;padding:10px}.clue-box p{font-size:18px}.extra-hint p{font-size:12px}.source-hint p{font-size:12px}.word-actions{flex-wrap:wrap}.word-actions .secondary-button{flex:1}.progress-track{max-width:none}}
+@media(max-width:900px){main,.masthead{width:calc(100% - 28px)}.masthead{height:62px}.brand{font-size:8px;letter-spacing:1.1px}.brand-sep{margin:0 5px}.brand-icon{font-size:29px}.masthead nav{gap:12px}.masthead .text-button{font-size:10px}.intro{padding:26px 0 22px;overflow:hidden;display:block}.intro-copy{position:relative;z-index:1}.intro .eyebrow{font-size:8px;letter-spacing:1.3px}.intro h1{font-size:38px;letter-spacing:-1.4px;max-width:400px}.intro h1 em{display:block}.intro-copy>p{font-size:12px;max-width:300px;margin-top:12px}.forest-art{position:absolute;width:176px;right:-12px;top:34px;opacity:.7;z-index:0}.intro-copy{max-width:100%}.intro-meta{font-size:9px;gap:8px;position:relative}.progress-strip{padding:10px 12px;gap:12px;flex-wrap:wrap;margin-bottom:15px}.progress-label{font-size:10px}.progress-track{min-width:50px}#save-status{font-size:9px;flex-basis:100%;margin-top:-4px}.workspace{display:flex;flex-direction:column;gap:15px}.clue-panel{width:100%;position:static;order:0;padding:18px 19px}.board-card{width:100%;order:1}.word-heading{margin-bottom:3px}.word-heading .eyebrow{font-size:9px}.clue-panel h2{font-size:25px;margin-top:-2px}.word-format{margin-bottom:13px;font-size:11px}.clue-box{margin-bottom:14px}.clue-box p{font-size:19px;max-width:550px}.extra-hint p{font-size:13px}.source-hint p{font-size:12px}#word-form{margin-top:17px}#word-form label{font-size:11px}.word-actions{flex-wrap:nowrap}.small-note{margin-top:15px;padding-top:12px}.word-actions .secondary-button{flex:none;font-size:11px}.board-toolbar h2{font-size:19px}.board-toolbar p{font-size:10px}.board-viewport{max-height:62vh;padding:12px}#grid{margin:0}.board-foot{font-size:9px;flex-wrap:wrap}.zoom-controls span{display:inline}.clue-directory{margin-top:28px}.directory-header{align-items:flex-start;gap:8px}.directory-header .eyebrow{font-size:8px;letter-spacing:1.3px}.directory-header h2{font-size:28px}.filter-label{display:flex;flex-direction:column;align-items:flex-end;font-size:9px;gap:3px}.filter-label select{font-size:11px;max-width:140px}.clue-columns{grid-template-columns:1fr;gap:30px}.clue-list button{font-size:12px;padding:13px 5px;min-height:54px}.connections-teaser{display:block;padding:23px;margin-top:28px}.connections-teaser button{margin-top:20px}.connections-teaser h2{font-size:26px}.connections-teaser p{font-size:12px}dialog{padding:23px 21px}dialog h2{font-size:28px}.reset-actions{flex-direction:column-reverse}footer{font-size:9px}.board-viewport input{font-size:max(16px,calc(var(--cell)*.52))}}
+@media(max-width:380px){.brand-sep{display:none}.brand span:last-child{max-width:145px;line-height:1.8}.masthead nav .text-button{max-width:86px;line-height:1.4}.forest-art{width:133px;right:-17px;top:42px;opacity:.5}.intro h1{font-size:34px}.board-toolbar h2{font-size:16px}.zoom-controls span{display:none}.word-actions .primary-button{font-size:11px}.progress-strip{gap:8px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+
+.phrase-bonus{background:#fffdf4;border:1px solid #d5dcc4;border-radius:12px;padding:28px;margin:28px 0}.phrase-bonus h2{font-size:30px;margin:7px 0 12px}.bonus-intro{max-width:680px;font-size:14px;line-height:1.65}.phrase-bonus h3{font:22px Georgia,serif;line-height:1.4;margin:22px 0 12px}.phrase-bonus .source-label{font-size:12px;color:#657159;margin:12px 0}.phrase-pattern{display:flex;flex-wrap:wrap;gap:12px;margin:20px 0}.phrase-pattern>span{display:flex;flex-direction:column;align-items:center;gap:5px}.phrase-pattern b{letter-spacing:2px;color:#6c7857;background:#f0eddf;padding:6px 8px;border-radius:4px;font-size:16px}.phrase-pattern small{font-size:10px;color:#69745c}#phrase-format{font-size:13px;line-height:1.6}.phrase-hint{border-left:3px solid #b99b50;padding:10px 15px;margin:15px 0;background:#f6f1e3;font-size:13px;line-height:1.6}.phrase-hint p{margin:5px 0}#phrase-form{max-width:730px;margin-top:22px}#phrase-form label{display:block;font-size:13px;font-weight:650;margin-bottom:8px}#phrase-answer{width:100%;resize:vertical;padding:12px;background:white;color:var(--ink);border:1px solid #bfc8b4;border-radius:7px;font:16px/1.6 system-ui}#phrase-entry-help{font-size:11px;line-height:1.6;color:#69745c;margin:8px 0 15px}#phrase-feedback{font-size:14px;line-height:1.6;margin:16px 0}#phrase-feedback.success{color:#426638}#phrase-feedback.error{color:#934831}#phrase-source{margin:20px 0;font-size:12px;line-height:1.65}#phrase-source summary{cursor:pointer;min-height:44px;display:flex;align-items:center;text-decoration:underline;text-underline-offset:4px}.phrase-actions{display:flex;flex-wrap:wrap;gap:18px;align-items:center}.phrase-actions button,.phrase-bonus button{min-height:44px}.bonus-next{padding:18px;border:1px solid #d5dcc4;background:#eef0e4;border-radius:8px;margin-top:20px}#complete-dialog{max-width:540px}#complete-bonus{min-height:44px}#phrase-title{scroll-margin-top:25px}@media(max-width:600px){.phrase-bonus{padding:22px 18px}.phrase-bonus h3{font-size:21px}.phrase-pattern{gap:10px}.phrase-actions{align-items:stretch;flex-direction:column}.phrase-actions button{text-align:left}.phrase-pattern b{letter-spacing:1.5px}.masthead .text-button{max-width:160px;line-height:1.4}}
+
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.trail-bonus{margin:36px 0 28px;padding:30px;border:1px solid #c5ceb2;border-radius:14px;background:#eaf0df}.trail-bonus h2{font-size:32px;margin:8px 0 12px}.trail-progress{font-size:13px;font-weight:650;margin:22px 0 12px}.trail-nav{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:24px}.trail-nav button{position:relative;width:46px;min-height:46px;background:#fffdf4;border:1px solid #bcc9aa;border-radius:50%;font:20px Georgia,serif}.trail-nav button[aria-current]{background:#365943;color:white;border-color:#365943}.trail-nav b{position:absolute;right:-3px;top:-4px;border-radius:50%;font:11px system-ui;background:#f5d68a;color:#284631;padding:1px 3px}.trail-task{background:#fffdf6;padding:26px;border-radius:10px;border:1px solid #d1d9c2}.trail-task h3{font:26px/1.3 Georgia,serif;margin-bottom:15px}.trail-task>p{font-size:15px;line-height:1.65}#trail-instruction{font-size:12px;color:#6b775c;margin:12px 0 20px}.trail-choices{border:0;padding:0;min-width:0}.trail-choices label{display:flex;align-items:flex-start;gap:13px;padding:15px;margin-bottom:11px;border:1px solid #ccd4bd;border-radius:7px;background:#f7f7ed;font-size:15px;line-height:1.6;cursor:pointer;min-height:48px}.trail-choices label:has(input:checked){background:#f6e9c9;border-color:#a98a43}.trail-choices input{flex:none;width:19px;height:19px;accent-color:#365943;margin-top:3px}.trail-cards{display:flex;flex-wrap:wrap;gap:9px;margin:18px 0}.trail-cards button{padding:12px 16px;border:1px solid #bac9a6;border-radius:7px;background:#f4f7e9;font-size:14px;min-height:46px}.trail-cards button:disabled{opacity:.5;text-decoration:line-through}.trail-picked{padding-left:32px;font-size:15px;line-height:1.6;margin:12px 0;min-height:12px}.trail-picked li{padding:7px 10px;background:#f7edcf;border-radius:5px;margin:6px 0}.trail-order-tools,.trail-actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.trail-actions{margin-top:24px}.trail-bonus button{min-height:44px}.trail-bonus #trail-feedback{margin:18px 0 8px;font-size:14px;line-height:1.6}.trail-bonus .success{color:#335c31}.trail-bonus .error{color:#974b2f}.trail-explanation{padding:15px;border-left:3px solid #6c8b49;background:#eff3e5}#trail-source{font-size:12px;line-height:1.65;margin:20px 0}#trail-source summary{cursor:pointer;min-height:44px;display:flex;align-items:center;text-decoration:underline;text-underline-offset:4px}.trail-bonus .source-label{font-size:11px;line-height:1.6;color:#677455;margin-top:20px}.trail-finished{margin-top:24px;border-top:1px solid #c6d2b5;padding-top:22px}.trail-finished h3{font:25px Georgia,serif;margin:0 0 10px}.trail-finished p{font-size:14px;line-height:1.6;margin-bottom:15px}.trail-bonus .support-label{font-size:12px;font-weight:650;color:#8b632e;margin-bottom:15px}#trail-title,#trail-task-title{scroll-margin-top:20px}@media(max-width:600px){.trail-bonus{padding:22px 16px}.trail-task{padding:19px 15px}.trail-task h3{font-size:23px}.trail-choices label{padding:12px;font-size:14px;gap:10px}.trail-actions{align-items:stretch;flex-direction:column}.trail-actions button{width:100%}.trail-nav{gap:8px}.trail-nav button{width:44px;min-height:44px}.trail-cards button{font-size:13px}}
+</style>
+</head>
+<body>
+<a class="skip" href="#word-title">Till vald ledtråd</a>
+<div class="canopy" aria-hidden="true"></div>
+<header class="masthead">
+ <div class="brand"><span class="brand-icon" aria-hidden="true">❧</span><span>SKOGSGLÄNTAN <span class="brand-sep">/</span> NO MED HÅKAN</span></div>
+ <nav aria-label="Stöd"><button id="trail-open" class="text-button">Bonusar <span aria-hidden="true">↗</span></button><button id="guide-open" class="icon-button" aria-label="Så fungerar korsordet">?</button></nav>
+</header>
+<main>
+ <section class="intro" aria-labelledby="title">
+  <div class="intro-copy"><div class="eyebrow">EFTER HÖSTLOVET · DEN STORA REPETITIONEN</div><h1 id="title">Höstskogens <em>hemligheter</em></h1><p>En lugn glänta för kluriga samband. Följ matens väg, utforska blodet och ta ett djupt andetag.</p><div class="intro-meta"><span>67 begrepp</span><i></i><span>3 hjälpnivåer</span><i></i><span>I din egen takt</span></div></div>
+  <svg class="forest-art" viewBox="0 0 320 150" aria-hidden="true">
+   <path d="M12 140 Q154 112 308 140" fill="none" stroke="#b8bf9f" stroke-width="2"/><path d="M51 131 44 40 M44 67 24 51 M46 90 72 71 M260 131 266 28 M264 67 287 46" stroke="#6b6446" stroke-width="3" fill="none"/>
+   <g fill="#b6663e"><ellipse cx="30" cy="51" rx="12" ry="24" transform="rotate(-45 30 51)"/><ellipse cx="65" cy="66" rx="13" ry="25" transform="rotate(35 65 66)"/><ellipse cx="46" cy="29" rx="13" ry="25" transform="rotate(-8 46 29)"/></g>
+   <g fill="#c99a45"><ellipse cx="250" cy="55" rx="11" ry="23" transform="rotate(-38 250 55)"/><ellipse cx="280" cy="35" rx="12" ry="25" transform="rotate(39 280 35)"/><ellipse cx="267" cy="20" rx="11" ry="20"/></g>
+   <g transform="translate(130 60)"><path d="M14 65 Q-9 46 0 26 Q12 20 31 36 L38 58" fill="#a95c35"/><path d="M0 26 Q-9 45 1 53 L12 40" fill="#e9d6b1"/><path d="M24 61 Q20 35 42 27 Q62 30 62 60Z" fill="#bf7546"/><path d="m24 31 1-26 19 18 17-18 2 31Q47 55 24 31" fill="#c37843"/><path d="M27 31 43 36 60 29 44 48Z" fill="#f1dfb9"/><path d="m29 14 1 13 8-4M55 14l-1 13-7-4" fill="#754732"/><circle cx="34" cy="29" r="1.8" fill="#263c30"/><circle cx="52" cy="29" r="1.8" fill="#263c30"/><path d="m40 37 7 0-3.5 4Z" fill="#263c30"/></g>
+   <g transform="translate(87 110)"><path d="m8 25 2-22h8l2 22" fill="#e2d1ac"/><path d="M-4 6Q14-19 32 6Q12 14-4 6" fill="#a34b35"/><circle cx="8" cy="3" r="2.2" fill="#f6e6c5"/><circle cx="21" cy="1" r="2.5" fill="#f6e6c5"/></g>
+   <path d="m216 133 8-20m-8 19-3-12m10 11 9-13" stroke="#6d805a" stroke-width="2"/>
+   <path d="M206 56q10-20 21-10-2 16-21 10M77 22q8-13 14-4-2 10-14 4" fill="#a97b3d"/>
+  </svg>
+ </section>
+ <section class="progress-strip" aria-label="Din progression"><div class="progress-label"><span class="little-leaf" aria-hidden="true">❧</span><strong id="progress-label">0 av 67 ord lösta</strong></div><div class="progress-track" role="progressbar" aria-label="Lösta ord" aria-valuemin="0" aria-valuemax="67" aria-valuenow="0"><div id="progress-fill"></div></div><span id="save-status">Sparas på den här enheten</span></section>
+ <div class="workspace">
+  <section class="board-card" aria-labelledby="board-title">
+   <div class="board-toolbar"><div><h2 id="board-title">Kroppens stora korsord</h2><p>Klicka i rutnätet eller välj en ledtråd.</p></div><div class="zoom-controls" aria-label="Rutstorlek"><button id="zoom-out" aria-label="Mindre rutor">−</button><span id="zoom-label">30 px</span><button id="zoom-in" aria-label="Större rutor">+</button></div></div>
+   <div id="board-viewport" class="board-viewport" tabindex="0" aria-label="Korsordsyta. Rulla åt sidorna för att se hela rutnätet."><div id="grid" role="grid" aria-label="Korsordets bokstavsrutor"></div></div>
+   <div class="board-foot"><span><i class="legend-dot"></i>Valt ord <i class="legend-dot cursor-dot"></i>Din ruta</span><span>Å, Ä och Ö har egna rutor.</span></div>
+  </section>
+  <aside class="clue-panel" aria-label="Vald ledtråd">
+   <div class="word-heading"><span id="word-domain" class="eyebrow"></span><div class="word-navigation"><button id="prev-word" aria-label="Föregående ord">←</button><button id="next-word" aria-label="Nästa ord">→</button></div></div>
+   <h2 id="word-title" tabindex="-1"></h2><div id="word-format" class="word-format"></div>
+   <div class="clue-box"><span class="step-label">1 · LEDTRÅDEN</span><p id="clue-one"></p></div>
+   <div id="hint-two" class="clue-box extra-hint" hidden><span class="step-label">2 · EN LEDTRÅD TILL</span><p></p></div>
+   <div id="hint-three" class="clue-box source-hint" hidden><span class="step-label">3 · HITTA I KÄLLAN</span><p></p><button id="supplement-from-clue" class="inline-link" hidden>Läs den kompletterande förklaringen →</button></div>
+   <button id="more-hint" class="hint-button"><span aria-hidden="true">✧</span> En ledtråd till</button>
+   <form id="word-form"><label for="word-answer">Skriv hela ordet här</label><div class="answer-row"><input id="word-answer" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Ditt svar" aria-describedby="entry-help"><button type="submit" aria-label="Skriv in svaret i rutnätet">↵</button></div><p id="entry-help">Du kan också skriva direkt i rutorna.</p></form>
+   <div class="word-actions"><button id="check-word" class="primary-button">Kontrollera ordet</button><button id="change-direction" class="secondary-button" title="Byt mellan orden i en korsning">Byt riktning</button></div>
+   <p id="feedback" role="status" aria-live="polite"></p>
+   <div class="small-note"><span aria-hidden="true">❧</span>Ta en ledtråd när du behöver. Här får du försöka igen.</div>
+  </aside>
+ </div>
+ <section class="clue-directory" aria-labelledby="directory-title">
+  <div class="directory-header"><div><div class="eyebrow">VÄLJ DIN NÄSTA UPPTÄCKT</div><h2 id="directory-title">Alla ledtrådar</h2></div><label class="filter-label">Visa område<select id="domain-filter"><option value="">Alla områden</option></select></label></div>
+  <div class="clue-columns"><div><h3><span aria-hidden="true">→</span> Vågrätt</h3><div id="across-list" class="clue-list"></div></div><div><h3><span aria-hidden="true">↓</span> Lodrätt</h3><div id="down-list" class="clue-list"></div></div></div>
+ </section>
+ <section id="trail-bonus" class="trail-bonus" aria-labelledby="trail-title">
+  <div class="eyebrow">BONUS 1 · FÖLJ SAMBANDSSTIGEN</div><h2 id="trail-title" tabindex="-1">Från ord till samband</h2>
+  <p class="bonus-intro">Åtta stopp genom kroppen. Ordna led i en kedja eller välj det samband som stämmer. Du får återkoppling direkt och kan alltid försöka igen. Två valfria ledtrådar hjälper dig vidare.</p>
+  <p id="trail-progress" class="trail-progress" role="status"></p><nav id="trail-nav" class="trail-nav" aria-label="Sambandsstigens uppgifter"></nav>
+  <div class="trail-task"><p id="trail-kind" class="support-label" hidden></p><h3 id="trail-task-title" tabindex="-1"></h3><p id="trail-prompt"></p><p id="trail-instruction"></p>
+   <form id="trail-form"><fieldset id="trail-choices" class="trail-choices"></fieldset>
+    <div id="trail-order" hidden><p id="trail-order-status" role="status"></p><ol id="trail-picked" class="trail-picked" aria-label="Din ordning"></ol><div id="trail-cards" class="trail-cards"></div><div class="trail-order-tools"><button id="trail-undo" type="button" class="secondary-button">Ångra sista steget</button><button id="trail-clear" type="button" class="text-button">Rensa ordningen</button></div></div>
+    <div id="trail-hint-one" class="phrase-hint" hidden><strong>Ledtråd 1</strong><p></p></div><div id="trail-hint-two" class="phrase-hint" tabindex="-1" hidden><strong>Ledtråd 2</strong><p></p></div>
+    <div class="trail-actions"><button id="trail-hint" type="button" class="secondary-button">Visa ledtråd 1</button><button id="trail-check" type="submit" class="primary-button">Kontrollera sambandet</button></div>
+   </form>
+   <p id="trail-feedback" role="status" tabindex="-1"></p><p id="trail-explanation" class="trail-explanation" hidden></p>
+   <details id="trail-source"><summary>Källa och läshjälp</summary><div></div><button id="trail-support" class="inline-link" hidden>Läs det kompletterande cellandningsstödet →</button></details>
+   <button id="trail-next" class="primary-button" disabled>Nästa uppgift →</button>
+  </div>
+  <div id="trail-finished" class="trail-finished" hidden><h3>Alla åtta samband är klara!</h3><p>Du har följt hur kroppens delar samarbetar. Avsluta med skogsgläntans frasgåta.</p><button id="trail-to-phrase" class="primary-button">Till bonus 2: Frasgåtan →</button></div>
+  <p id="trail-save" class="source-label"></p>
+ </section>
+ <section id="phrase-bonus" class="phrase-bonus" aria-labelledby="phrase-title">
+  <div class="eyebrow">BONUS 2 · SKOGSGLÄNTANS SISTA GÅTA</div><h2 id="phrase-title" tabindex="-1">Hitta frasen</h2>
+  <p class="bonus-intro">Avsluta Sambandsstigen med en frasgåta. Återskapa en bestämd faktamening om kroppen. Det finns 24 olika fraser att upptäcka. Meningarna är egna sammanfattningar av stoffet, inte citat ur häftet.</p>
+  <p id="phrase-kind" class="support-label" hidden></p><p id="phrase-progress" class="source-label"></p><h3 id="phrase-prompt"></h3>
+  <p id="phrase-format"></p><div id="phrase-pattern" class="phrase-pattern" aria-hidden="true"></div>
+  <div id="phrase-hint-one" class="phrase-hint" hidden><strong>Ledtråd 1</strong><p></p></div>
+  <div id="phrase-hint-two" class="phrase-hint" tabindex="-1" hidden><strong>Ledtråd 2</strong><p></p></div>
+  <button id="phrase-hint" class="secondary-button">Visa ledtråd 1</button>
+  <form id="phrase-form"><label for="phrase-answer">Din fras</label><textarea id="phrase-answer" rows="2" maxlength="250" autocomplete="off" spellcheck="false" aria-describedby="phrase-format phrase-entry-help"></textarea><p id="phrase-entry-help">Använd mellanslag mellan orden. Stora och små bokstäver samt skiljetecken spelar ingen roll. Å, Ä och Ö räknas som egna bokstäver.</p><button type="submit" class="primary-button">Kontrollera frasen</button></form>
+  <p id="phrase-feedback" role="status" aria-live="polite"></p>
+  <details id="phrase-source"><summary>Källa och läshjälp</summary><div></div><button id="phrase-support" class="inline-link" hidden>Läs cellandningsstödet →</button></details>
+  <div class="phrase-actions"><button id="phrase-to-trail" class="text-button">Till bonus 1: Sambandsstigen</button><button id="phrase-next" class="secondary-button">Nästa fras →</button></div>
+  <p id="phrase-save" class="source-label">Fras, svar och öppnade ledtrådar sparas i samma webbläsare.</p>
+ </section>
+ <footer><span>Höstskogens hemligheter · Håkans NO</span><div><button id="about-open" class="text-button">Om materialet</button><button id="reset-open" class="text-button">Börja om</button></div><p>Ingen inloggning, elevdata eller analysverktyg. Dina svar sparas bara i den här webbläsaren.</p></footer>
+</main>
+<dialog id="info-dialog" aria-labelledby="dialog-title"><div class="dialog-top"><span class="eyebrow">SKOGSGLÄNTANS FÄLTBOK</span><button id="dialog-close" class="icon-button" aria-label="Stäng">×</button></div><h2 id="dialog-title"></h2><div id="dialog-body"></div></dialog>
+<dialog id="reset-dialog" aria-labelledby="reset-title"><h2 id="reset-title">Börja en ny runda?</h2><p>Alla bokstäver, sambandssvar, frassvar och öppnade ledtrådar i den här rundan tas bort. Det går inte att ångra.</p><div class="reset-actions"><button id="reset-cancel" class="secondary-button">Behåll mina svar</button><button id="reset-confirm" class="primary-button">Ja, börja om</button></div></dialog>
+<dialog id="complete-dialog" aria-labelledby="complete-title" aria-describedby="complete-description"><div class="dialog-top"><span class="eyebrow">ALLA 67 ORD ÄR LÖSTA</span><button id="complete-close" class="icon-button" aria-label="Stäng färdigrutan">×</button></div><h2 id="complete-title">Du har löst skogens korsord!</h2><p id="complete-description">Nu väntar två bonusar. Följ först <strong>Sambandsstigen</strong> med åtta korta uppgifter. Du får direkt återkoppling och kan ta ledtrådar. Avsluta sedan med <strong>Frasgåtan</strong>.</p><p>Du hittar alltid knappen Bonusar i sidans överkant. Båda bonusarna finns längre ner på sidan.</p><button id="complete-bonus" class="primary-button">Till bonus 1: Sambandsstigen →</button></dialog>
+<noscript>Slå på JavaScript i webbläsaren för att lösa korsordet.</noscript>
+<script>window.CROSSWORD = {
+  "title": "Höstskogens hemligheter",
+  "signature": "318000e04adccf89",
+  "rows": 31,
+  "cols": 33,
+  "crossings": 87,
+  "words": [
+    {
+      "id": "H50",
+      "answer": "BRONKER",
+      "length": 7,
+      "domain": "Andning",
+      "hints": [
+        "Dessa leder luften vidare efter att luftstrupen har delat sig.",
+        "Det är det andra namn häftet använder för luftrören.",
+        "Öppna Blodet och blodomloppet, tryckt sida 19: Andningen, stycket som börjar Lite längre ner."
+      ],
+      "printed_page": 19,
+      "pdf_page": 14,
+      "source": "complete",
+      "display_answer": "BRONKER",
+      "r": 0,
+      "c": 26,
+      "d": 0,
+      "number": 1
+    },
+    {
+      "id": "H31",
+      "answer": "KAMMARE",
+      "length": 7,
+      "domain": "Blod",
+      "hints": [
+        "Ett hjärtrum som pumpar blod vidare från hjärtat.",
+        "De två nedre hjärtrummen är höger och vänster … Svara i singular.",
+        "Öppna Blodet och blodomloppet, tryckt sida 16: Hjärtat och bilden Hjärtat inuti."
+      ],
+      "printed_page": 16,
+      "pdf_page": 11,
+      "source": "complete",
+      "display_answer": "KAMMARE",
+      "r": 0,
+      "c": 30,
+      "d": 1,
+      "number": 2
+    },
+    {
+      "id": "H17",
+      "answer": "GLUKOS",
+      "length": 6,
+      "domain": "Näring",
+      "hints": [
+        "Ett socker som kan transporteras från tarmen till kroppens celler.",
+        "Ämnet kallas också druvsocker. Skriv det andra namnet.",
+        "Öppna Matens väg, tryckt sida 24: Näringsrik mat, Kolhydrater; häftet använder namnet druvsocker."
+      ],
+      "printed_page": 24,
+      "pdf_page": 4,
+      "source": "complete",
+      "display_answer": "GLUKOS",
+      "r": 1,
+      "c": 0,
+      "d": 0,
+      "number": 3
+    },
+    {
+      "id": "H52",
+      "answer": "SYRE",
+      "length": 4,
+      "domain": "Andning",
+      "hints": [
+        "En gas som blodet tar upp i lungorna.",
+        "Den förs till kroppens celler och behövs i cellandningen.",
+        "Öppna Blodet och blodomloppet, tryckt sida 19: Andningen, styckena om lungblåsor och blodets gastransport."
+      ],
+      "printed_page": 19,
+      "pdf_page": 14,
+      "source": "complete",
+      "display_answer": "SYRE",
+      "r": 1,
+      "c": 5,
+      "d": 1,
+      "number": 4
+    },
+    {
+      "id": "H08",
+      "answer": "SALTSYRA",
+      "length": 8,
+      "domain": "Matspjälkning",
+      "hints": [
+        "Detta ämne bidrar till magsäckens låga pH.",
+        "Det är syran i magsaften, där pepsin arbetar.",
+        "Öppna Matens väg, tryckt sida 22: I magsäcken."
+      ],
+      "printed_page": 22,
+      "pdf_page": 2,
+      "source": "complete",
+      "display_answer": "SALTSYRA",
+      "r": 1,
+      "c": 9,
+      "d": 0,
+      "number": 5
+    },
+    {
+      "id": "H51",
+      "answer": "ALVEOLER",
+      "length": 8,
+      "domain": "Andning",
+      "hints": [
+        "Små luftfyllda strukturer där gaser passerar mellan luft och blod.",
+        "Det är det andra namnet på lungblåsor.",
+        "Öppna Blodet och blodomloppet, tryckt sida 19: Andningen, stycket om lungblåsorna."
+      ],
+      "printed_page": 19,
+      "pdf_page": 14,
+      "source": "complete",
+      "display_answer": "ALVEOLER",
+      "r": 1,
+      "c": 16,
+      "d": 1,
+      "number": 6
+    },
+    {
+      "id": "H20",
+      "answer": "VATTEN",
+      "length": 6,
+      "domain": "Näring",
+      "hints": [
+        "Det behövs som del av kroppens transportvätskor.",
+        "Kroppen förlorar detta ämne bland annat med urin och svett.",
+        "Öppna Matens väg, tryckt sida 24: Näringsrik mat, Vatten."
+      ],
+      "printed_page": 24,
+      "pdf_page": 4,
+      "source": "complete",
+      "display_answer": "VATTEN",
+      "r": 1,
+      "c": 18,
+      "d": 1,
+      "number": 7
+    },
+    {
+      "id": "H07",
+      "answer": "PEPSIN",
+      "length": 6,
+      "domain": "Matspjälkning",
+      "hints": [
+        "Ett enzym som fungerar i den sura magsäcken.",
+        "Det finns i magsaften och spjälkar proteiner.",
+        "Öppna Matens väg, tryckt sida 22: I magsäcken."
+      ],
+      "printed_page": 22,
+      "pdf_page": 2,
+      "source": "complete",
+      "display_answer": "PEPSIN",
+      "r": 1,
+      "c": 20,
+      "d": 0,
+      "number": 8
+    },
+    {
+      "id": "H47",
+      "answer": "NÄSHÅLA",
+      "length": 7,
+      "domain": "Andning",
+      "hints": [
+        "Luftens första passage om du andas genom näsan.",
+        "Här värms och renas luften innan den fortsätter mot svalget.",
+        "Öppna Blodet och blodomloppet, tryckt sida 19: Andningen, stycket om näsan och bilden Andningsorganen."
+      ],
+      "printed_page": 19,
+      "pdf_page": 14,
+      "source": "complete",
+      "display_answer": "NÄSHÅLA",
+      "r": 1,
+      "c": 25,
+      "d": 1,
+      "number": 9
+    },
+    {
+      "id": "H30",
+      "answer": "FÖRMAK",
+      "length": 6,
+      "domain": "Blod",
+      "hints": [
+        "Ett av hjärtats rum som tar emot blod före en kammare.",
+        "De två övre hjärtrummen är höger och vänster … Svara i singular.",
+        "Öppna Blodet och blodomloppet, tryckt sida 16: Hjärtat och bilden Hjärtat inuti."
+      ],
+      "printed_page": 16,
+      "pdf_page": 11,
+      "source": "complete",
+      "display_answer": "FÖRMAK",
+      "r": 2,
+      "c": 28,
+      "d": 1,
+      "number": 10
+    },
+    {
+      "id": "H41",
+      "answer": "BLODTRYCK",
+      "length": 9,
+      "domain": "Blod",
+      "hints": [
+        "Detta är ett tryck, inte antalet hjärtslag.",
+        "Det är blodets tryck mot kärlväggarna och anges ofta med två tal.",
+        "Öppna Blodet och blodomloppet, tryckt sida 16: Blodtryck."
+      ],
+      "printed_page": 16,
+      "pdf_page": 11,
+      "source": "complete",
+      "display_answer": "BLODTRYCK",
+      "r": 3,
+      "c": 0,
+      "d": 0,
+      "number": 11
+    },
+    {
+      "id": "H62",
+      "answer": "DVITAMIN",
+      "display_answer": "D-vitamin",
+      "length": 8,
+      "domain": "Näring",
+      "hints": [
+        "Ett vitamin som hjälper tarmen att ta upp kalcium.",
+        "Det hör ihop med kalcium och skelett i häftet. Skriv bokstaven följd av VITAMIN, utan bindestreck.",
+        "Öppna Matens väg, tryckt sida 25: Vitaminer, raden om kalcium. Förtydligande: D-vitamin hjälper tarmen att ta upp kalcium."
+      ],
+      "printed_page": 25,
+      "pdf_page": 5,
+      "source": "complete",
+      "r": 3,
+      "c": 3,
+      "d": 1,
+      "number": 12
+    },
+    {
+      "id": "H53",
+      "answer": "KOLDIOXID",
+      "length": 9,
+      "domain": "Andning",
+      "hints": [
+        "En gas som bildas vid cellandningen och transporteras bort från cellerna.",
+        "I lungorna går den från blodet till luften som du andas ut.",
+        "Öppna Blodet och blodomloppet, tryckt sida 19: Andningen, sidans två sista stycken."
+      ],
+      "printed_page": 19,
+      "pdf_page": 14,
+      "source": "complete",
+      "display_answer": "KOLDIOXID",
+      "r": 3,
+      "c": 13,
+      "d": 1,
+      "number": 13
+    },
+    {
+      "id": "H60",
+      "answer": "KVITAMIN",
+      "display_answer": "K-vitamin",
+      "length": 8,
+      "domain": "Näring",
+      "hints": [
+        "Ett vitamin som behövs för normal blodlevring.",
+        "Vilken bokstav betecknar vitaminet i häftets mening om att blodet ska kunna levra sig? Skriv bokstaven följd av VITAMIN, utan bindestreck.",
+        "Öppna Matens väg, tryckt sida 25: Vitaminer, raden om blodets levring."
+      ],
+      "printed_page": 25,
+      "pdf_page": 5,
+      "source": "complete",
+      "r": 3,
+      "c": 15,
+      "d": 0,
+      "number": 14
+    },
+    {
+      "id": "H23",
+      "answer": "NJURAR",
+      "length": 6,
+      "domain": "Rening",
+      "hints": [
+        "Dessa organ hjälper kroppen att reglera mängden vatten och salter.",
+        "Här bildas urin när blodet renas från ämnen som ska lämna kroppen. Svara i plural.",
+        "Öppna Matens väg, tryckt sida 26: Kroppens reningsverk, Njurarna."
+      ],
+      "printed_page": 26,
+      "pdf_page": 6,
+      "source": "complete",
+      "display_answer": "NJURAR",
+      "r": 4,
+      "c": 10,
+      "d": 1,
+      "number": 15
+    },
+    {
+      "id": "H13",
+      "answer": "TUNNTARM",
+      "length": 8,
+      "domain": "Matspjälkning",
+      "hints": [
+        "Här kommer stora delar av matens näring in i kroppen.",
+        "I denna tarm tas bland annat glukos upp genom tarmväggen till blodet.",
+        "Öppna Matens väg, tryckt sida 22: Tunntarm och tjocktarm."
+      ],
+      "printed_page": 22,
+      "pdf_page": 2,
+      "source": "complete",
+      "display_answer": "TUNNTARM",
+      "r": 4,
+      "c": 23,
+      "d": 1,
+      "number": 16
+    },
+    {
+      "id": "H29",
+      "answer": "HJÄRTA",
+      "length": 6,
+      "domain": "Blod",
+      "hints": [
+        "Kroppens pump behöver själv blod och syre.",
+        "Detta muskelorgan har två förmak och två kammare.",
+        "Öppna Blodet och blodomloppet, tryckt sida 16: Hjärtat."
+      ],
+      "printed_page": 16,
+      "pdf_page": 11,
+      "source": "complete",
+      "display_answer": "HJÄRTA",
+      "r": 4,
+      "c": 25,
+      "d": 0,
+      "number": 17
+    },
+    {
+      "id": "H21",
+      "answer": "KALCIUM",
+      "length": 7,
+      "domain": "Näring",
+      "hints": [
+        "Ett mineralämne som behövs i skelett och tänder.",
+        "Det nämns tillsammans med fosfor i häftets mineralavsnitt.",
+        "Öppna Matens väg, tryckt sida 25: Mineraler."
+      ],
+      "printed_page": 25,
+      "pdf_page": 5,
+      "source": "complete",
+      "display_answer": "KALCIUM",
+      "r": 5,
+      "c": 0,
+      "d": 1,
+      "number": 18
+    },
+    {
+      "id": "H27",
+      "answer": "GLYKOGEN",
+      "length": 8,
+      "domain": "Rening",
+      "hints": [
+        "En lagringsform som hör ihop med kroppens sockerreserv.",
+        "Levern kan lagra glukos i denna form.",
+        "Öppna Matens väg, tryckt sida 26: Levern."
+      ],
+      "printed_page": 26,
+      "pdf_page": 6,
+      "source": "complete",
+      "display_answer": "GLYKOGEN",
+      "r": 5,
+      "c": 12,
+      "d": 0,
+      "number": 19
+    },
+    {
+      "id": "H66",
+      "answer": "STRUPHUVUD",
+      "display_answer": "STRUPHUVUD",
+      "length": 10,
+      "domain": "Andning",
+      "hints": [
+        "En del av luftvägen som ligger mellan svalget och luftstrupen.",
+        "Här finns stämbanden, även om ordet vi söker är själva organet.",
+        "Öppna Blodet och blodomloppet, tryckt sida 19: Andningen och bilden Andningsorganen; jämför s.20 Rösten."
+      ],
+      "printed_page": 19,
+      "pdf_page": 14,
+      "source": "complete",
+      "r": 6,
+      "c": 2,
+      "d": 0,
+      "number": 20
+    },
+    {
+      "id": "H63",
+      "answer": "URINRÖR",
+      "display_answer": "URINRÖR",
+      "length": 7,
+      "domain": "Rening",
+      "hints": [
+        "Sista vägen för urinen innan den lämnar kroppen.",
+        "Det leder från urinblåsan ut ur kroppen, inte från njuren till urinblåsan.",
+        "Öppna Matens väg, tryckt sida 26: Njurarna och bilden Urinvägarna."
+      ],
+      "printed_page": 26,
+      "pdf_page": 6,
+      "source": "complete",
+      "r": 6,
+      "c": 8,
+      "d": 1,
+      "number": 21
+    },
+    {
+      "id": "H25",
+      "answer": "URINBLÅSA",
+      "length": 9,
+      "domain": "Rening",
+      "hints": [
+        "Ett tillfälligt lager, inte platsen där urinen bildas.",
+        "Här samlas urin innan den lämnar kroppen genom urinröret.",
+        "Öppna Matens väg, tryckt sida 26: Njurarna och bilden Urinvägarna."
+      ],
+      "printed_page": 26,
+      "pdf_page": 6,
+      "source": "complete",
+      "display_answer": "URINBLÅSA",
+      "r": 6,
+      "c": 20,
+      "d": 0,
+      "number": 22
+    },
+    {
+      "id": "H58",
+      "answer": "VITABLODKROPPAR",
+      "display_answer": "VITA BLODKROPPAR",
+      "length": 15,
+      "domain": "Försvar",
+      "hints": [
+        "Dessa blodceller hör till kroppens försvar.",
+        "Vissa angriper smittämnen direkt, medan andra bidrar till antikroppar och immunologiskt minne. Svara med två ord; skriv utan mellanslag i rutorna.",
+        "Öppna Blodet och blodomloppet, tryckt sida 15: Olika sorters blodkroppar, stycket om immunförsvaret; jämför s.16 Antikroppar och immunitet."
+      ],
+      "printed_page": 15,
+      "pdf_page": 10,
+      "source": "complete",
+      "r": 8,
+      "c": 7,
+      "d": 0,
+      "number": 23
+    },
+    {
+      "id": "H05",
+      "answer": "AMYLAS",
+      "length": 6,
+      "domain": "Matspjälkning",
+      "hints": [
+        "Detta enzym börjar arbeta redan innan maten har svalts.",
+        "Det finns i saliv och börjar spjälka stärkelse.",
+        "Öppna Matens väg, tryckt sida 22: Matens väg, stycket om saliv och enzymer."
+      ],
+      "printed_page": 22,
+      "pdf_page": 2,
+      "source": "complete",
+      "display_answer": "AMYLAS",
+      "r": 8,
+      "c": 20,
+      "d": 1,
+      "number": 24
+    },
+    {
+      "id": "H03",
+      "answer": "MAGSÄCK",
+      "length": 7,
+      "domain": "Matspjälkning",
+      "hints": [
+        "Här möter maten en sur miljö.",
+        "Här blandas maten med magsaft som innehåller pepsin.",
+        "Öppna Matens väg, tryckt sida 22: I magsäcken."
+      ],
+      "printed_page": 22,
+      "pdf_page": 2,
+      "source": "complete",
+      "display_answer": "MAGSÄCK",
+      "r": 9,
+      "c": 22,
+      "d": 0,
+      "number": 25
+    },
+    {
+      "id": "H65",
+      "answer": "KOLHYDRATER",
+      "display_answer": "KOLHYDRATER",
+      "length": 11,
+      "domain": "Näring",
+      "hints": [
+        "Till denna näringsämnesgrupp hör bland annat stärkelse och olika sockerarter.",
+        "Bröd, pasta och potatis innehåller mycket av dessa ämnen, som kan ge kroppen energi.",
+        "Öppna Matens väg, tryckt sida 24: Kolhydrater."
+      ],
+      "printed_page": 24,
+      "pdf_page": 4,
+      "source": "complete",
+      "r": 9,
+      "c": 28,
+      "d": 1,
+      "number": 26
+    },
+    {
+      "id": "H24",
+      "answer": "URINLEDARE",
+      "length": 10,
+      "domain": "Rening",
+      "hints": [
+        "En transportväg efter att urinen har bildats.",
+        "Den leder urin från en njure till urinblåsan.",
+        "Öppna Matens väg, tryckt sida 26: Njurarna och bilden Urinvägarna."
+      ],
+      "printed_page": 26,
+      "pdf_page": 6,
+      "source": "complete",
+      "display_answer": "URINLEDARE",
+      "r": 10,
+      "c": 0,
+      "d": 0,
+      "number": 27
+    },
+    {
+      "id": "H38",
+      "answer": "BLODPLASMA",
+      "length": 10,
+      "domain": "Blod",
+      "hints": [
+        "Blodets vätska, där bland annat glukos transporteras.",
+        "Blodkropparna finns i denna vätska.",
+        "Öppna Blodet och blodomloppet, tryckt sida 15: Olika sorters blodkroppar, första stycket."
+      ],
+      "printed_page": 15,
+      "pdf_page": 10,
+      "source": "complete",
+      "display_answer": "BLODPLASMA",
+      "r": 11,
+      "c": 15,
+      "d": 0,
+      "number": 28
+    },
+    {
+      "id": "H56",
+      "answer": "STORAKRETSLOPPET",
+      "display_answer": "STORA KRETSLOPPET",
+      "length": 16,
+      "domain": "Blod",
+      "hints": [
+        "Den här blodvägen förser kroppens vävnader med bland annat syre.",
+        "Blodet går från vänster kammare genom kroppen och tillbaka till höger förmak. Vad heter hela slingan?",
+        "Öppna Blodet och blodomloppet, tryckt sida 14: Två kretslopp; jämför s.16 Hjärtat."
+      ],
+      "printed_page": 14,
+      "pdf_page": 9,
+      "source": "complete",
+      "r": 11,
+      "c": 22,
+      "d": 1,
+      "number": 29
+    },
+    {
+      "id": "H43",
+      "answer": "ANTIKROPPAR",
+      "length": 11,
+      "domain": "Försvar",
+      "hints": [
+        "Proteiner som hjälper immunförsvaret att känna igen bestämda främmande strukturer.",
+        "De är inte celler; vissa vita blodkroppar kan bilda dem.",
+        "Öppna Blodet och blodomloppet, tryckt sida 16: Antikroppar och immunitet."
+      ],
+      "printed_page": 16,
+      "pdf_page": 11,
+      "source": "complete",
+      "display_answer": "ANTIKROPPAR",
+      "r": 11,
+      "c": 24,
+      "d": 1,
+      "number": 30
+    },
+    {
+      "id": "H10",
+      "answer": "GALLA",
+      "length": 5,
+      "domain": "Matspjälkning",
+      "hints": [
+        "Den hjälper fettspjälkningen utan att själv vara ett enzym.",
+        "Levern bildar vätskan som hjälper till att finfördela fett till små droppar.",
+        "Öppna Matens väg, tryckt sida 22: I magsäcken, stycket om levern och gallblåsan."
+      ],
+      "printed_page": 22,
+      "pdf_page": 2,
+      "source": "complete",
+      "display_answer": "GALLA",
+      "r": 11,
+      "c": 26,
+      "d": 0,
+      "number": 31
+    },
+    {
+      "id": "H61",
+      "answer": "AVITAMIN",
+      "display_answer": "A-vitamin",
+      "length": 8,
+      "domain": "Näring",
+      "hints": [
+        "Ett vitamin som behövs för synen.",
+        "I häftet kopplas det särskilt till mörkerseendet. Skriv bokstaven följd av VITAMIN, utan bindestreck.",
+        "Öppna Matens väg, tryckt sida 25: Vitaminer, raden om mörkerseende."
+      ],
+      "printed_page": 25,
+      "pdf_page": 5,
+      "source": "complete",
+      "r": 11,
+      "c": 30,
+      "d": 1,
+      "number": 32
+    },
+    {
+      "id": "H49",
+      "answer": "LUFTSTRUPE",
+      "length": 10,
+      "domain": "Andning",
+      "hints": [
+        "Luftens väg fortsätter här efter struphuvudet.",
+        "Längre ner delar den sig i två huvudbronker, en till varje lunga.",
+        "Öppna Blodet och blodomloppet, tryckt sida 19: Andningen, styckena om struphuvudet och luftrören."
+      ],
+      "printed_page": 19,
+      "pdf_page": 14,
+      "source": "complete",
+      "display_answer": "LUFTSTRUPE",
+      "r": 12,
+      "c": 2,
+      "d": 0,
+      "number": 33
+    },
+    {
+      "id": "H09",
+      "answer": "TOLVFINGERTARM",
+      "length": 14,
+      "domain": "Matspjälkning",
+      "hints": [
+        "Den första delen av en längre tarm.",
+        "Hit kommer maten efter magsäcken och möter bland annat galla och bukspott.",
+        "Öppna Matens väg, tryckt sida 22: I magsäcken, stycket efter saltsyran och bilden Matspjälkningsorganen."
+      ],
+      "printed_page": 22,
+      "pdf_page": 2,
+      "source": "complete",
+      "display_answer": "TOLVFINGERTARM",
+      "r": 12,
+      "c": 5,
+      "d": 1,
+      "number": 34
+    },
+    {
+      "id": "H04",
+      "answer": "SALIV",
+      "length": 5,
+      "domain": "Matspjälkning",
+      "hints": [
+        "En vätska som blandas med maten tidigt på resan.",
+        "Den finns i munnen och innehåller amylas.",
+        "Öppna Matens väg, tryckt sida 22: Matens väg, stycket om munnen."
+      ],
+      "printed_page": 22,
+      "pdf_page": 2,
+      "source": "complete",
+      "display_answer": "SALIV",
+      "r": 13,
+      "c": 1,
+      "d": 1,
+      "number": 35
+    },
+    {
+      "id": "H12",
+      "answer": "BUKSPOTT",
+      "length": 8,
+      "domain": "Matspjälkning",
+      "hints": [
+        "En vätska med flera olika enzymer.",
+        "Den kommer från bukspottkörteln och hjälper till att spjälka kolhydrater, proteiner och fett.",
+        "Öppna Matens väg, tryckt sida 22: I magsäcken, sista stycket före Tunntarm och tjocktarm."
+      ],
+      "printed_page": 22,
+      "pdf_page": 2,
+      "source": "complete",
+      "display_answer": "BUKSPOTT",
+      "r": 13,
+      "c": 17,
+      "d": 0,
+      "number": 36
+    },
+    {
+      "id": "H35",
+      "answer": "KAPILLÄR",
+      "length": 8,
+      "domain": "Blod",
+      "hints": [
+        "Ett mycket tunt kärl där ämnen kan passera mellan blod och vävnad.",
+        "Häftet beskriver dessa som de tunnaste och smalaste blodkärlen. Svara i singular.",
+        "Öppna Blodet och blodomloppet, tryckt sida 14: Blodkärlen, första stycket."
+      ],
+      "printed_page": 14,
+      "pdf_page": 9,
+      "source": "complete",
+      "display_answer": "KAPILLÄR",
+      "r": 14,
+      "c": 0,
+      "d": 0,
+      "number": 37
+    },
+    {
+      "id": "H57",
+      "answer": "RÖDABLODKROPPAR",
+      "display_answer": "RÖDA BLODKROPPAR",
+      "length": 15,
+      "domain": "Blod",
+      "hints": [
+        "Dessa blodceller är särskilt viktiga för syretransporten.",
+        "De innehåller hemoglobin och är de röda cellerna i blodet. Svara med två ord; skriv utan mellanslag i rutorna.",
+        "Öppna Blodet och blodomloppet, tryckt sida 15: Olika sorters blodkroppar, stycket om hemoglobin."
+      ],
+      "printed_page": 15,
+      "pdf_page": 10,
+      "source": "complete",
+      "r": 14,
+      "c": 7,
+      "d": 1,
+      "number": 38
+    },
+    {
+      "id": "H37",
+      "answer": "HEMOGLOBIN",
+      "length": 10,
+      "domain": "Blod",
+      "hints": [
+        "Detta ämne i röda blodkroppar binder syre.",
+        "Det innehåller järn och bidrar till blodets röda färg.",
+        "Öppna Blodet och blodomloppet, tryckt sida 15: Olika sorters blodkroppar, stycket om röda blodkroppar."
+      ],
+      "printed_page": 15,
+      "pdf_page": 10,
+      "source": "complete",
+      "display_answer": "HEMOGLOBIN",
+      "r": 14,
+      "c": 10,
+      "d": 1,
+      "number": 39
+    },
+    {
+      "id": "H02",
+      "answer": "MATSTRUPE",
+      "length": 9,
+      "domain": "Matspjälkning",
+      "hints": [
+        "En passage på matens väg, men inte på luftens väg till lungorna.",
+        "Den leder maten från svalget till magsäcken.",
+        "Öppna Matens väg, tryckt sida 22: I magsäcken och bilden Matvägarna."
+      ],
+      "printed_page": 22,
+      "pdf_page": 2,
+      "source": "complete",
+      "display_answer": "MATSTRUPE",
+      "r": 14,
+      "c": 13,
+      "d": 1,
+      "number": 40
+    },
+    {
+      "id": "H67",
+      "answer": "CELLANDNING",
+      "length": 11,
+      "domain": "Systemkoppling",
+      "hints": [
+        "Processen som knyter ihop cellernas behov av glukos och syre.",
+        "I denna process reagerar glukos med syre. Koldioxid och vatten bildas, samtidigt som energi frigörs.",
+        "Se genomgång/anteckningar om cellandning och den kompletterande förklaringen ”Cellandning – så hänger systemen ihop” här i repetitionen. Blodet och blodomloppet, tryckt s.19, ger delstöd men inte hela reaktionen."
+      ],
+      "printed_page": null,
+      "pdf_page": null,
+      "source": "supplement_cell_respiration",
+      "display_answer": "CELLANDNING",
+      "supplement_id": "cell_respiration",
+      "r": 15,
+      "c": 9,
+      "d": 0,
+      "number": 41
+    },
+    {
+      "id": "H42",
+      "answer": "BLODGRUPP",
+      "length": 9,
+      "domain": "Försvar",
+      "hints": [
+        "Något vården behöver ta hänsyn till innan en blodtransfusion.",
+        "A, B, AB och O är exempel i ett sådant system. Svara i singular.",
+        "Öppna Blodet och blodomloppet, tryckt sida 15: Blodgrupper."
+      ],
+      "printed_page": 15,
+      "pdf_page": 10,
+      "source": "complete",
+      "display_answer": "BLODGRUPP",
+      "r": 16,
+      "c": 26,
+      "d": 1,
+      "number": 42
+    },
+    {
+      "id": "H59",
+      "answer": "VACCINATION",
+      "display_answer": "VACCINATION",
+      "length": 11,
+      "domain": "Försvar",
+      "hints": [
+        "Ett sätt att förbereda immunförsvaret utan att först behöva genomgå sjukdomen.",
+        "När ett vaccin ges kan antikroppar och minnesceller bidra till framtida skydd. Vad kallas åtgärden?",
+        "Öppna Blodet och blodomloppet, tryckt sida 17: Vaccination och allergi, första avsnittet. Förtydligande: vaccinationens skydd är inte alltid fullständigt."
+      ],
+      "printed_page": 17,
+      "pdf_page": 12,
+      "source": "complete",
+      "r": 17,
+      "c": 1,
+      "d": 0,
+      "number": 43
+    },
+    {
+      "id": "H45",
+      "answer": "ALLERGI",
+      "length": 7,
+      "domain": "Försvar",
+      "hints": [
+        "En reaktion där immunförsvaret reagerar på ett ämne som vanligtvis är ofarligt.",
+        "Till exempel pollen kan utlösa en sådan överkänslighetsreaktion.",
+        "Öppna Blodet och blodomloppet, tryckt sida 17: Vaccination och allergi."
+      ],
+      "printed_page": 17,
+      "pdf_page": 12,
+      "source": "complete",
+      "display_answer": "ALLERGI",
+      "r": 17,
+      "c": 2,
+      "d": 1,
+      "number": 44
+    },
+    {
+      "id": "H39",
+      "answer": "BLODPLÄTTAR",
+      "length": 11,
+      "domain": "Blod",
+      "hints": [
+        "De hjälper till att stoppa en blödning.",
+        "De kallas också trombocyter och samverkar med proteiner när blodet levrar sig.",
+        "Öppna Blodet och blodomloppet, tryckt sida 15: Olika sorters blodkroppar, stycket om trombocyter."
+      ],
+      "printed_page": 15,
+      "pdf_page": 10,
+      "source": "complete",
+      "display_answer": "BLODPLÄTTAR",
+      "r": 17,
+      "c": 18,
+      "d": 1,
+      "number": 45
+    },
+    {
+      "id": "H18",
+      "answer": "PROTEIN",
+      "length": 7,
+      "domain": "Näring",
+      "hints": [
+        "Ett näringsämne som bland annat behövs som byggmaterial.",
+        "Det är uppbyggt av aminosyror och finns exempelvis i ägg och bönor. Svara i singular.",
+        "Öppna Matens väg, tryckt sida 25: Proteiner."
+      ],
+      "printed_page": 25,
+      "pdf_page": 5,
+      "source": "complete",
+      "display_answer": "PROTEIN",
+      "r": 18,
+      "c": 24,
+      "d": 0,
+      "number": 46
+    },
+    {
+      "id": "H11",
+      "answer": "GALLBLÅSA",
+      "length": 9,
+      "domain": "Matspjälkning",
+      "hints": [
+        "Ett litet lager för en vätska som hjälper matspjälkningen.",
+        "Här lagras gallan innan den töms i tunntarmen.",
+        "Öppna Matens väg, tryckt sida 22: I magsäcken och bilden Matspjälkningsorganen."
+      ],
+      "printed_page": 22,
+      "pdf_page": 2,
+      "source": "complete",
+      "display_answer": "GALLBLÅSA",
+      "r": 18,
+      "c": 32,
+      "d": 1,
+      "number": 47
+    },
+    {
+      "id": "H40",
+      "answer": "PULS",
+      "length": 4,
+      "domain": "Blod",
+      "hints": [
+        "Något du kan känna i en artär när hjärtat arbetar.",
+        "De återkommande tryckvågorna känns som slag, till exempel vid handleden.",
+        "Öppna Blodet och blodomloppet, tryckt sida 14: Blodkärlen, stycket om pulsådror."
+      ],
+      "printed_page": 14,
+      "pdf_page": 9,
+      "source": "complete",
+      "display_answer": "PULS",
+      "r": 19,
+      "c": 0,
+      "d": 0,
+      "number": 48
+    },
+    {
+      "id": "H55",
+      "answer": "LILLAKRETSLOPPET",
+      "display_answer": "LILLA KRETSLOPPET",
+      "length": 16,
+      "domain": "Blod",
+      "hints": [
+        "Den här blodvägen passerar lungorna.",
+        "Blodet går från höger kammare genom lungorna och tillbaka till vänster förmak. Vad heter hela slingan?",
+        "Öppna Blodet och blodomloppet, tryckt sida 14: Två kretslopp; jämför s.16 Hjärtat."
+      ],
+      "printed_page": 14,
+      "pdf_page": 9,
+      "source": "complete",
+      "r": 19,
+      "c": 7,
+      "d": 0,
+      "number": 49
+    },
+    {
+      "id": "H14",
+      "answer": "TJOCKTARM",
+      "length": 9,
+      "domain": "Matspjälkning",
+      "hints": [
+        "Här tas vatten upp ur det som återstår efter tunntarmen.",
+        "Den kommer efter tunntarmen och före ändtarmen.",
+        "Öppna Matens väg, tryckt sida 23: sidans inledning, stycket som börjar med Tjocktarmen."
+      ],
+      "printed_page": 23,
+      "pdf_page": 3,
+      "source": "complete",
+      "display_answer": "TJOCKTARM",
+      "r": 19,
+      "c": 15,
+      "d": 1,
+      "number": 50
+    },
+    {
+      "id": "H48",
+      "answer": "SVALG",
+      "length": 5,
+      "domain": "Andning",
+      "hints": [
+        "Ett område som både luft och mat passerar.",
+        "Luften passerar här före struphuvudet.",
+        "Öppna Blodet och blodomloppet, tryckt sida 19: Andningen och bilden Andningsorganen."
+      ],
+      "printed_page": 19,
+      "pdf_page": 14,
+      "source": "complete",
+      "display_answer": "SVALG",
+      "r": 20,
+      "c": 22,
+      "d": 0,
+      "number": 51
+    },
+    {
+      "id": "H15",
+      "answer": "ÄNDTARM",
+      "length": 7,
+      "domain": "Matspjälkning",
+      "hints": [
+        "Här lagras avföring före toalettbesöket.",
+        "Det är tarmens sista del före analöppningen.",
+        "Öppna Matens väg, tryckt sida 23: sidans inledning, stycket om tjocktarm och avföring."
+      ],
+      "printed_page": 23,
+      "pdf_page": 3,
+      "source": "complete",
+      "display_answer": "ÄNDTARM",
+      "r": 20,
+      "c": 30,
+      "d": 1,
+      "number": 52
+    },
+    {
+      "id": "H33",
+      "answer": "ARTÄR",
+      "length": 5,
+      "domain": "Blod",
+      "hints": [
+        "Blodets riktning, inte dess syrehalt, avgör detta kärlnamn.",
+        "Det är ett blodkärl som leder blod bort från hjärtat.",
+        "Öppna Blodet och blodomloppet, tryckt sida 14: Blodkärlen."
+      ],
+      "printed_page": 14,
+      "pdf_page": 9,
+      "source": "complete",
+      "display_answer": "ARTÄR",
+      "r": 21,
+      "c": 1,
+      "d": 0,
+      "number": 53
+    },
+    {
+      "id": "H01",
+      "answer": "MUNHÅLA",
+      "length": 7,
+      "domain": "Matspjälkning",
+      "hints": [
+        "Här börjar matens resa genom matspjälkningskanalen.",
+        "Här tuggas maten och blandas med saliv.",
+        "Öppna Matens väg, tryckt sida 22: Matens väg, texten om munnen och bilden Matvägarna."
+      ],
+      "printed_page": 22,
+      "pdf_page": 2,
+      "source": "complete",
+      "display_answer": "MUNHÅLA",
+      "r": 21,
+      "c": 28,
+      "d": 1,
+      "number": 54
+    },
+    {
+      "id": "H44",
+      "answer": "MINNESCELLER",
+      "length": 12,
+      "domain": "Försvar",
+      "hints": [
+        "Dessa immunceller kan bidra till en snabbare reaktion nästa gång.",
+        "De kan finnas kvar efter infektion eller vaccination och ska inte förväxlas med antikroppar.",
+        "Öppna Blodet och blodomloppet, tryckt sida 16: Antikroppar och immunitet. Förtydligande: minnesceller är själva celler, inte antikroppar."
+      ],
+      "printed_page": 16,
+      "pdf_page": 11,
+      "source": "complete",
+      "display_answer": "MINNESCELLER",
+      "r": 22,
+      "c": 9,
+      "d": 0,
+      "number": 55
+    },
+    {
+      "id": "H34",
+      "answer": "VEN",
+      "length": 3,
+      "domain": "Blod",
+      "hints": [
+        "En sorts blodkärl som leder tillbaka mot kroppens pump.",
+        "Det leder blod till hjärtat; många har klaffar.",
+        "Öppna Blodet och blodomloppet, tryckt sida 14: Blodkärlen, sista stycket."
+      ],
+      "printed_page": 14,
+      "pdf_page": 9,
+      "source": "complete",
+      "display_answer": "VEN",
+      "r": 24,
+      "c": 1,
+      "d": 1,
+      "number": 56
+    },
+    {
+      "id": "H19",
+      "answer": "FETT",
+      "length": 4,
+      "domain": "Näring",
+      "hints": [
+        "Kroppen kan lagra detta som energireserv.",
+        "I underhuden hjälper det också till att minska värmeförlusten.",
+        "Öppna Matens väg, tryckt sida 25: Fetter."
+      ],
+      "printed_page": 25,
+      "pdf_page": 5,
+      "source": "complete",
+      "display_answer": "FETT",
+      "r": 24,
+      "c": 12,
+      "d": 0,
+      "number": 57
+    },
+    {
+      "id": "H06",
+      "answer": "ENZYM",
+      "length": 5,
+      "domain": "Matspjälkning",
+      "hints": [
+        "Det hjälper en bestämd kemisk reaktion att gå snabbare.",
+        "Amylas och pepsin är två exempel på ett sådant ämne.",
+        "Öppna Matens väg, tryckt sida 22: Matens väg, stycket om saliv och enzymer."
+      ],
+      "printed_page": 22,
+      "pdf_page": 2,
+      "source": "complete",
+      "display_answer": "ENZYM",
+      "r": 25,
+      "c": 1,
+      "d": 0,
+      "number": 58
+    },
+    {
+      "id": "H26",
+      "answer": "LEVER",
+      "length": 5,
+      "domain": "Rening",
+      "hints": [
+        "Detta organ hjälper både matspjälkningen och kroppens lagring av socker.",
+        "Det bildar galla och kan lagra socker som glykogen.",
+        "Öppna Matens väg, tryckt sida 26: Levern."
+      ],
+      "printed_page": 26,
+      "pdf_page": 6,
+      "source": "complete",
+      "display_answer": "LEVER",
+      "r": 25,
+      "c": 21,
+      "d": 0,
+      "number": 59
+    },
+    {
+      "id": "H16",
+      "answer": "EMALJ",
+      "length": 5,
+      "domain": "Matspjälkning",
+      "hints": [
+        "Ett hårt skydd som möter maten när du tuggar.",
+        "Det är tandkronans yttersta lager, utanför tandbenet.",
+        "Öppna Matens väg, tryckt sida 23: Tänderna och bilden Tand i genomskärning."
+      ],
+      "printed_page": 23,
+      "pdf_page": 3,
+      "source": "complete",
+      "display_answer": "EMALJ",
+      "r": 25,
+      "c": 24,
+      "d": 1,
+      "number": 60
+    },
+    {
+      "id": "H64",
+      "answer": "LYMFKÖRTLAR",
+      "display_answer": "LYMFKÖRTLAR",
+      "length": 11,
+      "domain": "Rening",
+      "hints": [
+        "Här möter lymfan många av immunförsvarets celler.",
+        "Dessa innehåller många vita blodkroppar och hjälper till att filtrera lymfan.",
+        "Öppna Matens väg, tryckt sida 26: Lymfan, sista stycket."
+      ],
+      "printed_page": 26,
+      "pdf_page": 6,
+      "source": "complete",
+      "r": 26,
+      "c": 9,
+      "d": 0,
+      "number": 61
+    },
+    {
+      "id": "H32",
+      "answer": "KLAFF",
+      "length": 5,
+      "domain": "Blod",
+      "hints": [
+        "En dörr i blodets väg som motverkar bakåtflöde.",
+        "Den finns bland annat i hjärtat och i många vener. Svara i singular.",
+        "Öppna Blodet och blodomloppet, tryckt sida 16: Hjärtat, stycket om klaffar; jämför s.14 Blodkärlen."
+      ],
+      "printed_page": 16,
+      "pdf_page": 11,
+      "source": "complete",
+      "display_answer": "KLAFF",
+      "r": 26,
+      "c": 13,
+      "d": 1,
+      "number": 62
+    },
+    {
+      "id": "H28",
+      "answer": "LYMFA",
+      "length": 5,
+      "domain": "Rening",
+      "hints": [
+        "En vätska som förs tillbaka till blodet genom ett eget kärlsystem.",
+        "På vägen passerar den lymfkörtlar.",
+        "Öppna Matens väg, tryckt sida 26: Lymfan."
+      ],
+      "printed_page": 26,
+      "pdf_page": 6,
+      "source": "complete",
+      "display_answer": "LYMFA",
+      "r": 26,
+      "c": 28,
+      "d": 0,
+      "number": 63
+    },
+    {
+      "id": "H36",
+      "answer": "AORTA",
+      "length": 5,
+      "domain": "Blod",
+      "hints": [
+        "Blod lämnar vänster kammare genom detta stora kärl.",
+        "Det kallas även stora kroppspulsådern.",
+        "Öppna Blodet och blodomloppet, tryckt sida 14: Blodkärlen, stycket om den största artären; jämför bilden på s.16."
+      ],
+      "printed_page": 14,
+      "pdf_page": 9,
+      "source": "complete",
+      "display_answer": "AORTA",
+      "r": 27,
+      "c": 24,
+      "d": 0,
+      "number": 64
+    },
+    {
+      "id": "H46",
+      "answer": "BLODPROPP",
+      "length": 9,
+      "domain": "Blod",
+      "hints": [
+        "Detta kan blockera blodets väg genom ett kärl.",
+        "Om blodflödet stoppas kan vävnaden få för lite syre och skadas.",
+        "Öppna Blodet och blodomloppet, tryckt sida 17: Sjukdomar i hjärta och blodkärl. Förtydligande: blodplättar och koagulationsproteiner medverkar när blodet levrar sig. Röda blodkroppar levrar inte sig själva."
+      ],
+      "printed_page": 17,
+      "pdf_page": 12,
+      "source": "complete",
+      "display_answer": "BLODPROPP",
+      "r": 28,
+      "c": 2,
+      "d": 0,
+      "number": 65
+    },
+    {
+      "id": "H22",
+      "answer": "JÄRN",
+      "length": 4,
+      "domain": "Näring",
+      "hints": [
+        "Ett mineralämne som hör ihop med blodets syretransport.",
+        "Det ingår i hemoglobin.",
+        "Öppna Matens väg, tryckt sida 25: Mineraler; jämför Blodet och blodomloppet s.15."
+      ],
+      "printed_page": 25,
+      "pdf_page": 5,
+      "source": "complete",
+      "display_answer": "JÄRN",
+      "r": 29,
+      "c": 24,
+      "d": 0,
+      "number": 66
+    },
+    {
+      "id": "H54",
+      "answer": "DIAFRAGMA",
+      "length": 9,
+      "domain": "Andning",
+      "hints": [
+        "En stor andningsmuskel nedanför lungorna.",
+        "Den kallas också mellangärdet och sänks när den drar ihop sig vid inandning.",
+        "Öppna Blodet och blodomloppet, tryckt sida 20: Andningen sker med muskler."
+      ],
+      "printed_page": 20,
+      "pdf_page": 15,
+      "source": "complete",
+      "display_answer": "DIAFRAGMA",
+      "r": 30,
+      "c": 10,
+      "d": 0,
+      "number": 67
+    }
+  ],
+  "supplement": {
+    "id": "cell_respiration",
+    "title": "Cellandning – så hänger systemen ihop",
+    "label": "Kompletterande förklaring, inte häftescitat",
+    "text": "Vid cellandning reagerar glukos med syre i kroppens celler. Koldioxid och vatten bildas och energi frigörs. Cellerna använder energin bland annat till muskelarbete. Glukos transporteras löst i blodplasman. Det mesta av syret bärs av hemoglobin i röda blodkroppar. Lungorna tar upp syre och avger koldioxid. När muskler arbetar mer behöver kroppen vanligen transportera mer syre och glukos och föra bort mer koldioxid. Därför ökar vanligtvis både puls och andning. Atomerna försvinner inte och sockret blir inte till energi.",
+    "scope": "Samma grundmål som R10 A/D och E. Inga ATP-, balanserings- eller mekanismkrav."
+  }
+};window.PHRASES = {
+  "version": 1,
+  "phrases": [
+    {
+      "id": "F01",
+      "answer": "Saliven innehåller enzymet amylas",
+      "prompt": "I munnen börjar stärkelsens nedbrytning. Vad finns i vätskan där?",
+      "hints": [
+        "Tänk på vätskan som gör maten lättare att svälja och ett ämne som spjälkar stärkelse.",
+        "Meningen börjar med Saliven. Det sista ordet är namnet på enzymet som verkar på stärkelse."
+      ],
+      "source_word_ids": [
+        "H04",
+        "H05"
+      ],
+      "sources": [
+        "Öppna Matens väg, tryckt sida 22: Matens väg, stycket om munnen.",
+        "Öppna Matens väg, tryckt sida 22: Matens väg, stycket om saliv och enzymer."
+      ],
+      "supplement": false
+    },
+    {
+      "id": "F02",
+      "answer": "Galla finfördelar fett till små droppar",
+      "prompt": "Vad gör galla med fett?",
+      "hints": [
+        "Den delar upp fettet fysiskt så att enzymer kan komma åt större yta.",
+        "Börja med Galla. Använd verbet finfördelar och avsluta med storleken och formen på fettet."
+      ],
+      "source_word_ids": [
+        "H10"
+      ],
+      "sources": [
+        "Öppna Matens väg, tryckt sida 22: I magsäcken, stycket om levern och gallblåsan."
+      ],
+      "supplement": false
+    },
+    {
+      "id": "F03",
+      "answer": "Proteiner bryts ner till aminosyror",
+      "prompt": "Vilka byggstenar bildas när proteiner spjälkas?",
+      "hints": [
+        "Stora näringsmolekyler delas i mindre byggstenar.",
+        "Börja med Proteiner bryts ner. Byggstenarna heter aminosyror."
+      ],
+      "source_word_ids": [
+        "H18",
+        "H07"
+      ],
+      "sources": [
+        "Öppna Matens väg, tryckt sida 25: Proteiner.",
+        "Öppna Matens väg, tryckt sida 22: I magsäcken."
+      ],
+      "supplement": false
+    },
+    {
+      "id": "F04",
+      "answer": "Näringsämnen tas upp genom tunntarmens vägg",
+      "prompt": "Hur tas näringsämnen upp från tunntarmens innehåll?",
+      "hints": [
+        "Tänk på vad näringsämnena passerar på vägen från tarminnehållet in i kroppen.",
+        "Börja med Näringsämnen tas upp. Avsluta med vägen genom organets vägg."
+      ],
+      "source_word_ids": [
+        "H13"
+      ],
+      "sources": [
+        "Öppna Matens väg, tryckt sida 22: Tunntarm och tjocktarm."
+      ],
+      "supplement": false
+    },
+    {
+      "id": "F05",
+      "answer": "Emaljen skyddar tandens krona",
+      "prompt": "Vad skyddar den synliga delen av tanden?",
+      "hints": [
+        "Tänk på tandens hårda yttersta lager.",
+        "Börja med Emaljen skyddar. Den synliga delen kallas tandens krona."
+      ],
+      "source_word_ids": [
+        "H16"
+      ],
+      "sources": [
+        "Öppna Matens väg, tryckt sida 23: Tänderna och bilden Tand i genomskärning."
+      ],
+      "supplement": false
+    },
+    {
+      "id": "F06",
+      "answer": "Levern lagrar glukos som glykogen",
+      "prompt": "Hur kan levern lagra ett socker?",
+      "hints": [
+        "Glukos kan sättas samman till ett lagerämne.",
+        "Börja med Levern lagrar. Glukos är sockret och glykogen är lagerformen."
+      ],
+      "source_word_ids": [
+        "H26",
+        "H27"
+      ],
+      "sources": [
+        "Öppna Matens väg, tryckt sida 26: Levern.",
+        "Öppna Matens väg, tryckt sida 26: Levern."
+      ],
+      "supplement": false
+    },
+    {
+      "id": "F07",
+      "answer": "Urinen samlas i urinblåsan",
+      "prompt": "Var väntar urinen innan vi kissar?",
+      "hints": [
+        "Tänk på organet mellan urinledarna och urinröret.",
+        "Börja med Urinen samlas. Avsluta med i och organets namn i bestämd form."
+      ],
+      "source_word_ids": [
+        "H25"
+      ],
+      "sources": [
+        "Öppna Matens väg, tryckt sida 26: Njurarna och bilden Urinvägarna."
+      ],
+      "supplement": false
+    },
+    {
+      "id": "F08",
+      "answer": "Urinledarna går från njurarna till urinblåsan",
+      "prompt": "Mellan vilka organ går de två urinledarna?",
+      "hints": [
+        "Börja där urinen bildas och följ den till platsen där den samlas.",
+        "Börja med Urinledarna går från. Nämn njurarna först och urinblåsan sist."
+      ],
+      "source_word_ids": [
+        "H24"
+      ],
+      "sources": [
+        "Öppna Matens väg, tryckt sida 26: Njurarna och bilden Urinvägarna."
+      ],
+      "supplement": false
+    },
+    {
+      "id": "F09",
+      "answer": "Artärer leder blod bort från hjärtat",
+      "prompt": "Beskriv åt vilket håll artärer leder blod. Skriv om artärer i plural.",
+      "hints": [
+        "Tänk på blodets riktning i förhållande till pumpen, inte mängden syre.",
+        "Börja med Artärer leder blod. Riktningen är bort från hjärtat."
+      ],
+      "source_word_ids": [
+        "H33"
+      ],
+      "sources": [
+        "Öppna Blodet och blodomloppet, tryckt sida 14: Blodkärlen."
+      ],
+      "supplement": false
+    },
+    {
+      "id": "F10",
+      "answer": "Vener leder blod tillbaka till hjärtat",
+      "prompt": "Beskriv åt vilket håll vener leder blod. Skriv om vener i plural.",
+      "hints": [
+        "Tänk på återresan till kroppens pump.",
+        "Börja med Vener leder blod. Fortsätt med tillbaka till och pumpens namn."
+      ],
+      "source_word_ids": [
+        "H34"
+      ],
+      "sources": [
+        "Öppna Blodet och blodomloppet, tryckt sida 14: Blodkärlen, sista stycket."
+      ],
+      "supplement": false
+    },
+    {
+      "id": "F11",
+      "answer": "Hjärtats klaffar hindrar blodets återflöde",
+      "prompt": "Hur håller hjärtat blodet på rätt väg?",
+      "hints": [
+        "Tänk på dörrarna mellan hjärtats rum och vid utgångarna.",
+        "Börja med Hjärtats klaffar hindrar. Avsluta med ord för att blodet annars skulle gå bakåt."
+      ],
+      "source_word_ids": [
+        "H32"
+      ],
+      "sources": [
+        "Öppna Blodet och blodomloppet, tryckt sida 16: Hjärtat, stycket om klaffar; jämför s.14 Blodkärlen."
+      ],
+      "supplement": false
+    },
+    {
+      "id": "F12",
+      "answer": "Hemoglobin transporterar syre i blodet",
+      "prompt": "Vilket ämne hjälper blodet att bära syre?",
+      "hints": [
+        "Det finns i de röda blodkropparna och innehåller järn.",
+        "Börja med Hemoglobin transporterar. Nämn gasen och sedan var transporten sker."
+      ],
+      "source_word_ids": [
+        "H37"
+      ],
+      "sources": [
+        "Öppna Blodet och blodomloppet, tryckt sida 15: Olika sorters blodkroppar, stycket om röda blodkroppar."
+      ],
+      "supplement": false
+    },
+    {
+      "id": "F13",
+      "answer": "Glukos transporteras löst i blodplasman",
+      "prompt": "Hur transporteras druvsocker i blodet?",
+      "hints": [
+        "Tänk på blodets vätska, inte de röda blodkropparna.",
+        "Börja med Glukos transporteras löst. Avsluta med i och blodvätskans namn i bestämd form."
+      ],
+      "source_word_ids": [
+        "H38"
+      ],
+      "sources": [
+        "Öppna Blodet och blodomloppet, tryckt sida 15: Olika sorters blodkroppar, första stycket."
+      ],
+      "supplement": false,
+      "clarification": "Faktarättelse: Glukos transporteras löst i blodplasman. Det mesta av blodets syre bärs däremot av hemoglobin i de röda blodkropparna."
+    },
+    {
+      "id": "F14",
+      "answer": "Vita blodkroppar deltar i immunförsvaret",
+      "prompt": "Vilka blodkroppar hjälper kroppens försvar?",
+      "hints": [
+        "Tänk på den grupp av blodkroppar som bekämpar smittämnen.",
+        "Börja med Vita blodkroppar deltar. Avsluta med i och kroppens försvarssystem."
+      ],
+      "source_word_ids": [
+        "H58"
+      ],
+      "sources": [
+        "Öppna Blodet och blodomloppet, tryckt sida 15: Olika sorters blodkroppar, stycket om immunförsvaret; jämför s.16 Antikroppar och immunitet."
+      ],
+      "supplement": false
+    },
+    {
+      "id": "F15",
+      "answer": "Blodplättar hjälper till att stoppa blödningar",
+      "prompt": "Vilken uppgift har trombocyterna?",
+      "hints": [
+        "De samarbetar med koagulationsproteiner när ett kärl skadas.",
+        "Börja med Blodplättar hjälper till. Avsluta med att stoppa och vad som händer när blod lämnar ett skadat kärl."
+      ],
+      "source_word_ids": [
+        "H39"
+      ],
+      "sources": [
+        "Öppna Blodet och blodomloppet, tryckt sida 15: Olika sorters blodkroppar, stycket om trombocyter."
+      ],
+      "supplement": false
+    },
+    {
+      "id": "F16",
+      "answer": "Minnesceller är celler som minns smittämnen",
+      "prompt": "Vad är minnesceller och vad kan de känna igen?",
+      "hints": [
+        "Med minns menas att dessa immunceller kan bidra till en snabbare reaktion när samma smittämne dyker upp igen. Antikroppar är proteiner, inte celler.",
+        "Börja med Minnesceller är celler. Fortsätt med som minns och det som immunförsvaret har mött."
+      ],
+      "source_word_ids": [
+        "H44"
+      ],
+      "sources": [
+        "Öppna Blodet och blodomloppet, tryckt sida 16: Antikroppar och immunitet. Förtydligande: minnesceller är själva celler, inte antikroppar."
+      ],
+      "supplement": false
+    },
+    {
+      "id": "F17",
+      "answer": "Vaccination förbereder kroppens immunförsvar",
+      "prompt": "Vad är syftet med vaccination?",
+      "hints": [
+        "Försvaret får öva innan det möter smittan. Skyddet är inte alltid fullständigt.",
+        "Börja med Vaccination förbereder. Avsluta med kroppens och namnet på försvarssystemet."
+      ],
+      "source_word_ids": [
+        "H59"
+      ],
+      "sources": [
+        "Öppna Blodet och blodomloppet, tryckt sida 17: Vaccination och allergi, första avsnittet. Förtydligande: vaccinationens skydd är inte alltid fullständigt."
+      ],
+      "supplement": false
+    },
+    {
+      "id": "F18",
+      "answer": "Luftstrupen delar sig i två bronker",
+      "prompt": "Hur förgrenas luftvägen mot lungorna?",
+      "hints": [
+        "Tänk på förgreningen till höger och vänster lunga.",
+        "Börja med Luftstrupen delar sig. Avsluta med i två och bronker, som är ett annat namn på luftrör."
+      ],
+      "source_word_ids": [
+        "H49",
+        "H50"
+      ],
+      "sources": [
+        "Öppna Blodet och blodomloppet, tryckt sida 19: Andningen, styckena om struphuvudet och luftrören.",
+        "Öppna Blodet och blodomloppet, tryckt sida 19: Andningen, stycket som börjar Lite längre ner."
+      ],
+      "supplement": false
+    },
+    {
+      "id": "F19",
+      "answer": "Gasutbytet sker i lungornas alveoler",
+      "prompt": "Var byter blodet gaser med luften?",
+      "hints": [
+        "Tänk på de små blåsorna längst ut i lungornas luftrör.",
+        "Börja med Gasutbytet sker i. Avsluta med lungornas och blåsornas andra namn."
+      ],
+      "source_word_ids": [
+        "H51"
+      ],
+      "sources": [
+        "Öppna Blodet och blodomloppet, tryckt sida 19: Andningen, stycket om lungblåsorna."
+      ],
+      "supplement": false
+    },
+    {
+      "id": "F20",
+      "answer": "Syre går från alveolerna till blodet",
+      "prompt": "Åt vilket håll går syret vid gasutbytet i lungorna?",
+      "hints": [
+        "Följ gasen från inandningsluften mot transporten ut i kroppen.",
+        "Börja med Syre går från. Nämn alveolerna först och blodet sist."
+      ],
+      "source_word_ids": [
+        "H52"
+      ],
+      "sources": [
+        "Öppna Blodet och blodomloppet, tryckt sida 19: Andningen, styckena om lungblåsor och blodets gastransport."
+      ],
+      "supplement": false
+    },
+    {
+      "id": "F21",
+      "answer": "Koldioxid går från blodet till alveolerna",
+      "prompt": "Åt vilket håll går koldioxiden vid gasutbytet i lungorna?",
+      "hints": [
+        "Följ gasen som ska lämna kroppen med utandningsluften.",
+        "Börja med Koldioxid går från. Nämn blodet först och alveolerna sist."
+      ],
+      "source_word_ids": [
+        "H53"
+      ],
+      "sources": [
+        "Öppna Blodet och blodomloppet, tryckt sida 19: Andningen, sidans två sista stycken."
+      ],
+      "supplement": false
+    },
+    {
+      "id": "F22",
+      "answer": "Diafragma sänks när vi andas in",
+      "prompt": "Vad händer med mellangärdets läge vid inandning?",
+      "hints": [
+        "Muskeln drar ihop sig så att brösthålan blir större.",
+        "Börja med Diafragma sänks. Fortsätt med när vi och avsluta med andas in."
+      ],
+      "source_word_ids": [
+        "H54"
+      ],
+      "sources": [
+        "Öppna Blodet och blodomloppet, tryckt sida 20: Andningen sker med muskler."
+      ],
+      "supplement": false
+    },
+    {
+      "id": "F23",
+      "answer": "Cellandningen frigör energi ur glukos",
+      "prompt": "Vad händer med energin i druvsocker vid cellandning?",
+      "hints": [
+        "När glukos reagerar med syre frigörs energi. Atomerna finns kvar i de ämnen som bildas.",
+        "Börja med Cellandningen frigör. Avsluta med energi ur och druvsockrets andra namn."
+      ],
+      "source_word_ids": [
+        "H67"
+      ],
+      "sources": [
+        "Se genomgång/anteckningar om cellandning och den kompletterande förklaringen ”Cellandning – så hänger systemen ihop” här i repetitionen. Blodet och blodomloppet, tryckt s.19, ger delstöd men inte hela reaktionen."
+      ],
+      "supplement": true
+    },
+    {
+      "id": "F24",
+      "answer": "Vid cellandning bildas koldioxid och vatten",
+      "prompt": "Vilka ämnen bildas när glukos reagerar med syre i cellandningen?",
+      "hints": [
+        "Tänk på två produkter: en gas som vi andas ut och ett ämne som också kan vara flytande.",
+        "Börja med Vid cellandning bildas. Nämn koldioxid först och vatten sist, med och emellan."
+      ],
+      "source_word_ids": [
+        "H67"
+      ],
+      "sources": [
+        "Se genomgång/anteckningar om cellandning och den kompletterande förklaringen ”Cellandning – så hänger systemen ihop” här i repetitionen. Blodet och blodomloppet, tryckt s.19, ger delstöd men inte hela reaktionen."
+      ],
+      "supplement": true
+    }
+  ]
+}
+;window.TRAIL = {
+  "version": 1,
+  "tasks": [
+    {
+      "id": "S01",
+      "type": "order",
+      "title": "Matens resa",
+      "prompt": "Maten är på väg genom kroppen. Ordna de här fem utvalda stoppen från munnen till tjocktarmen.",
+      "items": [
+        {
+          "id": "mun",
+          "text": "Munnen"
+        },
+        {
+          "id": "matstrupe",
+          "text": "Matstrupen"
+        },
+        {
+          "id": "magsack",
+          "text": "Magsäcken"
+        },
+        {
+          "id": "tunntarm",
+          "text": "Tunntarmen"
+        },
+        {
+          "id": "tjocktarm",
+          "text": "Tjocktarmen"
+        }
+      ],
+      "answer": [
+        "mun",
+        "matstrupe",
+        "magsack",
+        "tunntarm",
+        "tjocktarm"
+      ],
+      "hints": [
+        "Börja där maten tuggas. Ett muskulöst rör leder sedan maten till en säck.",
+        "Efter magsäcken kommer tunntarmen. Tjocktarmen är det sista av de fem stoppen här."
+      ],
+      "explanation": "Maten passerar munnen, matstrupen, magsäcken, tunntarmen och tjocktarmen i den ordningen. Tolvfingertarmen är första delen av tunntarmen. Efter tjocktarmen går resterna vidare till ändtarmen.",
+      "source_word_ids": [
+        "H01",
+        "H02",
+        "H03",
+        "H13",
+        "H14"
+      ],
+      "source_note": "De fem utvalda stoppen syns i bilden Matvägarna i Matens väg, tryckt s.22. Tolvfingertarmen är första delen av tunntarmen.",
+      "sources": [
+        "Öppna Matens väg, tryckt sida 22: Matens väg, texten om munnen och bilden Matvägarna.",
+        "Öppna Matens väg, tryckt sida 22: I magsäcken och bilden Matvägarna.",
+        "Öppna Matens väg, tryckt sida 22: I magsäcken.",
+        "Öppna Matens väg, tryckt sida 22: Tunntarm och tjocktarm.",
+        "Öppna Matens väg, tryckt sida 23: sidans inledning, stycket som börjar med Tjocktarmen."
+      ],
+      "supplement": false
+    },
+    {
+      "id": "S02",
+      "type": "choice",
+      "title": "Två sätt att bearbeta mat",
+      "prompt": "Ett enzym och galla hjälper matspjälkningen på olika sätt. Vilket par beskriver skillnaden rätt?",
+      "choices": [
+        {
+          "id": "enzyme",
+          "text": "Amylas spjälkar stärkelse. Galla finfördelar fett till små droppar.",
+          "feedback": "Ja. Enzymet spjälkar molekyler, medan gallan delar upp fettet i små droppar."
+        },
+        {
+          "id": "gallaenzyme",
+          "text": "Amylas finfördelar fett. Galla spjälkar stärkelse.",
+          "feedback": "Här har uppgifterna blandats ihop. Amylas spjälkar stärkelse. Galla finfördelar fett till små droppar."
+        },
+        {
+          "id": "bothenzymes",
+          "text": "Både amylas och galla är enzymer som spjälkar fettmolekyler.",
+          "feedback": "Amylas spjälkar stärkelse. Galla är inget enzym; den finfördelar fett till små droppar så att fettspjälkande enzymer lättare kommer åt det."
+        }
+      ],
+      "answer": "enzyme",
+      "hints": [
+        "Amylas finns i saliven. Galla bildas i levern och hjälper till när fett bearbetas.",
+        "Skilj mellan att spjälka molekyler och att göra små fettdroppar. Galla gör det senare."
+      ],
+      "explanation": "Amylas börjar spjälka stärkelse. Galla finfördelar fett till droppar och ökar ytan som fettspjälkande enzymer kan arbeta på.",
+      "source_word_ids": [
+        "H05",
+        "H10"
+      ],
+      "source_note": "Faktarättelse: galla finfördelar fett till droppar; galla är inget enzym.",
+      "sources": [
+        "Öppna Matens väg, tryckt sida 22: Matens väg, stycket om saliv och enzymer.",
+        "Öppna Matens väg, tryckt sida 22: I magsäcken, stycket om levern och gallblåsan."
+      ],
+      "supplement": false
+    },
+    {
+      "id": "S03",
+      "type": "choice",
+      "title": "Två leveranser till cellen",
+      "prompt": "En muskelcell behöver både glukos och syre. Hur transporteras de i blodet?",
+      "choices": [
+        {
+          "id": "bothred",
+          "text": "Både glukos och det mesta av syret transporteras inne i röda blodkroppar.",
+          "feedback": "Röda blodkroppar bär mycket av syret, men glukos transporteras löst i blodplasman."
+        },
+        {
+          "id": "plasmaheme",
+          "text": "Glukos finns löst i plasman. Det mesta av syret bärs av hemoglobin.",
+          "feedback": "Ja. Blodets vätska och de röda blodkropparnas hemoglobin hjälper till med olika transporter."
+        },
+        {
+          "id": "platelets",
+          "text": "Glukos bärs av blodplättar. Det mesta av syret finns löst i plasman.",
+          "feedback": "Blodplättar hjälper till att stoppa blödningar. Glukos finns löst i plasman, och det mesta av syret bärs av hemoglobin."
+        }
+      ],
+      "answer": "plasmaheme",
+      "hints": [
+        "Blodplättarnas huvuduppgift är att hjälpa till att stoppa blödningar, inte att leverera glukos.",
+        "Tänk på blodets vätska för glukos och proteinet i de röda blodkropparna för syre."
+      ],
+      "explanation": "Glukos transporteras löst i blodplasman. Det mesta av syret binds till hemoglobin i de röda blodkropparna. Båda transporterna hjälper cellerna att få det de behöver.",
+      "source_word_ids": [
+        "H38",
+        "H37"
+      ],
+      "source_note": "Faktarättelse till häftet: glukos transporteras i plasman, inte i de röda blodkropparna.",
+      "sources": [
+        "Öppna Blodet och blodomloppet, tryckt sida 15: Olika sorters blodkroppar, första stycket.",
+        "Öppna Blodet och blodomloppet, tryckt sida 15: Olika sorters blodkroppar, stycket om röda blodkroppar."
+      ],
+      "supplement": false
+    },
+    {
+      "id": "S04",
+      "type": "order",
+      "title": "En runda genom båda kretsloppen",
+      "prompt": "Starta i höger kammare. Ordna stoppen så att blodet går genom lungorna och kroppen och kommer tillbaka till höger kammare.",
+      "items": [
+        {
+          "id": "hk",
+          "text": "Höger kammare"
+        },
+        {
+          "id": "lungor",
+          "text": "Lungorna"
+        },
+        {
+          "id": "vf",
+          "text": "Vänster förmak"
+        },
+        {
+          "id": "vk",
+          "text": "Vänster kammare"
+        },
+        {
+          "id": "kropp",
+          "text": "Kroppens vävnader"
+        },
+        {
+          "id": "hf",
+          "text": "Höger förmak"
+        },
+        {
+          "id": "hkretur",
+          "text": "Tillbaka till höger kammare"
+        }
+      ],
+      "answer": [
+        "hk",
+        "lungor",
+        "vf",
+        "vk",
+        "kropp",
+        "hf",
+        "hkretur"
+      ],
+      "hints": [
+        "Hjärtats högra sida skickar blod till lungorna. Den vänstra sidan skickar blod vidare till kroppen.",
+        "Efter lungorna kommer vänster förmak och vänster kammare. Efter kroppens vävnader kommer höger förmak."
+      ],
+      "explanation": "Höger kammare pumpar genom lilla kretsloppet till lungorna. Blodet återvänder till vänster förmak och går till vänster kammare. Därifrån går det genom stora kretsloppet till kroppens vävnader och tillbaka till höger förmak och höger kammare.",
+      "source_word_ids": [
+        "H55",
+        "H56",
+        "H30",
+        "H31"
+      ],
+      "source_note": "Stoppen visar flödets ordning; de mellanliggande blodkärlen är inte egna kort i uppgiften.",
+      "sources": [
+        "Öppna Blodet och blodomloppet, tryckt sida 14: Två kretslopp; jämför s.16 Hjärtat.",
+        "Öppna Blodet och blodomloppet, tryckt sida 16: Hjärtat och bilden Hjärtat inuti."
+      ],
+      "supplement": false
+    },
+    {
+      "id": "S05",
+      "type": "choice",
+      "title": "Artär trots mindre syre",
+      "prompt": "Lungartären för blod från hjärtat till lungorna. Blodet har ännu inte tagit upp syre i lungorna. Varför är kärlet ändå en artär?",
+      "choices": [
+        {
+          "id": "color",
+          "text": "Alla stora blodkärl kallas artärer.",
+          "feedback": "Storleken avgör inte namnet. Även vener kan vara stora."
+        },
+        {
+          "id": "direction",
+          "text": "En artär leder blod bort från hjärtat, oavsett syrehalten.",
+          "feedback": "Ja. Namnet bestäms av riktningen i förhållande till hjärtat."
+        },
+        {
+          "id": "oxygen",
+          "text": "En artär leder alltid syrerikt blod.",
+          "feedback": "Syrehalten avgör inte om kärlet är en artär. Lungartären är ett viktigt exempel."
+        }
+      ],
+      "answer": "direction",
+      "hints": [
+        "Artär och ven beskriver hur blodet rör sig i förhållande till hjärtat.",
+        "Bort från hjärtat betyder artär. Tillbaka till hjärtat betyder ven."
+      ],
+      "explanation": "Artärer leder blod från hjärtat och vener leder blod till hjärtat. I lungkretsloppet går syrefattigare blod till lungorna genom lungartärerna och syrerikare blod tillbaka genom lungvenerna.",
+      "source_word_ids": [
+        "H33",
+        "H34",
+        "H55"
+      ],
+      "sources": [
+        "Öppna Blodet och blodomloppet, tryckt sida 14: Blodkärlen.",
+        "Öppna Blodet och blodomloppet, tryckt sida 14: Blodkärlen, sista stycket.",
+        "Öppna Blodet och blodomloppet, tryckt sida 14: Två kretslopp; jämför s.16 Hjärtat."
+      ],
+      "supplement": false
+    },
+    {
+      "id": "S06",
+      "type": "choice",
+      "title": "Ett byte i lungblåsorna",
+      "prompt": "Blodet passerar i de små blodkärlen runt alveolerna i lungorna. Vilket gasutbyte stämmer?",
+      "choices": [
+        {
+          "id": "reverse",
+          "text": "Syre går från blodet till alveolerna och koldioxid går åt andra hållet.",
+          "feedback": "Det är tvärtom vid lungornas gasutbyte. Blodet tar upp syre och lämnar koldioxid."
+        },
+        {
+          "id": "bothin",
+          "text": "Både syre och koldioxid går från alveolerna till blodet.",
+          "feedback": "Blodet tar upp syre men lämnar koldioxid till alveolerna, så att koldioxiden följer med utandningsluften."
+        },
+        {
+          "id": "exchange",
+          "text": "Syre går från alveolerna till blodet. Koldioxid går från blodet till alveolerna.",
+          "feedback": "Ja. Blodet får syre att transportera vidare och kan lämna ifrån sig koldioxid."
+        }
+      ],
+      "answer": "exchange",
+      "hints": [
+        "Följ syret i inandningsluften på vägen mot kroppens celler.",
+        "Syret ska in i blodet. Koldioxiden ska lämna blodet och kunna följa med utandningsluften."
+      ],
+      "explanation": "I lungorna går syre från alveolerna till blodet, medan koldioxid går från blodet till alveolerna. De tunna väggarna mellan alveoler och kapillärer gör gasutbytet möjligt.",
+      "source_word_ids": [
+        "H51",
+        "H52",
+        "H53"
+      ],
+      "sources": [
+        "Öppna Blodet och blodomloppet, tryckt sida 19: Andningen, stycket om lungblåsorna.",
+        "Öppna Blodet och blodomloppet, tryckt sida 19: Andningen, styckena om lungblåsor och blodets gastransport.",
+        "Öppna Blodet och blodomloppet, tryckt sida 19: Andningen, sidans två sista stycken."
+      ],
+      "supplement": false
+    },
+    {
+      "id": "S07",
+      "type": "choice",
+      "title": "Så kommer luften in",
+      "prompt": "Du tar ett lugnt andetag in. Vilken följd beskriver diafragmas arbete?",
+      "choices": [
+        {
+          "id": "up",
+          "text": "Diafragma slappnar av och höjs. Brösthålan blir mindre och luft strömmar in.",
+          "feedback": "När diafragma slappnar av och höjs minskar brösthålans volym. Det hör till utandning, inte inandning."
+        },
+        {
+          "id": "lungmuscle",
+          "text": "Lungorna drar ihop sig som muskler och suger in luft.",
+          "feedback": "Lungorna är inte pumpmuskler. Andningsmusklerna förändrar brösthålans volym."
+        },
+        {
+          "id": "down",
+          "text": "Diafragma drar ihop sig och sänks. Brösthålan blir större och luft strömmar in.",
+          "feedback": "Ja. När brösthålan utvidgas följer lungorna med och luft kan strömma in."
+        }
+      ],
+      "answer": "down",
+      "hints": [
+        "Diafragma är en muskel under lungorna. Vid inandning drar den ihop sig.",
+        "När diafragma sänks blir brösthålans volym större. Tänk på vilket alternativ som kopplar ihop just de stegen."
+      ],
+      "explanation": "Vid inandning drar diafragma ihop sig och sänks. Brösthålan och lungorna utvidgas. Trycket i lungorna blir då lägre än utanför, och luft strömmar in.",
+      "source_word_ids": [
+        "H54"
+      ],
+      "sources": [
+        "Öppna Blodet och blodomloppet, tryckt sida 20: Andningen sker med muskler."
+      ],
+      "supplement": false
+    },
+    {
+      "id": "S08",
+      "type": "choice",
+      "title": "Där systemen möts",
+      "prompt": "Nu har glukos från maten och syre från luften nått en muskelcell. Vilken förklaring av cellandningen stämmer?",
+      "choices": [
+        {
+          "id": "matterenergy",
+          "text": "Atomerna i glukos försvinner och blir till energi.",
+          "feedback": "Atomerna försvinner inte. De finns kvar i de ämnen som bildas, medan energi frigörs."
+        },
+        {
+          "id": "respiration",
+          "text": "Glukos reagerar med syre. Koldioxid och vatten bildas, och energi frigörs.",
+          "feedback": "Ja. Cellandningen knyter ihop matspjälkning, gasutbyte och blodets transporter."
+        },
+        {
+          "id": "lungs",
+          "text": "Cellandning sker bara i lungorna, där luften blir energi.",
+          "feedback": "Gasutbytet sker i lungorna, men cellandning sker i kroppens celler. Luft blir inte energi."
+        }
+      ],
+      "answer": "respiration",
+      "hints": [
+        "Skilj gasutbytet i lungorna från reaktionerna i kroppens celler.",
+        "Två ämnen används: glukos och syre. Två ämnen bildas: koldioxid och vatten. Energi frigörs."
+      ],
+      "explanation": "Glukos + syre → koldioxid + vatten. Energi frigörs och kan användas i cellens arbete. Atomerna finns kvar i de ämnen som bildas. Matspjälkningen, andningen och blodomloppet bidrar tillsammans till att cellerna får glukos och syre.",
+      "source_word_ids": [
+        "H67"
+      ],
+      "supplement": true,
+      "sources": [
+        "Se genomgång/anteckningar om cellandning och den kompletterande förklaringen ”Cellandning – så hänger systemen ihop” här i repetitionen. Blodet och blodomloppet, tryckt s.19, ger delstöd men inte hela reaktionen."
+      ]
+    }
+  ]
+}
+;</script><script type="module">const normalize = text => String(text).normalize('NFC').toLocaleUpperCase('sv-SE').replace(/[^A-ZÅÄÖ]/g, '');
+const cellKey = (r,c) => `${r},${c}`;
+const cellsOf = word => Array.from(word.answer, (_,i)=>cellKey(word.r+i*word.d,word.c+i*(1-word.d)));
+function makeModel(words, rows, cols) {
+ const cells=new Map();const byId=new Map(words.map(w=>[w.id,w]));
+ for(const word of words) for(const [i,key] of cellsOf(word).entries()) {
+  let cell=cells.get(key);if(cell && cell.answer!==word.answer[i])throw Error('Crossing mismatch '+key);
+  if(!cell){const [r,c]=key.split(',').map(Number);cell={key,r,c,answer:word.answer[i],words:[]};cells.set(key,cell);}
+  cell.words.push(word.id);
+ }
+ return {words,rows,cols,cells,byId};
+}
+function wordText(model, values, id) {return cellsOf(model.byId.get(id)).map(k=>values[k]||' ').join('');}
+function writeLetters(model, values, id, offset, raw) {
+ const keys=cellsOf(model.byId.get(id)),text=normalize(raw);let cursor=offset;
+ for(const ch of text) {if(cursor>=keys.length)break;values[keys[cursor++]]=ch;}
+ return Math.min(keys.length-1,cursor);
+}
+function progress(model,values) {
+ const filled=[...model.cells.keys()].filter(k=>values[k]).length;
+ const correct=model.words.filter(w=>wordText(model,values,w.id)===w.answer).length;
+ return {filled,total:model.cells.size,correct,words:model.words.length};
+}
+function restore(model, raw, signature) {
+ const blank={signature,values:{},hints:{},active:model.words[0].id,offset:0,zoom:30};
+ try {const s=JSON.parse(raw);if(!s||s.signature!==signature)return blank;
+  for(const [k,v] of Object.entries(s.values||{})) if(model.cells.has(k)&&typeof v==='string'&&/^[A-ZÅÄÖ]$/.test(v))blank.values[k]=v;
+  for(const [id,n] of Object.entries(s.hints||{})) if(model.byId.has(id)&&Number.isInteger(n)&&n>=1&&n<=3)blank.hints[id]=n;
+  if(model.byId.has(s.active))blank.active=s.active;
+  if(Number.isInteger(s.offset))blank.offset=Math.min(Math.max(s.offset,0),model.byId.get(blank.active).answer.length-1);
+  if([22,26,30,38].includes(s.zoom))blank.zoom=s.zoom;
+ }catch{}
+ return blank;
+}
+
+function phraseWords(text) {
+ return String(text).normalize('NFC').toLocaleUpperCase('sv-SE').replace(/[.,!?;:“”"'()]/g,'').trim().split(/\s+/).filter(Boolean);
+}
+const phraseLengths = phrase => phraseWords(phrase.answer).map(w=>w.length);
+function checkPhrase(phrase, text) {
+ const actual=phraseWords(text),expected=phraseWords(phrase.answer);
+ if(!actual.length)return {correct:false,message:'Skriv ett förslag först. Du kan ta en ledtråd när du vill.'};
+ if(actual.length!==expected.length)return {correct:false,message:`Den valda frasen har ${expected.length} ord. Ditt förslag har ${actual.length}.`};
+ const right=actual.filter((w,i)=>w===expected[i]).length;
+ return {correct:right===expected.length,message:right===expected.length?'Rätt! Du har hittat frasen.':`${right} av ${expected.length} ord står på rätt plats. Det är inte den valda frasen ännu. En annan formulering kan också vara biologiskt riktig.`};
+}
+function shuffledIds(phrases, previous=null, random=Math.random) {
+ const ids=phrases.map(p=>p.id);
+ for(let i=ids.length-1;i>0;i--){const j=Math.floor(random()*(i+1));[ids[i],ids[j]]=[ids[j],ids[i]];}
+ if(ids.length>1&&ids[0]===previous)[ids[0],ids[1]]=[ids[1],ids[0]];
+ return ids;
+}
+function restoreBonus(raw,phrases,signature,random=Math.random) {
+ const ids=new Set(phrases.map(p=>p.id));
+ const state={signature,order:[],index:0,entries:{},completionSeen:false};
+ try{const s=JSON.parse(raw);if(s?.signature===signature){
+  if(Array.isArray(s.order)&&s.order.length===ids.size&&new Set(s.order).size===ids.size&&s.order.every(id=>ids.has(id)))state.order=s.order;
+  if(Number.isInteger(s.index)&&s.index>=0&&s.index<ids.size)state.index=s.index;
+  state.completionSeen=s.completionSeen===true;
+  for(const p of phrases){const e=s.entries?.[p.id];if(e&&typeof e==='object')state.entries[p.id]={draft:typeof e.draft==='string'?e.draft.slice(0,250):'',hint:Number.isInteger(e.hint)?Math.min(2,Math.max(0,e.hint)):0,solved:e.solved===true};}
+ }}catch{}
+ if(!state.order.length){state.order=shuffledIds(phrases,null,random);state.index=0;}
+ return state;
+}
+function advanceBonus(state,phrases,random=Math.random) {
+ if(state.index<state.order.length-1)state.index++;
+ else{const previous=state.order.at(-1);state.order=shuffledIds(phrases,previous,random);state.index=0;}
+ return state.order[state.index];
+}
+
+function trailItemIds(task){return (task.items||task.choices).map(x=>x.id);}
+function newTrailEntry(task,random=Math.random){
+ const order=trailItemIds(task);
+ for(let i=order.length-1;i>0;i--){const j=Math.floor(random()*(i+1));[order[i],order[j]]=[order[j],order[i]];}
+ // Do not present an ordering task already in its answer order.
+ if(task.type==='order'&&order.every((id,i)=>id===task.answer[i]))[order[0],order[1]]=[order[1],order[0]];
+ return {order,selected:task.type==='order'?[]:'',hint:0,solved:false,checked:false};
+}
+function checkTrail(task,selected){
+ if(task.type==='choice'){
+  const choice=task.choices.find(c=>c.id===selected);
+  if(!choice)return {correct:false,incomplete:true,message:'Välj ett alternativ och kontrollera sedan sambandet.'};
+  return {correct:selected===task.answer,incomplete:false,message:choice.feedback};
+ }
+ if(!Array.isArray(selected)||selected.length!==task.answer.length||new Set(selected).size!==task.answer.length||!selected.every(id=>task.answer.includes(id)))return {correct:false,incomplete:true,message:`Välj alla ${task.answer.length} stoppen innan du kontrollerar ordningen.`};
+ const wrong=selected.findIndex((id,i)=>id!==task.answer[i]);
+ return wrong===-1?{correct:true,incomplete:false,message:'Rätt ordning! Följ förklaringen för att knyta ihop stoppen.'}:{correct:false,incomplete:false,message:`Titta en gång till från plats ${wrong+1}. Där börjar ordningen skilja sig. Ångra ett steg, rensa ordningen eller ta en ledtråd.`};
+}
+function restoreTrail(raw,tasks,signature,random=Math.random){
+ const state={signature,active:tasks[0].id,entries:Object.fromEntries(tasks.map(t=>[t.id,newTrailEntry(t,random)]))};
+ try{const saved=JSON.parse(raw);if(saved?.signature!==signature)return state;
+  if(tasks.some(t=>t.id===saved.active))state.active=saved.active;
+  for(const t of tasks){const e=saved.entries?.[t.id],out=state.entries[t.id],ids=trailItemIds(t);if(!e||typeof e!=='object')continue;
+   if(Array.isArray(e.order)&&e.order.length===ids.length&&new Set(e.order).size===ids.length&&e.order.every(id=>ids.includes(id)))out.order=e.order;
+   if(t.type==='order'&&Array.isArray(e.selected))out.selected=[...new Set(e.selected.filter(id=>ids.includes(id)))];
+   else if(t.type==='choice'&&ids.includes(e.selected))out.selected=e.selected;
+   if(Number.isInteger(e.hint))out.hint=Math.min(2,Math.max(0,e.hint));
+   out.solved=e.solved===true&&checkTrail(t,out.selected).correct;out.checked=e.checked===true;
+  }
+ }catch{}
+ return state;
+}
+function trailComplete(state,tasks){return tasks.every(t=>state.entries[t.id]?.solved===true);}
+
+const data=window.CROSSWORD;
+const model=makeModel(data.words,data.rows,data.cols);
+const storageKey='hostskogens-hemligheter:progress:v1';
+const $=id=>document.getElementById(id);
+let saved=null, storageAvailable=true;
+try{saved=localStorage.getItem(storageKey);}catch{storageAvailable=false;}
+let state=restore(model,saved,data.signature);
+const inputs=new Map(), cellElements=new Map(),listButtons=new Map();
+const checked=new Map();
+let dialogTrigger=null;
+const scrollBehavior=()=>window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth';
+const direction=w=>w.d?'Lodrätt':'Vågrätt';
+const current=()=>model.byId.get(state.active);
+const currentKeys=()=>cellsOf(current());
+const currentKey=()=>currentKeys()[state.offset];
+const escapeHTML=s=>String(s).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+function persist(){
+ try{localStorage.setItem(storageKey,JSON.stringify(state));storageAvailable=true;$('save-status').textContent='Rutorna sparas på den här enheten';}
+ catch{storageAvailable=false;$('save-status').textContent='Sparande är avstängt i webbläsaren. Behåll fliken öppen.';}
+}
+function feedback(text='',kind=''){$('feedback').textContent=text;$('feedback').className=kind;}
+function format(w){
+ const pieces=w.display_answer.split(/\s+/);let desc=`${w.answer.length} bokstäver`;
+ if(pieces.length>1)desc+=` · ${pieces.length} ord (${pieces.map(s=>normalize(s).length).join(' + ')}) · utan mellanslag`;
+ else if(w.display_answer.includes('-'))desc+=' · utan bindestreck';
+ return desc;
+}
+function renderWord(clearDraft=true){
+ const w=current(),level=state.hints[w.id]||1;
+ $('word-domain').textContent=w.domain;
+ $('word-title').textContent=`${w.number}. ${direction(w)}`;
+ $('word-format').textContent=format(w);
+ $('clue-one').textContent=w.hints[0];
+ $('hint-two').hidden=level<2;$('hint-two').querySelector('p').textContent=w.hints[1];
+ $('hint-three').hidden=level<3;$('hint-three').querySelector('p').textContent=w.hints[2];
+ $('supplement-from-clue').hidden=!w.supplement_id;
+ $('more-hint').hidden=level===3;
+ $('more-hint').innerHTML=level===1?'<span aria-hidden="true">✧</span> En ledtråd till':'<span aria-hidden="true">⌑</span> Visa exakt källa';
+ $('word-answer').maxLength=w.answer.length+10;
+ $('word-answer').setAttribute('aria-label',`Skriv hela svaret för ${w.number} ${direction(w).toLowerCase()}, ${w.answer.length} bokstäver`);
+ if(clearDraft)$('word-answer').value='';
+ $('change-direction').disabled=model.cells.get(currentKey()).words.length<2;
+}
+function renderGrid(){
+ const keys=new Set(currentKeys()),cursor=currentKey();
+ for(const [key,cell] of model.cells){
+  const el=cellElements.get(key),input=inputs.get(key),value=state.values[key]||'';
+  if(input.value!==value)input.value=value;
+  el.classList.toggle('word-active',keys.has(key));el.classList.toggle('cell-active',key===cursor);
+  el.classList.toggle('wrong',checked.get(key)==='wrong');el.classList.toggle('checked-correct',checked.get(key)==='correct');
+  input.tabIndex=key===cursor?0:-1;
+  input.setAttribute('aria-label',`Rad ${cell.r+1}, kolumn ${cell.c+1}${keys.has(key)?`, ${current().number} ${direction(current()).toLowerCase()}, bokstav ${currentKeys().indexOf(key)+1}`:''}${checked.get(key)==='wrong'?', behöver ändras':''}`);
+ }
+ for(const [id,b] of listButtons){b.setAttribute('aria-pressed',String(id===state.active));b.classList.toggle('is-solved',wordText(model,state.values,id)===model.byId.get(id).answer);}
+ $('change-direction').disabled=model.cells.get(cursor).words.length<2;
+}
+function renderProgress(){
+ const p=progress(model,state.values);
+ $('progress-label').textContent=`${p.correct} av ${p.words} ord lösta`;
+ $('progress-fill').style.width=`${p.correct/p.words*100}%`;
+ document.querySelector('[role=progressbar]').setAttribute('aria-valuenow',p.correct);
+ if(p.correct===p.words){feedback('Alla 67 ord är lösta! Fortsätt med bonus 1: Sambandsstigen, och avsluta med bonus 2: Frasgåtan.','success');maybeComplete();}
+}
+function focusCell(scroll=true){
+ const input=inputs.get(currentKey());input.focus({preventScroll:true});input.select();
+ if(scroll){
+  const box=input.getBoundingClientRect(),view=$('board-viewport'),vp=view.getBoundingClientRect();
+  if(box.left<vp.left+20)view.scrollLeft-=vp.left+20-box.left;
+  if(box.right>vp.right-20)view.scrollLeft+=box.right-vp.right+20;
+  if(box.top<vp.top+20)view.scrollTop-=vp.top+20-box.top;
+  if(box.bottom>vp.bottom-20)view.scrollTop+=box.bottom-vp.bottom+20;
+ }
+}
+function showSelectedWord(){
+ const view=$('board-viewport'),vp=view.getBoundingClientRect(),keys=currentKeys();
+ const first=inputs.get(keys[0]).getBoundingClientRect(),last=inputs.get(keys.at(-1)).getBoundingClientRect();
+ if(first.left<vp.left+16)view.scrollLeft-=vp.left+16-first.left;
+ else if(last.right>vp.right-16)view.scrollLeft+=Math.min(last.right-vp.right+16,first.left-vp.left-16);
+ if(first.top<vp.top+16)view.scrollTop-=vp.top+16-first.top;
+ else if(last.bottom>vp.bottom-16)view.scrollTop+=Math.min(last.bottom-vp.bottom+16,first.top-vp.top-16);
+}
+function selectWord(id,offset=0,{focus=false,scroll=false}={}){
+ const changed=id!==state.active;state.active=id;state.offset=Math.max(0,Math.min(offset,current().answer.length-1));
+ if(changed)feedback();renderWord(changed);renderGrid();persist();if(changed)showSelectedWord();
+ if(focus)focusCell(true);
+ if(scroll){$('word-title').focus({preventScroll:true});document.querySelector('.workspace').scrollIntoView({behavior:scrollBehavior(),block:'start'});}
+}
+function nextWord(delta,focus=false){const index=model.words.findIndex(w=>w.id===state.active);selectWord(model.words[(index+delta+model.words.length)%model.words.length].id,0,{focus});}
+function selectCell(key,toggle=false){const cell=model.cells.get(key);let id=cell.words.includes(state.active)?state.active:cell.words[0];if(toggle&&cell.words.length>1)id=cell.words.find(x=>x!==state.active)||id;selectWord(id,cellsOf(model.byId.get(id)).indexOf(key));}
+function changeDirection(){const cell=model.cells.get(currentKey());if(cell.words.length<2)return;const key=currentKey(),id=cell.words.find(x=>x!==state.active);selectWord(id,cellsOf(model.byId.get(id)).indexOf(key));}
+function edited(){checked.clear();feedback();renderGrid();renderProgress();persist();}
+function enter(raw){const text=normalize(raw);if(!text)return;state.offset=writeLetters(model,state.values,state.active,state.offset,text);edited();focusCell(true);}
+function keydown(event,key){
+ if(event.ctrlKey||event.metaKey||event.altKey)return;
+ if(event.key==='Escape'){event.preventDefault();$('word-answer').focus();return;}
+ if(event.key==='Tab'){event.preventDefault();nextWord(event.shiftKey?-1:1,true);return;}
+ if(event.key===' '||event.key==='Enter'){event.preventDefault();changeDirection();focusCell();return;}
+ if(event.key==='Backspace'||event.key==='Delete'){
+  event.preventDefault();if(event.key==='Backspace'&&!state.values[currentKey()]&&state.offset>0)state.offset--;delete state.values[currentKey()];edited();focusCell();return;
+ }
+ if(['Home','End'].includes(event.key)){event.preventDefault();state.offset=event.key==='Home'?0:current().answer.length-1;renderGrid();persist();focusCell();return;}
+ if(event.key.startsWith('Arrow')){
+  event.preventDefault();const d=['ArrowUp','ArrowDown'].includes(event.key)?1:0,delta=['ArrowLeft','ArrowUp'].includes(event.key)?-1:1;
+  const crossing=model.cells.get(currentKey()).words.map(id=>model.byId.get(id)).find(w=>w.d===d);
+  if(crossing&&crossing.id!==state.active){const key=currentKey();selectWord(crossing.id,cellsOf(crossing).indexOf(key));}
+  state.offset=Math.min(Math.max(0,state.offset+delta),current().answer.length-1);renderGrid();persist();focusCell();return;
+ }
+ if(event.key.length===1&&normalize(event.key).length===1){event.preventDefault();enter(event.key);}
+}
+function createGrid(){
+ const grid=$('grid');grid.style.setProperty('--cols',data.cols);grid.style.setProperty('--rows',data.rows);
+ grid.setAttribute('aria-rowcount',data.rows);grid.setAttribute('aria-colcount',data.cols);
+ const numbers=new Map(model.words.map(w=>[cellKey(w.r,w.c),w.number]));
+ // Only occupied cells are interactive; explicit coordinates keep blocked squares inert.
+ for(const cell of model.cells.values()){
+  const el=document.createElement('div');el.className='cell';el.style.gridRow=cell.r+1;el.style.gridColumn=cell.c+1;el.setAttribute('role','gridcell');el.dataset.key=cell.key;
+  el.setAttribute('aria-rowindex',cell.r+1);el.setAttribute('aria-colindex',cell.c+1);
+  if(numbers.has(cell.key)){const n=document.createElement('span');n.className='cell-number';n.textContent=numbers.get(cell.key);n.setAttribute('aria-hidden','true');el.append(n);}
+  const input=document.createElement('input');input.type='text';input.inputMode='text';input.autocomplete='off';input.setAttribute('autocapitalize','characters');input.spellcheck=false;input.maxLength=1;
+  input.dataset.key=cell.key;
+  input.addEventListener('pointerdown',()=>{const same=cell.key===currentKey();selectCell(cell.key,same);});
+  input.addEventListener('focus',()=>{if(cell.key!==currentKey())selectCell(cell.key);input.select();});
+  input.addEventListener('keydown',e=>keydown(e,cell.key));
+  input.addEventListener('input',e=>{const value=e.data||input.value;if(normalize(value))enter(value);else{delete state.values[cell.key];edited();}});
+  input.addEventListener('paste',e=>{e.preventDefault();enter(e.clipboardData.getData('text'));});
+  el.append(input);grid.append(el);inputs.set(cell.key,input);cellElements.set(cell.key,el);
+ }
+}
+function createLists(){
+ const domains=[...new Set(model.words.map(w=>w.domain))];for(const domain of domains){const option=document.createElement('option');option.value=domain;option.textContent=domain;$('domain-filter').append(option);}
+ for(const w of model.words){const b=document.createElement('button');b.type='button';b.dataset.word=w.id;b.dataset.domain=w.domain;
+  b.innerHTML=`<span class="list-number">${w.number}</span><span class="list-text">${escapeHTML(w.hints[0])}<span class="list-solved">✓ Löst</span></span><span class="list-length">${w.answer.length} rutor</span>`;
+  b.setAttribute('aria-label',`${w.number} ${direction(w).toLowerCase()}. ${w.hints[0]} ${w.answer.length} bokstäver`);b.addEventListener('click',()=>selectWord(w.id,0,{scroll:true}));
+  $(w.d?'down-list':'across-list').append(b);listButtons.set(w.id,b);
+ }
+ $('domain-filter').addEventListener('change',()=>{for(const b of listButtons.values())b.hidden=!!$('domain-filter').value&&b.dataset.domain!==$('domain-filter').value;});
+}
+function applyZoom(){document.documentElement.style.setProperty('--cell',`${state.zoom}px`);$('zoom-label').textContent=`${state.zoom} px`;$('zoom-out').disabled=state.zoom===22;$('zoom-in').disabled=state.zoom===38;}
+function openInfo(title,html){dialogTrigger=document.activeElement;$('dialog-title').textContent=title;$('dialog-body').innerHTML=html;if(!$('info-dialog').open)$('info-dialog').showModal();$('dialog-close').focus();}
+function supportHTML(){
+ const t=data.supplement.text;
+ const parts=[t.slice(0,t.indexOf('Glukos transporteras')),t.slice(t.indexOf('Glukos transporteras'),t.indexOf('När muskler')),t.slice(t.indexOf('När muskler'))];
+ return `<p class="support-label">${escapeHTML(data.supplement.label)}</p><div class="reaction">Glukos + syre → koldioxid + vatten<br><strong>Energi frigörs.</strong></div>${parts.map(t=>`<p>${escapeHTML(t.trim())}</p>`).join('')}<p class="source-label">Blodet och blodomloppet, tryckt sida 19, ger delstöd om gastransporten. Den fullständiga reaktionen ovan är ett komplement till häftet.</p>`;
+}
+function openSupport(){openInfo(data.supplement.title,supportHTML());}
+$('more-hint').addEventListener('click',()=>{state.hints[state.active]=Math.min(3,(state.hints[state.active]||1)+1);renderWord(false);persist();if(state.hints[state.active]===3)$('hint-three').scrollIntoView({block:'nearest',behavior:scrollBehavior()});});
+$('prev-word').addEventListener('click',()=>nextWord(-1));$('next-word').addEventListener('click',()=>nextWord(1));
+$('change-direction').addEventListener('click',()=>{changeDirection();focusCell();});
+$('check-word').addEventListener('click',()=>{
+ const keys=currentKeys(),empty=keys.filter(k=>!state.values[k]).length,wrong=keys.filter(k=>state.values[k]&&state.values[k]!==model.cells.get(k).answer);
+ checked.clear();for(const k of keys)if(state.values[k])checked.set(k,state.values[k]===model.cells.get(k).answer?'correct':'wrong');renderGrid();
+ if(empty)feedback(`${empty} ${empty===1?'ruta är tom':'rutor är tomma'}. Fyll i dem och försök igen.${wrong.length?' Bokstäver som behöver ändras har en röd markering.':''}`,wrong.length?'error':'');
+ else if(wrong.length)feedback(`${wrong.length} ${wrong.length===1?'bokstav behöver':'bokstäver behöver'} ändras. Se de röda markeringarna i rutnätet och prova en ledtråd.`,'error');
+ else feedback(`Rätt! ${current().display_answer.toLocaleLowerCase('sv-SE')}. Fint, välj nästa ord när du vill.`,'success');
+});
+$('word-form').addEventListener('submit',e=>{
+ e.preventDefault();const answer=normalize($('word-answer').value),len=current().answer.length;
+ if(answer.length!==len){feedback(`Skriv ${len} bokstäver. Ditt svar har ${answer.length}. Mellanslag och bindestreck räknas inte.`,'error');return;}
+ writeLetters(model,state.values,state.active,0,answer);state.offset=0;edited();$('word-answer').value='';feedback('Svaret är inskrivet. Kontrollera ordet när du vill.');
+});
+for(const [id,delta] of [['zoom-out',-1],['zoom-in',1]])$(id).addEventListener('click',()=>{const sizes=[22,26,30,38];state.zoom=sizes[Math.max(0,Math.min(3,sizes.indexOf(state.zoom)+delta))];applyZoom();persist();});
+$('supplement-from-clue').addEventListener('click',openSupport);
+$('guide-open').addEventListener('click',()=>openInfo('Så löser du korsordet',`<ol><li>Välj ett ord i rutnätet eller bland alla ledtrådar. Det valda ordet blir ljust gult.</li><li>Skriv direkt i rutorna. På en platta kan du också skriva hela svaret i fältet och trycka på ↵ för att föra in det.</li><li>Varje bokstav har en ruta. Å, Ä och Ö är egna bokstäver. Mellanslag och bindestreck tar inga rutor. Två ord visas till exempel som 4 + 11.</li><li>Den första ledtråden visas direkt. Knappen ger en ledtråd till och därefter exakt tryckt sida eller kompletterande stöd.</li><li>Kontrollera ordet när du vill. Du kan alltid ändra och försöka igen.</li></ol><h3>Med tangentbord</h3><p>Piltangenter flyttar mellan bokstäver. Enter eller mellanslag byter riktning i en korsning. Tab väljer nästa ord, Skift + Tab föregående. Home och End går till ordets första och sista ruta. Escape lämnar rutnätet och flyttar till fältet för hela ordet. Backsteg tar bort en bokstav.</p><h3>På en platta eller mobil</h3><p>Tryck på en ruta för att skriva. Ett nytt tryck på samma korsningsruta byter riktning. Dra i rutnätet för att se fler rutor; använd + och − för att ändra storlek.</p><h3>Två bonusar</h3><p>Sambandsstigen har åtta korta uppgifter med direkt återkoppling och två valfria hjälpsteg. Klicka fram ordningen eller välj ett alternativ; inga kort behöver dras. Avsluta sedan med frasgåtan. Bonusarna kan också öppnas från knappen Bonusar.</p><h3>Fortsätt en annan dag</h3><p>Rutorna och öppnade hjälpsteg sparas automatiskt i samma webbläsare på samma adress. Svaren i fältet ”Skriv hela ordet här” förs över och sparas först när du trycker ↵. Rensade webbplatsdata, privat läge eller en annan webbläsare kan göra att sparandet försvinner.</p>`));
+$('about-open').addEventListener('click',()=>openInfo('Om materialet',`<p>Ett gemensamt repetitionskorsord för matens väg, blodet, blodomloppet och andningen. Höstskogen är en inramning; den tillför inga nya ekologimål. E1:s extra Livets kemi ingår inte.</p><h3>Källor och läshjälp</h3><p>ENKEL Biologi 7–9, del 2, Tengnäs Läromedel, art.nr 538: Matens väg, tryckta sidor 22–28, och Blodet och blodomloppet, tryckta sidor 14–21. Tredje hjälpsteget anger rätt tryckt sida och avsnitt. Sidnummer avser inte PDF-läsarens sidräkning.</p><p>Faktarättelser är införda i ledtrådarna. Cellandningens fullständiga reaktion finns som ett tydligt märkt komplement från ordets tredje hjälpsteg och från frasgåtorna om cellandning.</p><p>Alla 67 begrepp finns i ett sammanhängande rutnät med ${data.crossings} korsningar. Att kunna fylla i orden är en början; samband och bilder hjälper dig öva på att förklara.</p><h3>Dina svar stannar här</h3><p>Inga namn, konton eller elevuppgifter behövs. Svaren lagras bara i den här webbläsaren. Materialet använder inga externa skript, typsnitt, analysverktyg eller nätanrop.</p>`));
+$('dialog-close').addEventListener('click',()=>$('info-dialog').close());
+$('info-dialog').addEventListener('close',()=>{if(dialogTrigger?.isConnected)dialogTrigger.focus({preventScroll:true});});
+$('reset-open').addEventListener('click',()=>{$('reset-dialog').showModal();$('reset-cancel').focus();});
+$('reset-cancel').addEventListener('click',()=>$('reset-dialog').close());
+$('reset-confirm').addEventListener('click',()=>{state=restore(model,null,data.signature);bonus=restoreBonus(null,phrases,bonusSignature);renderPhrase();persistBonus();trail=restoreTrail(null,trailTasks,trailSignature);renderTrail();persistTrail();checked.clear();$('domain-filter').value='';for(const b of listButtons.values())b.hidden=false;renderWord();renderGrid();renderProgress();applyZoom();persist();feedback('En ny runda är klar. Lycka till!');$('reset-dialog').close();$('word-title').focus({preventScroll:true});document.querySelector('.workspace').scrollIntoView({behavior:scrollBehavior(),block:'start'});});
+const phrases=window.PHRASES.phrases;
+const bonusStorageKey='hostskogens-hemligheter:bonus:v1';
+const bonusSignature=`${data.signature}:phrases-${window.PHRASES.version}`;
+let bonusRaw=null;
+try{bonusRaw=localStorage.getItem(bonusStorageKey);}catch{}
+let bonus=restoreBonus(bonusRaw,phrases,bonusSignature);
+let completeTrigger=null,completeToTrail=false;
+function persistBonus(){
+ try{localStorage.setItem(bonusStorageKey,JSON.stringify(bonus));$('phrase-save').textContent='Fras, svar och öppnade ledtrådar sparas i samma webbläsare.';}
+ catch{$('phrase-save').textContent='Frasbonusen kan inte sparas i webbläsaren. Behåll fliken öppen.';}
+}
+const selectedPhrase=()=>phrases.find(p=>p.id===bonus.order[bonus.index]);
+function phraseEntry(){const id=selectedPhrase().id;return bonus.entries[id]||(bonus.entries[id]={draft:'',hint:0,solved:false});}
+function renderPhrase(){
+ const p=selectedPhrase(),e=phraseEntry(),lengths=phraseLengths(p);
+ $('phrase-prompt').textContent=p.prompt;
+ $('phrase-kind').hidden=!p.supplement;$('phrase-kind').textContent=p.supplement?'Kompletterande förklaring, inte häftescitat':'';
+ $('phrase-format').textContent=`${lengths.length} ord · ${lengths.reduce((a,b)=>a+b,0)} bokstäver totalt · Bokstäver per ord: ${lengths.join(' + ')}`;
+ $('phrase-pattern').innerHTML=lengths.map((n,i)=>`<span><b>${'•'.repeat(n)}</b><small>Ord ${i+1}: ${n}</small></span>`).join('');
+ $('phrase-progress').textContent=`Fras ${bonus.index+1} av ${phrases.length} i den här omgången · ${Object.values(bonus.entries).filter(e=>e.solved).length} olika fraser lösta`;
+ for(let i=0;i<2;i++){const el=$(i?'phrase-hint-two':'phrase-hint-one');el.hidden=e.hint<i+1;el.querySelector('p').textContent=p.hints[i];}
+ $('phrase-hint').hidden=e.hint===2;$('phrase-hint').textContent=`Visa ledtråd ${e.hint+1}`;
+ $('phrase-answer').value=e.draft;
+ $('phrase-feedback').textContent=e.solved?'Den här frasen har du löst. Du kan öva igen eller välja nästa.':'';
+ $('phrase-feedback').className=e.solved?'success':'';
+ $('phrase-source').open=false;
+ $('phrase-source').querySelector('div').innerHTML=p.sources.map(s=>`<p>${escapeHTML(s)}</p>`).join('')+(p.clarification?`<p><strong>${escapeHTML(p.clarification)}</strong></p>`:'');
+ $('phrase-support').hidden=!p.supplement;
+}
+function focusPhrase(){ $('phrase-title').scrollIntoView({behavior:'instant',block:'start'});$('phrase-title').focus({preventScroll:true}); }
+function maybeComplete(){
+ if(progress(model,state.values).correct!==model.words.length||bonus.completionSeen)return;
+ bonus.completionSeen=true;persistBonus();
+ queueMicrotask(()=>{completeTrigger=document.activeElement;$('complete-dialog').showModal();$('complete-bonus').focus();});
+}
+$('phrase-hint').addEventListener('click',()=>{const e=phraseEntry();e.hint=Math.min(2,e.hint+1);renderPhrase();persistBonus();if(e.hint===2)$('phrase-hint-two').focus({preventScroll:true});});
+$('phrase-answer').addEventListener('input',()=>{phraseEntry().draft=$('phrase-answer').value;$('phrase-feedback').textContent='';persistBonus();});
+$('phrase-form').addEventListener('submit',event=>{
+ event.preventDefault();const e=phraseEntry(),result=checkPhrase(selectedPhrase(),$('phrase-answer').value);e.draft=$('phrase-answer').value;
+ if(result.correct)e.solved=true;
+ $('phrase-feedback').textContent=result.message;$('phrase-feedback').className=result.correct?'success':'error';
+ $('phrase-progress').textContent=`Fras ${bonus.index+1} av ${phrases.length} i den här omgången · ${Object.values(bonus.entries).filter(e=>e.solved).length} olika fraser lösta`;
+ persistBonus();
+});
+$('phrase-next').addEventListener('click',()=>{advanceBonus(bonus,phrases);renderPhrase();persistBonus();focusPhrase();});
+$('phrase-support').addEventListener('click',openSupport);
+$('complete-close').addEventListener('click',()=>$('complete-dialog').close());
+$('complete-dialog').addEventListener('keydown',event=>{if(event.key!=='Tab')return;const first=$('complete-close'),last=$('complete-bonus');if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();}else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}});
+$('complete-bonus').addEventListener('click',()=>{completeToTrail=true;$('complete-dialog').close();});
+$('complete-dialog').addEventListener('close',()=>{if(completeTrigger?.isConnected)completeTrigger.focus({preventScroll:true});if(completeToTrail){completeToTrail=false;focusTrail();}});
+window.addEventListener('pagehide',persistBonus);
+renderPhrase();persistBonus();
+
+const trailTasks=window.TRAIL.tasks;
+const trailStorageKey='hostskogens-hemligheter:trail:v1';
+const trailSignature=`${data.signature}:trail-${window.TRAIL.version}`;
+let trailRaw=null;
+try{trailRaw=localStorage.getItem(trailStorageKey);}catch{}
+let trail=restoreTrail(trailRaw,trailTasks,trailSignature);
+const currentTrail=()=>trailTasks.find(t=>t.id===trail.active);
+const currentTrailEntry=()=>trail.entries[trail.active];
+function persistTrail(){
+ try{localStorage.setItem(trailStorageKey,JSON.stringify(trail));$('trail-save').textContent='Dina val, ordningar och öppnade hjälpsteg sparas på den här enheten.';}
+ catch{$('trail-save').textContent='Sambandsstigen kan inte sparas i webbläsaren. Behåll fliken öppen.';}
+}
+function focusTrail(){$('trail-title').scrollIntoView({behavior:'instant',block:'start'});$('trail-title').focus({preventScroll:true});}
+function focusTrailTask(){$('trail-task-title').scrollIntoView({behavior:'instant',block:'nearest'});$('trail-task-title').focus({preventScroll:true});}
+function renderTrail(){
+ const t=currentTrail(),e=currentTrailEntry(),index=trailTasks.indexOf(t),done=trailTasks.filter(task=>trail.entries[task.id].solved).length;
+ $('trail-progress').textContent=`${done} av ${trailTasks.length} samband klara`;
+ $('trail-nav').innerHTML=trailTasks.map((task,i)=>`<button type="button" data-task="${task.id}" aria-label="Uppgift ${i+1}: ${escapeHTML(task.title)}${trail.entries[task.id].solved?', klar':''}" ${task.id===t.id?'aria-current="step"':''}><span>${i+1}</span>${trail.entries[task.id].solved?'<b aria-hidden="true">✓</b>':''}</button>`).join('');
+ for(const b of $('trail-nav').querySelectorAll('button'))b.addEventListener('click',()=>{trail.active=b.dataset.task;renderTrail();persistTrail();focusTrailTask();});
+ $('trail-task-title').textContent=`${index+1}. ${t.title}`;
+ $('trail-prompt').textContent=t.prompt;
+ $('trail-kind').hidden=!t.supplement;$('trail-kind').textContent=t.supplement?'Kompletterande förklaring, inte häftescitat':'';
+ $('trail-instruction').textContent=t.type==='order'?'Tryck på korten i rätt ordning. Du kan ångra eller rensa utan att förlora dina ledtrådar.':'Välj ett alternativ. Kontrollera när du vill och prova igen om det behövs.';
+ $('trail-order').hidden=t.type!=='order';$('trail-choices').hidden=t.type!=='choice';
+ if(t.type==='choice'){
+  $('trail-choices').innerHTML=`<legend class="sr-only">Välj samband för uppgift ${index+1}</legend>`+e.order.map(id=>{const c=t.choices.find(x=>x.id===id);return `<label><input type="radio" name="trail-choice" value="${id}" ${e.selected===id?'checked':''}><span>${escapeHTML(c.text)}</span></label>`;}).join('');
+  for(const input of $('trail-choices').querySelectorAll('input'))input.addEventListener('change',()=>{e.selected=input.value;e.checked=false;e.solved=false;renderTrail();persistTrail();$('trail-choices').querySelector(`input[value="${input.value}"]`).focus({preventScroll:true});});
+ }else{
+  $('trail-picked').innerHTML=e.selected.map(id=>`<li>${escapeHTML(t.items.find(x=>x.id===id).text)}</li>`).join('');
+  $('trail-order-status').textContent=`${e.selected.length} av ${t.items.length} stopp placerade`;
+  $('trail-cards').innerHTML=e.order.map(id=>`<button type="button" data-item="${id}" ${e.selected.includes(id)?'disabled':''}>${escapeHTML(t.items.find(x=>x.id===id).text)}</button>`).join('');
+  for(const b of $('trail-cards').querySelectorAll('button'))b.addEventListener('click',()=>{if(e.selected.includes(b.dataset.item))return;e.selected.push(b.dataset.item);e.checked=false;e.solved=false;renderTrail();persistTrail();($('trail-cards').querySelector('button:not(:disabled)')||$('trail-check')).focus({preventScroll:true});});
+  $('trail-undo').disabled=!e.selected.length;$('trail-clear').disabled=!e.selected.length;
+ }
+ for(let i=0;i<2;i++){const el=$(i?'trail-hint-two':'trail-hint-one');el.hidden=e.hint<i+1;el.querySelector('p').textContent=t.hints[i];}
+ $('trail-hint').hidden=e.hint===2;$('trail-hint').textContent=`Visa ledtråd ${e.hint+1}`;
+ const result=e.checked?checkTrail(t,e.selected):null;
+ $('trail-feedback').textContent=result?`${result.correct?'Rätt! ':result.incomplete?'':'Inte riktigt än. '}${result.message}`:'';
+ $('trail-feedback').className=result?(result.correct?'success':'error'):'';
+ $('trail-explanation').hidden=!result?.correct;$('trail-explanation').textContent=result?.correct?t.explanation:'';
+ $('trail-source').open=false;
+ $('trail-source').querySelector('div').innerHTML=t.sources.map(s=>`<p>${escapeHTML(s)}</p>`).join('')+(t.source_note?`<p>${escapeHTML(t.source_note)}</p>`:'');
+ $('trail-support').hidden=!t.supplement;
+ $('trail-next').disabled=!e.solved;$('trail-next').hidden=index===trailTasks.length-1&&trailComplete(trail,trailTasks);
+ $('trail-finished').hidden=!trailComplete(trail,trailTasks);
+}
+$('trail-form').addEventListener('submit',event=>{event.preventDefault();const e=currentTrailEntry(),result=checkTrail(currentTrail(),e.selected);e.checked=true;e.solved=result.correct;renderTrail();persistTrail();$('trail-feedback').focus({preventScroll:true});});
+$('trail-hint').addEventListener('click',()=>{const e=currentTrailEntry();e.hint=Math.min(2,e.hint+1);renderTrail();persistTrail();if(e.hint===2)$('trail-hint-two').focus({preventScroll:true});});
+$('trail-undo').addEventListener('click',()=>{const e=currentTrailEntry();e.selected.pop();e.checked=false;e.solved=false;renderTrail();persistTrail();($('trail-undo').disabled?$('trail-cards').querySelector('button:not(:disabled)'):$('trail-undo')).focus({preventScroll:true});});
+$('trail-clear').addEventListener('click',()=>{const e=currentTrailEntry();e.selected=[];e.checked=false;e.solved=false;renderTrail();persistTrail();$('trail-cards').querySelector('button').focus({preventScroll:true});});
+$('trail-next').addEventListener('click',()=>{trail.active=trailTasks[(trailTasks.indexOf(currentTrail())+1)%trailTasks.length].id;renderTrail();persistTrail();focusTrailTask();});
+$('trail-to-phrase').addEventListener('click',focusPhrase);
+$('trail-open').addEventListener('click',focusTrail);
+$('trail-support').addEventListener('click',openSupport);
+$('phrase-to-trail').addEventListener('click',focusTrail);
+window.addEventListener('pagehide',persistTrail);
+renderTrail();persistTrail();
+
+window.addEventListener('pagehide',persist);
+createGrid();createLists();
+if(!saved&&window.innerWidth>900){const available=$('board-viewport').clientWidth-32;state.zoom=[38,30,26,22].find(size=>(size+1)*data.cols-1<=available)||22;}
+applyZoom();renderWord();renderGrid();renderProgress();showSelectedWord();
+if(!storageAvailable)$('save-status').textContent='Sparande är avstängt i webbläsaren. Behåll fliken öppen.';
+else $('save-status').textContent=saved?'Din sparade runda är återställd':'Rutorna sparas på den här enheten';</script>
+</body></html>
