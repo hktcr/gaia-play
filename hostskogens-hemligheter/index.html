@@ -2,7 +2,7 @@
 <html lang="sv">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="application-version" content="1.2.0">
+<meta name="application-version" content="1.2.1">
 <meta name="theme-color" content="#25483c">
 <meta name="description" content="Ett stort repetitionskorsord om matens väg, blodet och andningen. Lös, få ledtrådar och upptäck hur kroppen hänger ihop.">
 <title>Höstskogens hemligheter · Kroppens stora korsord</title>
@@ -23,7 +23,7 @@
 <div class="canopy" aria-hidden="true"></div>
 <header class="masthead">
  <div class="brand"><span class="brand-icon" aria-hidden="true">❧</span><span>SKOGSGLÄNTAN <span class="brand-sep">/</span> NO MED HÅKAN</span></div>
- <nav aria-label="Stöd"><button id="trail-open" class="text-button">Bonusar <span aria-hidden="true">↗</span></button><button id="guide-open" class="icon-button" aria-label="Så fungerar korsordet">?</button></nav>
+ <nav aria-label="Stöd"><button id="trail-open" class="text-button" hidden>Bonusar <span aria-hidden="true">↗</span></button><button id="guide-open" class="icon-button" aria-label="Så fungerar korsordet">?</button></nav>
 </header>
 <main>
  <section class="intro" aria-labelledby="title">
@@ -62,7 +62,7 @@
   <div class="directory-header"><div><div class="eyebrow">VÄLJ DIN NÄSTA UPPTÄCKT</div><h2 id="directory-title">Alla ledtrådar</h2></div><label class="filter-label">Visa område<select id="domain-filter"><option value="">Alla områden</option></select></label></div>
   <div class="clue-columns"><div><h3><span aria-hidden="true">→</span> Vågrätt</h3><div id="across-list" class="clue-list"></div></div><div><h3><span aria-hidden="true">↓</span> Lodrätt</h3><div id="down-list" class="clue-list"></div></div></div>
  </section>
- <section id="trail-bonus" class="trail-bonus" aria-labelledby="trail-title">
+ <section id="trail-bonus" class="trail-bonus" aria-labelledby="trail-title" hidden>
   <div class="eyebrow">BONUS 1 · FÖLJ SAMBANDSSTIGEN</div><h2 id="trail-title" tabindex="-1">Från ord till samband</h2>
   <p class="bonus-intro">Åtta stopp genom kroppen. Ordna led i en kedja eller välj det samband som stämmer. Du får återkoppling direkt och kan alltid försöka igen. Två valfria ledtrådar hjälper dig vidare.</p>
   <p id="trail-progress" class="trail-progress" role="status"></p><nav id="trail-nav" class="trail-nav" aria-label="Sambandsstigens uppgifter"></nav>
@@ -79,7 +79,7 @@
   <div id="trail-finished" class="trail-finished" hidden><h3>Alla åtta samband är klara!</h3><p>Du har följt hur kroppens delar samarbetar. Avsluta med skogsgläntans frasgåta.</p><button id="trail-to-phrase" class="primary-button">Till bonus 2: Frasgåtan →</button></div>
   <p id="trail-save" class="source-label"></p>
  </section>
- <section id="phrase-bonus" class="phrase-bonus" aria-labelledby="phrase-title">
+ <section id="phrase-bonus" class="phrase-bonus" aria-labelledby="phrase-title" hidden>
   <div class="eyebrow">BONUS 2 · SKOGSGLÄNTANS SISTA GÅTA</div><h2 id="phrase-title" tabindex="-1">Hitta frasen</h2>
   <p class="bonus-intro">Avsluta Sambandsstigen med en frasgåta. Återskapa en bestämd faktamening om kroppen. Det finns 24 olika fraser att upptäcka. Meningarna är egna sammanfattningar av stoffet, inte citat ur häftet.</p>
   <p id="phrase-kind" class="support-label" hidden></p><p id="phrase-progress" class="source-label"></p><h3 id="phrase-prompt"></h3>
@@ -97,7 +97,7 @@
 </main>
 <dialog id="info-dialog" aria-labelledby="dialog-title"><div class="dialog-top"><span class="eyebrow">SKOGSGLÄNTANS FÄLTBOK</span><button id="dialog-close" class="icon-button" aria-label="Stäng">×</button></div><h2 id="dialog-title"></h2><div id="dialog-body"></div></dialog>
 <dialog id="reset-dialog" aria-labelledby="reset-title"><h2 id="reset-title">Börja en ny runda?</h2><p>Alla bokstäver, sambandssvar, frassvar och öppnade ledtrådar i den här rundan tas bort. Det går inte att ångra.</p><div class="reset-actions"><button id="reset-cancel" class="secondary-button">Behåll mina svar</button><button id="reset-confirm" class="primary-button">Ja, börja om</button></div></dialog>
-<dialog id="complete-dialog" aria-labelledby="complete-title" aria-describedby="complete-description"><div class="dialog-top"><span class="eyebrow">ALLA 67 ORD ÄR LÖSTA</span><button id="complete-close" class="icon-button" aria-label="Stäng färdigrutan">×</button></div><h2 id="complete-title">Du har löst skogens korsord!</h2><p id="complete-description">Nu väntar två bonusar. Följ först <strong>Sambandsstigen</strong> med åtta korta uppgifter. Du får direkt återkoppling och kan ta ledtrådar. Avsluta sedan med <strong>Frasgåtan</strong>.</p><p>Du hittar alltid knappen Bonusar i sidans överkant. Båda bonusarna finns längre ner på sidan.</p><button id="complete-bonus" class="primary-button">Till bonus 1: Sambandsstigen →</button></dialog>
+<dialog id="complete-dialog" aria-labelledby="complete-title" aria-describedby="complete-description"><div class="dialog-top"><span class="eyebrow">ALLA 67 ORD ÄR LÖSTA</span><button id="complete-close" class="icon-button" aria-label="Stäng färdigrutan">×</button></div><h2 id="complete-title">Du har löst skogens korsord!</h2><p id="complete-description">Nu väntar två bonusar. Följ först <strong>Sambandsstigen</strong> med åtta korta uppgifter. Du får direkt återkoppling och kan ta ledtrådar. Avsluta sedan med <strong>Frasgåtan</strong>.</p><p>Du hittar nu knappen Bonusar i sidans överkant. Båda bonusarna finns längre ner på sidan.</p><button id="complete-bonus" class="primary-button">Till bonus 1: Sambandsstigen →</button></dialog>
 <noscript>Slå på JavaScript i webbläsaren för att lösa korsordet.</noscript>
 <script>window.CROSSWORD = {
   "title": "Höstskogens hemligheter",
@@ -2301,6 +2301,8 @@ function renderGrid(){
 }
 function renderProgress(){
  const p=progress(model,state.values);
+ const unlocked=p.correct===p.words;
+ for(const id of ['trail-open','trail-bonus','phrase-bonus'])$(id).hidden=!unlocked;
  $('progress-label').textContent=`${p.correct} av ${p.words} ord lösta`;
  $('progress-fill').style.width=`${p.correct/p.words*100}%`;
  document.querySelector('[role=progressbar]').setAttribute('aria-valuenow',p.correct);
@@ -2441,7 +2443,7 @@ function renderPhrase(){
  $('phrase-source').querySelector('div').innerHTML=p.sources.map(s=>`<p>${escapeHTML(s)}</p>`).join('')+(p.clarification?`<p><strong>${escapeHTML(p.clarification)}</strong></p>`:'');
  $('phrase-support').hidden=!p.supplement;
 }
-function focusPhrase(){ $('phrase-title').scrollIntoView({behavior:'instant',block:'start'});$('phrase-title').focus({preventScroll:true}); }
+function focusPhrase(){ if($('phrase-bonus').hidden)return;$('phrase-title').scrollIntoView({behavior:'instant',block:'start'});$('phrase-title').focus({preventScroll:true}); }
 function maybeComplete(){
  if(progress(model,state.values).correct!==model.words.length||bonus.completionSeen)return;
  bonus.completionSeen=true;persistBonus();
@@ -2477,7 +2479,7 @@ function persistTrail(){
  try{localStorage.setItem(trailStorageKey,JSON.stringify(trail));$('trail-save').textContent='Dina val, ordningar och öppnade hjälpsteg sparas på den här enheten.';}
  catch{$('trail-save').textContent='Sambandsstigen kan inte sparas i webbläsaren. Behåll fliken öppen.';}
 }
-function focusTrail(){$('trail-title').scrollIntoView({behavior:'instant',block:'start'});$('trail-title').focus({preventScroll:true});}
+function focusTrail(){if($('trail-bonus').hidden)return;$('trail-title').scrollIntoView({behavior:'instant',block:'start'});$('trail-title').focus({preventScroll:true});}
 function focusTrailTask(){$('trail-task-title').scrollIntoView({behavior:'instant',block:'nearest'});$('trail-task-title').focus({preventScroll:true});}
 function renderTrail(){
  const t=currentTrail(),e=currentTrailEntry(),index=trailTasks.indexOf(t),done=trailTasks.filter(task=>trail.entries[task.id].solved).length;
