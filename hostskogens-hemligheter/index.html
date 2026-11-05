@@ -60,7 +60,7 @@
    <div id="hint-two" class="clue-box extra-hint" hidden><span class="step-label">2 · EN LEDTRÅD TILL</span><p></p></div>
    <div id="hint-three" class="clue-box source-hint" hidden><span class="step-label">3 · HITTA I KÄLLAN</span><p></p><button id="supplement-from-clue" class="inline-link" hidden>Läs den kompletterande förklaringen →</button></div>
    <button id="more-hint" class="hint-button"><span aria-hidden="true">✧</span> En ledtråd till</button>
-   <form id="word-form"><label for="word-answer">Skriv hela ordet här</label><div class="answer-row"><input id="word-answer" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Ditt svar" aria-describedby="entry-help"><button type="submit" aria-label="Skriv in svaret i rutnätet">↵</button></div><p id="entry-help">Du kan också skriva direkt i rutorna.</p></form>
+   <form id="word-form"><label for="word-answer">Skriv hela ordet här</label><div class="answer-row"><input id="word-answer" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Ditt svar" aria-describedby="entry-help"><button type="submit" aria-label="Skriv in svaret i rutnätet">↵</button></div><p id="entry-help">Bokstäverna förs in i rutnätet medan du skriver. Du kan också skriva direkt i rutorna.</p></form>
    <div class="word-actions"><button id="check-word" class="primary-button">Kontrollera ordet</button><button id="change-direction" class="secondary-button" title="Byt mellan orden i en korsning">Byt riktning</button></div>
    <p id="feedback" role="status" aria-live="polite"></p>
    <div class="small-note"><span aria-hidden="true">❧</span>Ta en ledtråd när du behöver. Här får du försöka igen.</div>
@@ -1992,7 +1992,7 @@ function selectWord(id,offset=0,{focus=false,scroll=false}={}){
 function nextWord(delta,focus=false){const index=model.words.findIndex(w=>w.id===state.active);selectWord(model.words[(index+delta+model.words.length)%model.words.length].id,0,{focus});}
 function selectCell(key,toggle=false){const cell=model.cells.get(key);let id=cell.words.includes(state.active)?state.active:cell.words[0];if(toggle&&cell.words.length>1)id=cell.words.find(x=>x!==state.active)||id;selectWord(id,cellsOf(model.byId.get(id)).indexOf(key));}
 function changeDirection(){const cell=model.cells.get(currentKey());if(cell.words.length<2)return;const key=currentKey(),id=cell.words.find(x=>x!==state.active);selectWord(id,cellsOf(model.byId.get(id)).indexOf(key));}
-function edited(){checked.clear();feedback();renderGrid();renderProgress();persist();}
+function edited(){if(document.activeElement!==$('word-answer'))$('word-answer').value='';checked.clear();feedback();renderGrid();renderProgress();persist();}
 function enter(raw){const text=normalize(raw);if(!text)return;state.offset=writeLetters(model,state.values,state.active,state.offset,text);edited();focusCell(true);}
 function keydown(event,key){
  if(event.ctrlKey||event.metaKey||event.altKey)return;
@@ -2051,7 +2051,25 @@ function openSupport(){openInfo(data.supplement.title,supportHTML());}
 $('more-hint').addEventListener('click',()=>{state.hints[state.active]=Math.min(3,(state.hints[state.active]||1)+1);renderWord(false);persist();if(state.hints[state.active]===3)$('hint-three').scrollIntoView({block:'nearest',behavior:scrollBehavior()});});
 $('prev-word').addEventListener('click',()=>nextWord(-1));$('next-word').addEventListener('click',()=>nextWord(1));
 $('change-direction').addEventListener('click',()=>{changeDirection();focusCell();});
-$('check-word').addEventListener('click',()=>{
+let wordComposing=false;
+function wordLengthError(){
+ const length=normalize($('word-answer').value).length,len=current().answer.length;
+ return `Skriv ${len} bokstäver. Ditt svar har ${length}. Mellanslag och bindestreck räknas inte.`;
+}
+function syncWordAnswer(){
+ const answer=normalize($('word-answer').value),keys=currentKeys(),tooLong=answer.length>keys.length;
+ // Never grade or save a truncated answer. Keep the complete draft in its field.
+ // Replacing or deleting a whole-word draft updates every corresponding cell.
+ for(let i=0;i<keys.length;i++){if(!tooLong&&answer[i])state.values[keys[i]]=answer[i];else delete state.values[keys[i]];}
+ state.offset=0;checked.clear();feedback();renderGrid();renderProgress();persist();
+ if(tooLong)feedback(wordLengthError()+' Hela svaret finns kvar i textfältet. Rutorna fylls igen när svaret ryms.','error');
+}
+$('word-answer').addEventListener('compositionstart',()=>{wordComposing=true;});
+$('word-answer').addEventListener('compositionend',()=>{wordComposing=false;syncWordAnswer();});
+$('word-answer').addEventListener('input',event=>{if(!wordComposing&&!event.isComposing)syncWordAnswer();});
+$('check-word').addEventListener('click',()=>{ 
+ if(wordComposing){wordComposing=false;syncWordAnswer();}
+ if(normalize($('word-answer').value).length>current().answer.length){syncWordAnswer();return;}
  const keys=currentKeys(),empty=keys.filter(k=>!state.values[k]).length,right=wordText(model,state.values,current().id)===current().answer;
  checked.clear();if(right)for(const k of keys)checked.set(k,'correct');renderGrid();
  if(empty)feedback(`${empty} ${empty===1?'ruta är tom':'rutor är tomma'}. Fyll i hela ordet och försök igen.`);
@@ -2059,13 +2077,13 @@ $('check-word').addEventListener('click',()=>{
  else feedback(`Rätt! ${current().display_answer.toLocaleLowerCase('sv-SE')}. Välj nästa ord när du vill.`,'success');
 });
 $('word-form').addEventListener('submit',e=>{
- e.preventDefault();const answer=normalize($('word-answer').value),len=current().answer.length;
- if(answer.length!==len){feedback(`Skriv ${len} bokstäver. Ditt svar har ${answer.length}. Mellanslag och bindestreck räknas inte.`,'error');return;}
- writeLetters(model,state.values,state.active,0,answer);state.offset=0;edited();$('word-answer').value='';feedback('Svaret är inskrivet. Kontrollera ordet när du vill.');
+ e.preventDefault();wordComposing=false;const answer=normalize($('word-answer').value),len=current().answer.length;
+ if(answer.length!==len){if(answer.length>len)syncWordAnswer();else feedback(wordLengthError(),'error');return;}
+ syncWordAnswer();feedback('Svaret är inskrivet. Kontrollera ordet när du vill.');
 });
 for(const [id,delta] of [['zoom-out',-1],['zoom-in',1]])$(id).addEventListener('click',()=>{const sizes=[22,26,30,38];state.zoom=sizes[Math.max(0,Math.min(3,sizes.indexOf(state.zoom)+delta))];applyZoom();persist();});
 $('supplement-from-clue').addEventListener('click',openSupport);
-$('guide-open').addEventListener('click',()=>openInfo('Så löser du korsordet',`<ol><li>Välj ett ord i rutnätet eller bland alla ledtrådar. Det valda ordet blir ljust gult.</li><li>Skriv direkt i rutorna. På en platta kan du också skriva hela svaret i fältet och trycka på ↵ för att föra in det.</li><li>Varje bokstav har en ruta. Å, Ä och Ö är egna bokstäver. Mellanslag och bindestreck tar inga rutor. Två ord visas till exempel som 4 + 11.</li><li>Den första ledtråden visas direkt. Knappen ger en ledtråd till och därefter exakt tryckt sida eller kompletterande stöd.</li><li>Kontrollera ordet när du vill. Du kan alltid ändra och försöka igen.</li></ol><h3>Med tangentbord</h3><p>Piltangenter flyttar mellan bokstäver. Enter eller mellanslag byter riktning i en korsning. Tab väljer nästa ord, Skift + Tab föregående. Home och End går till ordets första och sista ruta. Escape lämnar rutnätet och flyttar till fältet för hela ordet. Backsteg tar bort en bokstav.</p><h3>På en platta eller mobil</h3><p>Tryck på en ruta för att skriva. Ett nytt tryck på samma korsningsruta byter riktning. Dra i rutnätet för att se fler rutor; använd + och − för att ändra storlek.</p><h3>När korsordet är klart</h3><p>Avslutningen och bonusarna öppnas först när alla 67 ord är rätt. Följ glukos, syre och koldioxid på en förenklad karta, jämför vila med rask promenad och ta ställning med en egen motivering. Frasgåtorna är frivilliga ordpussel med bestämda formuleringar, inte en bedömning av all biologisk kunskap.</p><h3>Gemensam avslutning</h3><p>När hela krysset är rätt visas också knappen Gemensam avslutning längst ner. Den öppnar ett kort samtalsunderlag. Om ett svar ändras så att krysset inte längre är rätt låses avslutningen och bonusarna igen.</p><h3>Fortsätt en annan dag</h3><p>Rutorna och öppnade hjälpsteg sparas automatiskt i samma webbläsare på samma adress. Svaren i fältet ”Skriv hela ordet här” förs över och sparas först när du trycker ↵. Rensade webbplatsdata, privat läge eller en annan webbläsare kan göra att sparandet försvinner.</p>`));
+$('guide-open').addEventListener('click',()=>openInfo('Så löser du korsordet',`<ol><li>Välj ett ord i rutnätet eller bland alla ledtrådar. Det valda ordet blir ljust gult.</li><li>Skriv direkt i rutorna. Du kan också skriva hela svaret i fältet. Bokstäverna förs in direkt medan du skriver. Enter och ↵ finns kvar för att bekräfta hela ordet.</li><li>Varje bokstav har en ruta. Å, Ä och Ö är egna bokstäver. Mellanslag och bindestreck tar inga rutor. Två ord visas till exempel som 4 + 11.</li><li>Den första ledtråden visas direkt. Knappen ger en ledtråd till och därefter exakt tryckt sida eller kompletterande stöd.</li><li>Kontrollera ordet när du vill. Du kan alltid ändra och försöka igen.</li></ol><h3>Med tangentbord</h3><p>Piltangenter flyttar mellan bokstäver. Enter eller mellanslag byter riktning i en korsning. Tab väljer nästa ord, Skift + Tab föregående. Home och End går till ordets första och sista ruta. Escape lämnar rutnätet och flyttar till fältet för hela ordet. Backsteg tar bort en bokstav.</p><h3>På en platta eller mobil</h3><p>Tryck på en ruta för att skriva. Ett nytt tryck på samma korsningsruta byter riktning. Dra i rutnätet för att se fler rutor; använd + och − för att ändra storlek.</p><h3>När korsordet är klart</h3><p>Avslutningen och bonusarna öppnas först när alla 67 ord är rätt. Följ glukos, syre och koldioxid på en förenklad karta, jämför vila med rask promenad och ta ställning med en egen motivering. Frasgåtorna är frivilliga ordpussel med bestämda formuleringar, inte en bedömning av all biologisk kunskap.</p><h3>Gemensam avslutning</h3><p>När hela krysset är rätt visas också knappen Gemensam avslutning längst ner. Den öppnar ett kort samtalsunderlag. Om ett svar ändras så att krysset inte längre är rätt låses avslutningen och bonusarna igen.</p><h3>Fortsätt en annan dag</h3><p>Rutorna och öppnade hjälpsteg sparas automatiskt i samma webbläsare på samma adress. Svaren i fältet ”Skriv hela ordet här” förs över och sparas medan du skriver. Rensade webbplatsdata, privat läge eller en annan webbläsare kan göra att sparandet försvinner.</p>`));
 $('about-open').addEventListener('click',()=>openInfo('Om materialet',`<p>Ett gemensamt repetitionskorsord för matens väg, blodet, blodomloppet och andningen. Höstskogen är en inramning; den tillför inga nya ekologimål. E1:s extra Livets kemi ingår inte.</p><h3>Källor och läshjälp</h3><p>ENKEL Biologi 7–9, del 2, Tengnäs Läromedel, art.nr 538: Matens väg, tryckta sidor 22–28, och Blodet och blodomloppet, tryckta sidor 14–21. Tredje hjälpsteget anger rätt tryckt sida och avsnitt. Sidnummer avser inte PDF-läsarens sidräkning.</p><p>Faktarättelser är införda i ledtrådarna. Cellandningens fullständiga reaktion finns som ett tydligt märkt komplement från ordets tredje hjälpsteg och från frasgåtorna om cellandning.</p><p>Alla 67 begrepp finns i ett sammanhängande rutnät med ${data.crossings} korsningar. Att kunna fylla i orden är en början; samband och bilder hjälper dig öva på att förklara.</p><h3>Dina svar stannar här</h3><p>Inga namn, konton eller elevuppgifter behövs. Svaren lagras bara i den här webbläsaren. Materialet använder inga externa skript, typsnitt, analysverktyg eller nätanrop.</p>`));
 $('dialog-close').addEventListener('click',()=>$('info-dialog').close());
 $('info-dialog').addEventListener('close',()=>{if(dialogTrigger?.isConnected)dialogTrigger.focus({preventScroll:true});});
@@ -2221,4 +2239,5 @@ else $('save-status').textContent=saved?'Din sparade runda är återställd':'Ru
 $('closing-open').addEventListener('click',()=>{if(!canOpenEnding(model,state.values))return;openInfo('Gemensam avslutning: ta ställning',`<p><strong>”Det räcker att förklara lungorna för att förstå hur en muskel orkar arbeta.”</strong></p><ol><li>Tänk själv en minut: håller du med, delvis med eller inte med? Du kan också vara osäker.</li><li>Förklara för en kamrat. Koppla ihop minst två begrepp, till exempel glukos, hemoglobin, hjärta, gasutbyte och cellandning.</li><li>Jämför era belägg. Vad i påståendet stämmer, och vad saknas? Vilken fråga skulle ni vilja undersöka vidare?</li></ol><p>För läraren: låt förklaringarna knyta samman matens väg, andning och blodomlopp. Det är inte en tävling om viktigaste organet. Elever kan svara muntligt eller på papper. Inga personliga hälsouppgifter behövs.</p><p>Hela krysset är nu rätt. Använd era begrepp för att förklara sambanden. Svaren sparas i samma webbläsare.</p>`);});
 </script>
 </body></html>
+
 
