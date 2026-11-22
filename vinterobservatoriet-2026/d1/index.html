@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101c29"><meta name="referrer" content="no-referrer">
+<meta name="description" content="En naturvetenskaplig julkalender för klassrummet. Öppna, gissa och upptäck tillsammans.">
+<title>Vinterobservatoriet · NO:s julkalender 2026</title>
+<style>:root{color-scheme:dark;--night:#101c29;--deep:#0d1722;--cream:#f7efd9;--haze:#c1cfd4;--faint:#95abb2;--gold:#f2be77;--rule:#37434a;--green:#91ddc5}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 86% -15%,#253f4b 0,transparent 52rem),radial-gradient(ellipse at -15% 75%,#243447 0,transparent 48rem),var(--night);color:var(--cream);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;font-size:16px;line-height:1.5;min-height:100vh}
+button,select,summary{font:inherit}button,summary,select{cursor:pointer}button{color:inherit}button:focus-visible,a:focus-visible,select:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:3px solid #ffe39f;outline-offset:4px}
+button[hidden],[hidden]{display:none!important}.container{width:min(1140px,calc(100% - 72px));margin-inline:auto}.skip{position:fixed;top:-200px;left:12px;z-index:40;background:#fff1cf;color:#102027;padding:10px}.skip:focus{top:8px}
+.mast,.mast>button,.wordmark,.intro,.board-foot,.board-status,.after,.legend,.legend span,.rim,.rim p,.teacher,.teacher label,.actions,.story-meta,footer{display:flex;align-items:center}
+.mast{justify-content:space-between;padding-block:16px 13px;border-bottom:1px solid var(--rule)}.wordmark{font-size:.84rem;color:var(--cream);letter-spacing:.17em;font-weight:780;gap:.7rem}.wordmark svg{width:34px;height:34px;color:var(--gold)}.small-mark{font-weight:490;color:var(--haze);letter-spacing:.07em}
+.pill,.teacher select{border:1px solid #617176;background:#192936;border-radius:3rem;color:#e9eeeb;padding:.42rem .8rem;font-size:.87rem;line-height:1.4}.pill{gap:.45rem;justify-content:center}.pill svg{width:19px;height:19px}.pill:hover,.pill[aria-pressed=true]{border-color:var(--gold);color:var(--gold)}
+.intro{justify-content:space-between;gap:1rem;padding:27px 0 22px}.title-block{min-width:0}.overline,.rim,.class-badge span,.story-meta,.guess-box .overline,#solution .overline,footer,.teacher .label{font-size:.77rem;letter-spacing:.14em;font-weight:650}.overline{display:flex;align-items:center;gap:.6rem;color:var(--gold);margin:0}.overline b,.rim em{color:#9c8869;font-weight:400}.gold-line{width:26px;height:1px;background:#dba360;display:inline-block}
+h1,h2,.class-badge strong,.story-plaque strong,.door-number{font-family:Georgia,"Times New Roman",serif;font-weight:normal}
+h1{font-size:clamp(2.55rem,5.5vw,4.6rem);line-height:1.02;letter-spacing:-.057em;margin:.1em 0 .12em;text-wrap:balance}h1 span{color:var(--gold)}.deck{margin:0;color:var(--haze);font-size:clamp(.98rem,1.7vw,1.13rem)}
+.class-badge{display:grid;place-items:center;min-width:84px;padding:.1rem .8rem .12rem;border-left:1px solid #536569;align-self:center}.class-badge span{color:var(--faint);font-size:.71rem}.class-badge strong{color:var(--gold);font-size:2.2rem;line-height:1.2;white-space:nowrap}
+.teacher{gap:.8rem;justify-content:space-between;background:#1d303a;border:1px solid #3c5358;border-radius:7px;color:var(--haze);padding:.4rem .8rem;margin-top:15px;flex-wrap:wrap}.teacher .label{color:#eec58b;letter-spacing:.08em}.teacher label{gap:.55rem;font-size:.88rem}.teacher select{border-radius:5px;font-size:.88rem;padding:.25rem .5rem;max-width:100%}
+.paper{border:1px solid #928568;border-radius:9px;box-shadow:0 1.3rem 4rem #02070966,0 0 0 4px #14212b;overflow:hidden;background:#16252c;isolation:isolate}
+.rim{position:relative;justify-content:space-between;gap:.4rem;padding:.43rem 1rem;background:linear-gradient(110deg,#28383b,#243339 55%,#1d2b32);color:#dfd9bd;letter-spacing:.18em;font-size:.72rem;border-bottom:1px solid #827859}.rim p{margin:0;gap:.6rem}.rim .spark{color:#efbf80;font-style:normal;font-size:1rem;line-height:1}.rim em{font-style:normal}.rim-caption{color:#b6bcac;letter-spacing:.23em;font-size:.66rem}
+.scene{position:relative;width:100%;aspect-ratio:1.94;min-height:250px;background:#243746;isolation:isolate;overflow:hidden}
+.backdrop,.scene-wash,.doors{position:absolute;inset:0;width:100%;height:100%}.backdrop{object-fit:cover;object-position:center;user-select:none;pointer-events:none}.scene-wash{pointer-events:none;box-shadow:inset 0 0 72px #04101e44}
+.doors{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));grid-template-rows:repeat(4,minmax(0,1fr));padding:1.7% 2%;gap:1.6% 2%;align-items:center;justify-items:center;perspective:1800px}
+.door{position:relative;isolation:isolate;padding:0;border:0;appearance:none;-webkit-appearance:none;background:none;width:82%;height:79%;transform:translate(var(--x,0),var(--y,0));color:#ffefcb;touch-action:manipulation;perspective:600px;border-radius:3px;align-self:center}
+.door:nth-child(3n+2){width:74%;height:84%;--y:-3%}.door:nth-child(4n+1){height:74%;--x:3%}.door:nth-child(5n+3){width:87%;--x:-3%}.door:nth-child(7n+4){height:82%;--y:3%}
+.door::before{position:absolute;inset:0;content:"";border-radius:2px;background:radial-gradient(ellipse at bottom,#333d40 0,#21303a 42%,#111e28 80%);border:1px solid #09141c;box-shadow:inset 4px 3px 10px #030913aa;opacity:0;transition:opacity .14s}
+.flap{position:absolute;inset:0;transform-origin:1% 50%;border-radius:2px;border:1px dashed #ffeed1a8;box-shadow:inset 0 0 0 1px #18272f44,1px 2px 2px #06101b85;transition:transform .56s cubic-bezier(.22,.62,.3,1),box-shadow .3s,border-color .25s;backface-visibility:visible;background-repeat:no-repeat;pointer-events:none}
+.flap::after{position:absolute;content:"";inset:0;border-radius:inherit;background:linear-gradient(115deg,#f7edbf0d 0,transparent 43%,#14263312);pointer-events:none}
+.door-number{position:absolute;display:grid;place-items:center;left:9%;bottom:11%;font-size:clamp(1.02rem,2.25vw,1.95rem);font-variant-numeric:lining-nums tabular-nums;letter-spacing:-.07em;line-height:1;min-width:1.45em;height:1.15em;padding:0 .14em .04em .1em;text-align:center;border-radius:2px;background:linear-gradient(130deg,#18282aed,#26343aeb);border:1px solid #d5c7a585;box-shadow:0 2px 3px #0b162a77, inset 0 0 3px #d4ba7b29;text-shadow:0 1px 1px #060d17;color:#fff1d4}
+.latch{position:absolute;width:7px;height:17%;right:0;top:44%;border:1px solid #847b67;background:linear-gradient(90deg,#aaa794,#e3d9b8 55%,#827965);border-radius:2px 0 0 2px;box-shadow:0 1px 2px #10203396}
+.door[aria-disabled=true]{cursor:default}.door.ready .flap{border:2px solid #ffd38c;box-shadow:inset 0 0 0 2px #231d1766,0 0 0 1px #372817,0 0 14px #ffc36980}.door.ready .door-number{background:#f5c786;color:#352817;text-shadow:none;border:1px solid #ffefc5}.door.ready .latch{background:#fff0cb}.door.ready:not(.opened):hover .flap,.door.ready:not(.opened):focus-visible .flap{transform:rotateY(-9deg);box-shadow:3px 2px 6px #1d182d99}.door.ready:not(.opened):hover::before,.door.ready:not(.opened):focus-visible::before{opacity:1}
+.inside{position:absolute;inset:0;display:grid;place-content:center;justify-items:center;color:#fee4a7;font-family:Georgia,serif;font-size:clamp(1rem,2.35vw,2rem);line-height:1.02;opacity:0;text-shadow:0 1px 3px black}.inside small{font:600 .66rem/1.4 system-ui;letter-spacing:.09em;color:#c6ddd5}
+.door.opened::before,.door.opened .inside{opacity:1}.door.opened .flap{transform:rotateY(-78deg);box-shadow:4px 2px 5px #0007;opacity:.91}.door.opened .door-number{opacity:0}
+.board-foot{justify-content:space-between;gap:.8rem;padding:.67rem 1rem;min-height:45px;background:#1e2c31;border-top:1px solid #7e7459;color:#e7e8d8;font-size:.93rem}.board-status{gap:.65rem}.signal{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 10px #f3bd7055;flex:0 0 auto}.quick{border:0;border-radius:6px;background:#edbe7f;color:#24292a;padding:.35rem .8rem;font-size:.89rem;font-weight:700;white-space:nowrap}.quick:hover,.reveal:hover{background:#ffe0a3}
+.after{justify-content:space-between;align-items:flex-start;gap:1rem;margin:.9rem .1rem 1.4rem;color:var(--haze);font-size:.87rem}.legend{gap:.9rem;flex-wrap:wrap}.legend span{gap:.4rem}.legend-dot{width:12px;height:12px;border:1px dashed #c4c5b3;border-radius:2px}.legend-dot.live{border:2px solid #f6c785}.legend-dot.already{height:14px;width:14px;font:700 12px/12px system-ui;color:#c8e7da;text-align:center;border:1px solid #99b8aa}
+.about{max-width:32rem;margin-left:auto}.about summary,.source-box summary{color:#d9dfd7;text-underline-offset:.25em}.about[open] summary,.source-box[open] summary{text-decoration:underline}.about p{margin:.45rem 0}
+footer{justify-content:space-between;border-top:1px solid #39454c;padding:14px 0 24px;font-size:.66rem;color:#a4b1ac;letter-spacing:.16em}footer b{color:#dbaa69}
+dialog{color-scheme:dark;border:1px solid #958366;border-radius:14px;padding:0;background:#14252f;color:var(--cream);width:min(950px,calc(100% - 40px));max-height:91dvh;overflow:auto;box-shadow:0 22px 110px #030911c9}
+dialog::backdrop{background:#06101adb;backdrop-filter:blur(5px)}body.reading{overflow:hidden}.story-wrap{position:relative;display:grid;grid-template-columns:.93fr 1fr;align-items:stretch}.story-picture{position:relative;min-height:430px;background:#273c45;overflow:hidden}.story-picture img{position:absolute;width:100%;height:100%;object-fit:cover;object-position:50% 50%}.story-picture::after{position:absolute;inset:0;content:"";background:linear-gradient(0deg,#09142266,transparent 45%);pointer-events:none}
+.story-plaque{position:absolute;z-index:1;bottom:1rem;left:1rem;min-width:64px;padding:.35rem .65rem;text-align:center;background:#14262ee8;color:#ffdaa0;border:1px solid #bf9e6e;border-radius:3px;box-shadow:0 4px 16px #04101b66}.story-plaque small{display:block;font-size:.68rem;letter-spacing:.15em}.story-plaque strong{font-size:2.25rem;line-height:1}
+.story-copy{padding:clamp(1.25rem,3vw,2.4rem);padding-top:3.2rem;align-self:center;min-width:0}.story-meta{color:var(--gold);gap:.5rem;letter-spacing:.125em;font-size:.75rem;flex-wrap:wrap}h2{font-size:clamp(2rem,3.5vw,3.2rem);line-height:1.03;letter-spacing:-.045em;margin:.36em 0}.story-lead,.guess-box p,#solution p{line-height:1.48;color:#e2e8e4;font-size:1.08rem;margin:.56rem 0}
+.guess-box{padding:1rem 0 .35rem;margin:.8rem 0 .5rem;border-top:1px solid #4b5757}.guess-box p{margin:.3rem 0}.reveal{border:0;background:#edbe7f;color:#232b2e;padding:.64rem 1.1rem;font-weight:730;border-radius:6px;margin:.3rem 0}
+#solution{padding-top:1rem;border-top:1px solid #526062;margin-top:1rem}#solution:focus{outline:none}.twist{font-size:1rem;color:#f7d8a1;border-left:2px solid #dbaa69;padding:.1rem 0 .1rem .75rem;margin:.8rem 0}.source-box{font-size:.84rem;color:#c2ccc9;margin-top:1rem}.source-box ul{margin:.45rem 0;padding-left:1.2rem}.source-box a{color:#c1e5ec;text-underline-offset:3px}.back{display:block;color:var(--haze);background:none;border:0;border-bottom:1px solid #7e8e92;padding:.3rem 0 .1rem;font-size:.88rem;margin:1rem 0 .1rem}
+#close{position:absolute;right:.65rem;top:.65rem;width:38px;height:38px;display:grid;place-items:center;border:1px solid #a2a79a;border-radius:50%;background:#14252ee8;color:#fff4de;font:400 1.7rem/1 system-ui;padding:0}
+body.projecting .teacher,body.projecting footer,body.projecting .after{display:none}body.projecting .container{width:min(1260px,95%)}body.projecting .mast{padding-block:4px}body.projecting .intro{padding:10px 0}body.projecting h1{font-size:clamp(2rem,4vw,3.15rem)}body.projecting .deck{font-size:1rem}body.projecting .scene{aspect-ratio:auto;height:clamp(300px,calc(100svh - 215px),770px)}body.projecting dialog{width:min(1280px,96%);max-height:96dvh}body.projecting .story-copy{font-size:1.2rem}body.projecting .story-lead,body.projecting .guess-box p,body.projecting #solution p,body.projecting .twist{font-size:clamp(1.15rem,2.2vw,1.65rem)}
+@media(max-width:720px){.container{width:calc(100% - 32px)}.intro{padding:22px 0 17px}.class-badge{min-width:65px;padding-inline:.65rem}.class-badge strong{font-size:1.8rem}.after{flex-wrap:wrap}.about{margin:0}.rim{padding-inline:.7rem}.deck{max-width:40ch}.story-picture{min-height:340px}.story-copy{padding-inline:1.1rem}}
+@media(max-width:590px){.container{width:calc(100% - 24px)}.mast{padding:9px 0}.wordmark svg{width:28px;height:28px}.overline{font-size:.66rem;letter-spacing:.1em;gap:.4rem}.gold-line{width:14px}.wordmark{font-size:.76rem}.intro{position:relative;display:block;padding-top:17px}.class-badge{position:static;display:inline-flex;gap:.45rem;align-items:baseline;padding:0;border:0;margin:.3rem 0 0}.class-badge strong{font-size:1.05rem}.class-badge span{font-size:.65rem}.intro h1{font-size:clamp(2.18rem,8.9vw,3.2rem)}.deck{font-size:.97rem}.scene{aspect-ratio:.93;min-height:350px}.doors{grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:repeat(6,minmax(0,1fr));padding:2.5% 1.5%;gap:1.6% 2%}.door{height:80%;width:84%}.door-number{font-size:clamp(1.02rem,4.3vw,1.55rem)}.board-foot{padding:.55rem .65rem;flex-wrap:wrap;gap:.45rem}.board-status{font-size:.88rem}.quick{font-size:.84rem}.after{display:block}.legend{gap:.55rem;font-size:.8rem}.about{margin-top:.6rem}.rim-caption{font-size:.55rem;letter-spacing:.12em}.rim{font-size:.62rem}.teacher{gap:.45rem;padding:.4rem .6rem}.teacher .label{font-size:.67rem}.teacher label,.teacher select{font-size:.8rem}dialog{width:calc(100% - 16px);max-height:94dvh;border-radius:10px}.story-wrap{display:block}.story-picture{min-height:0;aspect-ratio:1.75}.story-copy{padding:1.1rem 1.3rem 1.4rem}.story-plaque{bottom:.65rem;left:.65rem;min-width:52px}.story-plaque strong{font-size:1.7rem}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
+
+/* Dome and telescope remain visible on wide screens; preserve both halves of the acoustic comparison. */
+.backdrop{object-position:50% 12%}.scene{aspect-ratio:1.82}
+dialog[data-station=a1] .story-picture img{object-position:71% center}
+dialog[data-station=d1] .story-picture img{object-position:74% center}
+dialog[data-station=e1] .story-picture{background:radial-gradient(ellipse at 50% 30%,#465865,#1a2b39 74%)}
+dialog[data-station=e1] .story-picture img{object-fit:contain}
+@media(max-width:590px){.scene{aspect-ratio:.93}dialog[data-station=e1] .story-picture{aspect-ratio:1.5}}
+
+/* Filmstill först. En separat bildvisning bevarar hela motivet på tavla och telefon. */
+dialog{width:min(1150px,calc(100% - 36px))}.story-wrap{grid-template-columns:1.42fr 1fr}
+.story-picture{min-height:clamp(380px,39vw,570px);background:radial-gradient(ellipse at center,#435662,#1a2837 76%)}
+.story-picture img{object-fit:contain!important;object-position:center!important}
+.picture-toggle{position:absolute;top:.8rem;left:.8rem;z-index:2;display:inline-flex;gap:.5rem;align-items:center;padding:.5rem .72rem;color:#fff5df;background:#14242ee8;border:1px solid #d5c5a5;border-radius:2rem;font:650 .86rem/1.2 system-ui}
+.picture-toggle:hover{background:#29414a}.picture-toggle svg{width:18px;height:18px}
+.wide-image{width:min(100%,1800px)!important;max-width:100%;height:min(96dvh,1200px);max-height:96dvh!important;border-radius:8px}
+.wide-image .story-wrap{display:grid;grid-template-columns:1fr;grid-template-rows:minmax(0,1fr) auto;height:100%;min-height:0;overflow:auto}
+.wide-image .story-picture{min-height:0!important;aspect-ratio:auto!important}.wide-image .story-picture img{object-fit:contain;animation:none}
+.picture-caption{display:flex;align-items:center;justify-content:space-between;gap:1.25rem;padding:.8rem clamp(.9rem,3vw,2.5rem);background:#14252f;border-top:1px solid #53626a}
+.picture-caption p{margin:.2rem 0;font-size:clamp(1.1rem,2vw,1.65rem);line-height:1.28}
+.picture-caption button{white-space:nowrap;flex-shrink:0}
+.door.opening .inside::before{content:"✦";position:absolute;top:13%;right:13%;font:400 clamp(16px,2.3vw,32px)/1 Georgia,serif;color:#fff4c3;filter:drop-shadow(0 0 4px #f6c779);animation:door-glint .65s ease-out both}
+@keyframes door-glint{0%{opacity:0;transform:scale(.12) rotate(-25deg)}45%{opacity:1;transform:scale(1.08) rotate(5deg)}100%{opacity:0;transform:scale(.3) rotate(18deg)}}
+@media(prefers-reduced-motion:no-preference){dialog[open]:not(.wide-image) .story-picture img{animation:still-in .7s ease-out both}@keyframes still-in{from{opacity:.72;transform:scale(1.015)}to{opacity:1;transform:scale(1)}}}
+@media(max-width:720px){.story-wrap{grid-template-columns:1fr 1fr}.story-picture{min-height:365px}}
+@media(max-width:590px){dialog{width:calc(100% - 16px)}.story-picture{min-height:0;aspect-ratio:1.5}.story-wrap{display:block}.picture-caption{display:block}.picture-caption .reveal{margin:.45rem 0 0}.picture-toggle{font-size:.77rem;top:.6rem;left:.6rem}.wide-image{height:97dvh}}
+</style>
+</head>
+<body>
+<a class="skip" href="#kalender">Till julkalendern</a>
+<header class="mast container">
+ <div class="wordmark"><svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="18.5" fill="none" stroke="currentColor" opacity=".5"/><path d="M22 3l2.8 14.7L38 11l-10.6 11L38 33l-13.2-6.7L22 41l-2.8-14.7L6 33l10.6-11L6 11l13.2 6.7z" fill="currentColor"/><circle cx="22" cy="22" r="3.5" fill="#172331"/></svg> <span>VINTERPOST<span class="small-mark"> / NO</span></span></div>
+ <button id="projector" type="button" class="pill" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h18M5 5v12h14V5M12 17v4m-4 0 4-3 4 3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Projektorläge</span></button>
+</header>
+<div class="container">
+ 
+ <main id="kalender">
+ <div class="intro">
+  <div class="title-block"><p class="overline"><span class="gold-line"></span>NATURVETENSKAPENS JULKALENDER <b aria-hidden="true">/</b> 2026</p>
+  <h1>Vinterobservatoriet<span>.</span></h1><p class="deck">Bakom varje lucka väntar ett mysterium. Vad tror ni, innan ni får svaret?</p></div>
+  <div class="class-badge"><span>STATION</span><strong id="station">D1</strong></div>
+ </div>
+ <section class="paper" aria-label="Julkalender med 24 luckor">
+  <div class="rim"><p><i class="spark">✦</i><span id="season">DECEMBER</span></p><span class="rim-caption">VINTEROBSERVATORIET</span><p>01 <em>/</em> 24</p></div>
+  <div class="scene" id="scene">
+   <img class="backdrop" id="cover" src="../art/cover.webp" alt="Illustrerat vinterlandskap med ett upplyst observatorium. Numrerade kalenderluckor ligger infällda i bilden.">
+   <div class="scene-wash" aria-hidden="true"></div>
+   <div class="doors" id="doors" role="group" aria-label="Luckor från 1 till 24 december"></div>
+  </div>
+  <div class="board-foot"><div class="board-status"><span class="signal" aria-hidden="true"></span><span id="status" role="status"></span></div><button class="quick" id="quick" type="button" hidden></button></div>
+ </section>
+ <noscript><p>Aktivera JavaScript för att öppna kalenderluckorna.</p></noscript>
+ <div class="after"><div class="legend" aria-label="Teckenförklaring"><span><i class="legend-dot live"></i>Kan öppnas</span><span><i class="legend-dot"></i>Stängd</span><span><i class="legend-dot already">✓</i>Öppnad här</span></div>
+ <details class="about"><summary>Om kalendern</summary><div><p>Öppna en lucka på lektionen. Låt någon gissa och visa sedan förklaringen. Varje klass har sin egen berättelse.</p><p>Första utgåvan innehåller lucka 1. Övriga luckor har ännu inte fått innehåll. Datumen följer svensk tid. Markeringen ”öppnad” sparas bara i den här webbläsaren när lagring är tillgänglig.</p></div></details></div>
+ </main>
+ <footer><span>VINTERPOST <b>·</b> NO</span><span>DECEMBER 2026</span></footer>
+</div>
+<dialog id="story" aria-labelledby="story-title" aria-describedby="story-lead">
+ <article class="story-wrap">
+  <div class="story-picture"><img id="story-image" alt=""><button type="button" id="enlarge" class="picture-toggle" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5m6 0h5v5m0 6v5h-5M9 20H4v-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><span>Förstora bilden</span></button><div class="story-plaque"><small>LUCKA</small><strong id="story-day">01</strong></div></div>
+  <div id="picture-caption" class="picture-caption" hidden><div><span class="overline">GISSA TILLSAMMANS</span><p id="big-question"></p></div><button id="picture-reveal" type="button" class="reveal">Visa förklaringen</button></div>
+  <div class="story-copy" id="story-copy">
+   <div class="story-meta" id="story-meta"></div>
+   <h2 id="story-title"></h2><p id="story-lead" class="story-lead"></p>
+   <div class="guess-box" id="guess-box"><div class="overline">GISSA TILLSAMMANS</div><p id="question"></p></div>
+   <button type="button" class="reveal" id="reveal" aria-expanded="false" aria-controls="solution">Visa förklaringen</button>
+   <section id="solution" hidden><div class="overline">SÅ HÄNGER DET IHOP</div><p id="explain"></p><div class="twist" id="twist"></div><details class="source-box"><summary>Källor och vidare läsning</summary><ul id="sources"></ul></details></section>
+   <button type="button" id="back" class="back">Tillbaka till kalendern</button>
+  </div>
+  <button type="button" id="close" aria-label="Stäng luckan" title="Stäng luckan">×</button>
+ </article>
+</dialog>
+<script type="application/json" id="edition">{"preview":false,"classes":{"d1":{"stories":{}}}}</script>
+<script>const Calendar = (() => {
+  const zone = 'Europe/Stockholm', year=2026;
+  const fmt = new Intl.DateTimeFormat('sv-SE',{timeZone:zone,year:'numeric',month:'2-digit',day:'2-digit'});
+  const orders={
+    a1:[15,3,20,8,1,13,6,22,11,17,24,5,12,18,7,2,14,21,23,9,19,16,4,10],
+    d1:[7,23,13,18,2,10,21,11,5,15,24,19,16,4,22,12,8,3,14,17,1,6,20,9],
+    e1:[20,9,4,16,12,23,15,21,14,1,17,5,3,24,6,19,10,13,22,8,11,7,18,2]
+  };
+  function today(d=new Date()){const v=Object.fromEntries(fmt.formatToParts(d).map(x=>[x.type,x.value]));return v.year+'-'+v.month+'-'+v.day}
+  function dayState(day,stories,now,preview,seen){
+    const date=year+'-12-'+String(day).padStart(2,'0');
+    const exists=Object.hasOwn(stories,String(day));
+    if(!preview && now < date) return 'future';
+    if(!exists) return 'planned';
+    return seen.has(day)?'opened':'ready';
+  }
+  function storageId(key,preview){return 'vinterpost-'+year+'-'+key+'-'+(preview?'prov':'elev')}
+  return {today,dayState,orders,storageId}
+})();
+if(typeof module!=='undefined'&&module.exports)module.exports=Calendar;
+
+(() => {
+'use strict';
+const $=id=>document.getElementById(id), data=JSON.parse($('edition').textContent);
+let key=Object.keys(data.classes)[0],seen=new Set(),lastDate='',openTimer=null,returnTarget=null,viewerFullscreen=false;
+const preview=data.preview, scene=$('scene'), deck=$('doors'), modal=$('story'), cover=$('cover');
+const motion=window.matchMedia('(prefers-reduced-motion: reduce)');
+function config(){return data.classes[key]}
+function loadSeen(){try{seen=new Set(JSON.parse(localStorage.getItem(Calendar.storageId(key,preview))||'[]').filter(n=>Number.isInteger(n)&&n>=1&&n<=24))}catch{seen=new Set()}}
+function remember(day){seen.add(day);try{localStorage.setItem(Calendar.storageId(key,preview),JSON.stringify([...seen]))}catch{}}
+function stat(day){return Calendar.dayState(day,config().stories,lastDate,preview,seen)}
+function setStatus(s){$('status').textContent=s}
+function render(){
+ const keep=deck.contains(document.activeElement)?document.activeElement.dataset.day:null;
+ lastDate=Calendar.today(); const spec=config(); $('station').textContent=key.toUpperCase();document.title='Vinterobservatoriet · '+key.toUpperCase()+(preview?' · Lärarvisning':'');
+ const ready=[],allOpenable=[]; const frag=document.createDocumentFragment();
+ for(const day of Calendar.orders[key]){
+  const state=stat(day), available=state==='ready'||state==='opened', opened=state==='opened',num=String(day).padStart(2,'0');
+  let desc=state==='ready'?'kan öppnas':opened?'öppnad här, visa igen':state==='planned'?'ännu inte publicerad':'stängd';
+  if(available)allOpenable.push(day);if(state==='ready')ready.push(day);
+  const b=document.createElement('button');b.type='button'; b.className='door'+(available?' ready':'')+(opened?' opened':'');b.dataset.day=day;
+  b.setAttribute('aria-label','Lucka '+day+' december: '+desc); b.title='Lucka '+day+' december: '+desc; b.setAttribute('aria-disabled',String(!available)); if(!available)b.tabIndex=-1;
+  b.innerHTML='<span class="inside" aria-hidden="true">'+num+'<small>✓</small></span><span class="flap" aria-hidden="true"><span class="door-number">'+num+'</span><i class="latch"></i></span>';
+  frag.appendChild(b);
+ }
+ deck.replaceChildren(frag);const quick=$('quick'),first=ready.sort((a,b)=>b-a)[0]||allOpenable.sort((a,b)=>b-a)[0];quick.hidden=!first;quick.dataset.day=first||'';
+ if(first)quick.textContent=(seen.has(first)?'Visa':'Öppna')+' lucka '+first;
+ if(preview){setStatus('Förhandsvisning: prova klassens första lucka.')}
+ else if(lastDate<'2026-12-01'){setStatus('Första luckan öppnar den 1 december.')}
+ else if(ready.length){setStatus(ready.length===1?'En lucka väntar på att öppnas.':ready.length+' luckor väntar på att öppnas.')}
+ else if(allOpenable.length){setStatus('Ni har öppnat alla publicerade luckor. De går att besöka igen.')}
+ else{setStatus('Inga luckor är publicerade ännu.')}
+ if(keep)deck.querySelector('[data-day="'+keep+'"]')?.focus({preventScroll:true});
+ if(cover.complete)alignImages();
+}
+function alignImages(){
+ if(!cover.naturalWidth)return;
+ const r=scene.getBoundingClientRect(), scale=Math.max(r.width/cover.naturalWidth,r.height/cover.naturalHeight);
+ const w=cover.naturalWidth*scale,h=cover.naturalHeight*scale;
+ scene.style.setProperty('--cover-image','url("'+cover.getAttribute('src')+'")');
+ for(const b of deck.children){const f=b.querySelector('.flap'),s=b.getBoundingClientRect();
+   f.style.backgroundImage='var(--cover-image)';f.style.backgroundSize=w+'px '+h+'px';
+   f.style.backgroundPosition=((r.width-w)/2+r.left-s.left-1)+'px '+((r.height-h)*0.12+r.top-s.top-1)+'px';
+ }
+}
+function open(day,trigger){
+ if(openTimer!==null||modal.open)return;
+ const st=stat(day),story=config().stories[day];
+ if(st!=='ready'&&st!=='opened'){setStatus(st==='planned'?'Lucka '+day+' har ännu inte publicerats.':'Lucka '+day+' är stängd till den '+day+' december.');return}
+ const b=deck.querySelector('[data-day="'+day+'"]');
+ b.classList.add('opened');if(st!=='opened')b.classList.add('opening');returnTarget=trigger||b;remember(day);
+ b.setAttribute('aria-label','Lucka '+day+' december: öppnad här, visa igen');
+ modal.dataset.station=key;$('story-image').src=story.image;$('story-image').alt=story.alt;$('story-day').textContent=String(day).padStart(2,'0');
+ $('story-meta').textContent=key.toUpperCase()+'  /  '+story.subject.toLocaleUpperCase('sv')+'  /  '+day+' DECEMBER';
+ $('story-title').textContent=story.title;$('story-lead').textContent=story.lead;$('question').textContent=story.question;$('big-question').textContent=story.question;$('explain').textContent=story.answer;$('twist').textContent=story.twist;
+ $('sources').replaceChildren();for(const [label,url] of story.sources){let li=document.createElement('li'),a=document.createElement('a');a.href=url;a.textContent=label;a.target='_blank';a.rel='noopener noreferrer';li.append(a);$('sources').append(li)}
+ $('solution').hidden=true;$('guess-box').hidden=false;$('reveal').hidden=false;$('reveal').setAttribute('aria-expanded','false');modal.querySelector('details').open=false;
+ const wait=st==='opened'||motion.matches?0:530;
+ openTimer=setTimeout(()=>{openTimer=null;modal.showModal();document.body.classList.add('reading');modal.scrollTop=0;$('reveal').focus({preventScroll:true})},wait);
+}
+deck.addEventListener('click',e=>{const b=e.target.closest('.door');if(b)open(Number(b.dataset.day),b)});
+$('quick').addEventListener('click',()=>open(Number($('quick').dataset.day),$('quick')));
+function reveal(){$('solution').hidden=false;$('guess-box').hidden=true;$('reveal').setAttribute('aria-expanded','true');$('reveal').hidden=true;$('solution').tabIndex=-1;$('solution').focus({preventScroll:true});$('solution').scrollIntoView({block:'nearest',behavior:motion.matches?'instant':'smooth'})}
+$('reveal').addEventListener('click',reveal);
+function imageMode(on,request,keepFullscreen=false){
+ modal.classList.toggle('wide-image',on);$('enlarge').setAttribute('aria-pressed',String(on));$('enlarge').querySelector('span').textContent=on?'Tillbaka till luckan':'Förstora bilden';
+ $('picture-caption').hidden=!on;$('story-copy').hidden=on;$('picture-reveal').textContent=$('solution').hidden?'Visa förklaringen':'Till förklaringen';
+ if(on){modal.scrollTop=0;if(request&&!document.fullscreenElement&&document.documentElement.requestFullscreen){try{const req=document.documentElement.requestFullscreen();if(req&&req.then)req.then(()=>{if(modal.open)viewerFullscreen=true;else if(document.fullscreenElement)document.exitFullscreen().catch(()=>{})}).catch(()=>{})}catch{}}}
+ else if(!keepFullscreen&&viewerFullscreen){viewerFullscreen=false;if(document.fullscreenElement)document.exitFullscreen().catch(()=>{})}
+}
+$('enlarge').addEventListener('click',()=>imageMode(!modal.classList.contains('wide-image'),true));
+$('picture-reveal').addEventListener('click',()=>{imageMode(false,false,true);reveal()});
+function close(){if(modal.open)modal.close()}
+$('close').addEventListener('click',close);$('back').addEventListener('click',close);
+modal.addEventListener('click',e=>{if(e.target!==modal)return;const r=modal.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)close()});
+modal.addEventListener('close',()=>{imageMode(false,false);document.body.classList.remove('reading');const day=returnTarget?.dataset.day;const toQuick=returnTarget===$('quick');render();(toQuick?$('quick'):deck.querySelector('[data-day="'+day+'"]'))?.focus({preventScroll:true});returnTarget=null});
+const select=$('select-class');
+if(select)select.addEventListener('change',()=>{if(openTimer!==null){clearTimeout(openTimer);openTimer=null}if(!Object.hasOwn(data.classes,select.value))return;key=select.value;loadSeen();render()});
+function projector(on){document.body.classList.toggle('projecting',on);$('projector').setAttribute('aria-pressed',String(on));$('projector').querySelector('span').textContent=on?'Avsluta projektorläge':'Projektorläge';requestAnimationFrame(alignImages)}
+$('projector').addEventListener('click',async()=>{let on=!document.body.classList.contains('projecting');projector(on);try{if(on&&document.documentElement.requestFullscreen){await document.documentElement.requestFullscreen()}else if(!on&&document.fullscreenElement){await document.exitFullscreen()}}catch{}});
+document.addEventListener('fullscreenchange',()=>{if(!document.fullscreenElement){viewerFullscreen=false;projector(false);if(modal.open&&modal.classList.contains('wide-image'))imageMode(false,false)}});
+function checkClock(){if(Calendar.today()!==lastDate&&!modal.open&&openTimer===null)render()}
+document.addEventListener('visibilitychange',checkClock);window.addEventListener('focus',checkClock);setInterval(checkClock,30000);
+cover.addEventListener('load',alignImages);if('ResizeObserver' in window)new ResizeObserver(()=>requestAnimationFrame(alignImages)).observe(scene);else window.addEventListener('resize',alignImages,{passive:true});
+loadSeen();render();
+})();
+</script>
+</body></html>
