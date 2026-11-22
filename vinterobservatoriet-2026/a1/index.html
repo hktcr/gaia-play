@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="sv">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#101c29"><meta name="referrer" content="no-referrer">
 <meta name="description" content="En naturvetenskaplig julkalender för klassrummet. Öppna, gissa och upptäck tillsammans.">
 <title>Vinterobservatoriet · NO:s julkalender 2026</title>
@@ -74,37 +74,65 @@ dialog{width:min(1150px,calc(100% - 36px))}.story-wrap{grid-template-columns:1.4
 @media(prefers-reduced-motion:no-preference){dialog[open]:not(.wide-image) .story-picture img{animation:still-in .7s ease-out both}@keyframes still-in{from{opacity:.72;transform:scale(1.015)}to{opacity:1;transform:scale(1)}}}
 @media(max-width:720px){.story-wrap{grid-template-columns:1fr 1fr}.story-picture{min-height:365px}}
 @media(max-width:590px){dialog{width:calc(100% - 16px)}.story-picture{min-height:0;aspect-ratio:1.5}.story-wrap{display:block}.picture-caption{display:block}.picture-caption .reveal{margin:.45rem 0 0}.picture-toggle{font-size:.77rem;top:.6rem;left:.6rem}.wide-image{height:97dvh}}
+/* Illustration edge to edge. Control overlays get their own inset lanes so they never cover doors. */
+html,body{margin:0;min-height:100%;width:100%}
+body{background:#101c29}
+.paper{border:0;border-radius:0;box-shadow:none;background:#101c29}
+.scene,body.projecting .scene{min-height:max(425px,100svh);height:100svh;aspect-ratio:auto;display:grid;grid-template-rows:auto minmax(0,1fr) auto}
+.scene-wash{background:linear-gradient(180deg,#0a142cc2 0,transparent 22%,transparent 80%,#0a142ca9 100%);box-shadow:none}
+.backdrop{object-position:var(--point,50% 48%)}
+.scene-top,.scene-bottom{z-index:2;display:flex;align-items:flex-start;justify-content:space-between;gap:.7rem;padding-inline:max(14px,env(safe-area-inset-left)) max(14px,env(safe-area-inset-right))}
+.scene-top{grid-row:1;padding-top:max(14px,env(safe-area-inset-top));padding-bottom:8px;pointer-events:none}
+.scene-bottom{grid-row:3;align-items:flex-end;padding-top:8px;padding-bottom:max(12px,env(safe-area-inset-bottom));pointer-events:none}
+.scene-controls,.calendar-controls,.title-lockup,.calendar-chip{display:flex;align-items:center;gap:.55rem;pointer-events:auto}
+.scene-controls,.calendar-controls{align-items:center;justify-content:flex-end}
+.title-lockup{gap:.65rem;text-shadow:0 2px 9px #030710,0 0 15px #030710;border-radius:10px;padding:.36rem .56rem;background:#101c2990}
+.title-lockup>svg{width:31px;height:31px;flex:none;color:#f5c376}
+.title-lockup h1,body.projecting .title-lockup h1{font:normal clamp(1.23rem,2.25vw,2.15rem)/1 Georgia,serif;letter-spacing:-.045em;margin:0;white-space:nowrap}
+.top-kicker{font-size:.74rem;font-weight:600;letter-spacing:.055em;color:#f9ead5;margin-top:.2rem}.top-kicker strong{color:#ffd492}
+.screen-button,.about summary,.teacher select{display:flex;align-items:center;justify-content:center;gap:.42rem;min-height:44px;border:1px solid #d4cfb58a;border-radius:999px;background:#112233df;color:#fff2d7;padding:.4rem .8rem;font:600 .82rem/1.12 system-ui}
+.screen-button:hover,.about summary:hover{border-color:#ffe19f;background:#25394a}
+.screen-button svg{width:19px;height:19px;flex:none}.about{position:relative;margin:0;max-width:none}.about summary{width:44px;list-style:none}.about summary::-webkit-details-marker{display:none}.about summary span{font:bold 1.1rem/1 Georgia,serif}
+.about-note{position:absolute;z-index:4;right:0;bottom:calc(100% + 8px);background:#122333fa;border:1px solid #d4cfb58a;border-radius:12px;box-shadow:0 14px 20px #050e18b0;width:min(19rem,calc(100vw - 28px));padding:.9rem 1rem;color:#e8eeeb;text-shadow:none}
+.about-note h2{font-size:1.3rem;margin:0 0 .3rem}
+.calendar-chip{color:#fff2d7;background:#112233df;border:1px solid #d4cfb58a;border-radius:10px;padding:.54rem .72rem;font-size:.89rem;line-height:1.3;min-height:40px}.pin{color:#f9c680;font-size:1rem}.quick{min-height:44px}
+.teacher{display:flex!important;margin:0;padding:0;border:0;background:none}.teacher select{padding-inline:.5rem;border-radius:10px;min-width:3.8rem}.teacher label{gap:0}
+.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.doors{position:relative;inset:auto;grid-row:2;z-index:1;height:100%;padding:0 clamp(9px,3vw,5rem);gap:1.4% clamp(7px,1.6vw,30px)}
+.door{min-height:44px;min-width:44px;width:88%;height:82%}
+.door:nth-child(3n+2){width:79%;height:89%}.door:nth-child(4n+1){height:76%}.door:nth-child(5n+3){width:91%}.door:nth-child(7n+4){height:84%}
+.door.planned .flap{border-style:dotted}.door.planned .door-number::after{content:"";position:absolute;width:.22em;height:.22em;right:-.32em;top:44%;background:#a6b1b6;border-radius:50%;box-shadow:0 0 1px 1px #0b1620}
+.no-script{position:fixed;z-index:5;bottom:50px;left:14px;background:#102132;padding:.7rem;color:#fff3d4;border-radius:.25rem}
+@media(max-width:590px){.scene,body.projecting .scene{min-height:max(470px,100svh)}.scene-top,.scene-bottom{padding-inline:max(8px,env(safe-area-inset-left)) max(8px,env(safe-area-inset-right))}.scene-top{padding-top:max(8px,env(safe-area-inset-top));gap:.35rem}.scene-bottom{padding-bottom:max(8px,env(safe-area-inset-bottom));gap:.35rem}.scene-controls,.calendar-controls{gap:.32rem}.title-lockup{padding:.36rem .4rem;gap:.32rem}.title-lockup h1,body.projecting .title-lockup h1{font-size:clamp(1.02rem,4.8vw,1.52rem)}.title-lockup>svg{width:24px;height:24px}.top-kicker{font-size:.65rem;letter-spacing:.015em}.screen-button{height:44px;width:44px;padding:0}.screen-button span{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.calendar-chip{padding:.45rem .48rem;font-size:.78rem}.calendar-chip .pin{font-size:.78rem}.quick{font-size:.77rem;padding-inline:.44rem}.teacher select{font-size:.73rem;min-width:3.2rem}}
+@media(max-height:530px) and (orientation:landscape) and (min-width:590px){.scene,body.projecting .scene{min-height:max(295px,100svh)}.doors{grid-template-columns:repeat(8,minmax(0,1fr));grid-template-rows:repeat(3,minmax(0,1fr))}.door-number{font-size:1.05rem}}
 </style>
 </head>
 <body>
-<a class="skip" href="#kalender">Till julkalendern</a>
-<header class="mast container">
- <div class="wordmark"><svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="18.5" fill="none" stroke="currentColor" opacity=".5"/><path d="M22 3l2.8 14.7L38 11l-10.6 11L38 33l-13.2-6.7L22 41l-2.8-14.7L6 33l10.6-11L6 11l13.2 6.7z" fill="currentColor"/><circle cx="22" cy="22" r="3.5" fill="#172331"/></svg> <span>VINTERPOST<span class="small-mark"> / NO</span></span></div>
- <button id="projector" type="button" class="pill" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h18M5 5v12h14V5M12 17v4m-4 0 4-3 4 3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Projektorläge</span></button>
-</header>
-<div class="container">
- 
- <main id="kalender">
- <div class="intro">
-  <div class="title-block"><p class="overline"><span class="gold-line"></span>NATURVETENSKAPENS JULKALENDER <b aria-hidden="true">/</b> 2026</p>
-  <h1>Vinterobservatoriet<span>.</span></h1><p class="deck">Bakom varje lucka väntar ett mysterium. Vad tror ni, innan ni får svaret?</p></div>
-  <div class="class-badge"><span>STATION</span><strong id="station">A1</strong></div>
- </div>
+<a class="skip" href="#doors">Till luckorna</a>
+<main id="kalender" tabindex="-1">
  <section class="paper" aria-label="Julkalender med 24 luckor">
-  <div class="rim"><p><i class="spark">✦</i><span id="season">DECEMBER</span></p><span class="rim-caption">VINTEROBSERVATORIET</span><p>01 <em>/</em> 24</p></div>
   <div class="scene" id="scene">
-   <img class="backdrop" id="cover" src="../art/cover.webp" alt="Illustrerat vinterlandskap med ett upplyst observatorium. Numrerade kalenderluckor ligger infällda i bilden.">
+   <img class="backdrop" id="cover" src="../art/cover.webp" alt="Ett snötäckt observatorium med ett teleskop och varmt ljus från fönstren." fetchpriority="high">
    <div class="scene-wash" aria-hidden="true"></div>
-   <div class="doors" id="doors" role="group" aria-label="Luckor från 1 till 24 december"></div>
+   <header class="scene-top">
+    <div class="title-lockup"><svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="18.5" fill="none" stroke="currentColor" opacity=".55"/><path d="M22 3l2.8 14.7L38 11l-10.6 11L38 33l-13.2-6.7L22 41l-2.8-14.7L6 33l10.6-11L6 11l13.2 6.7z" fill="currentColor"/><circle cx="22" cy="22" r="3.5" fill="#172331"/></svg><div><h1>Vinterobservatoriet<span>.</span></h1><div class="top-kicker">NO:s julkalender · <strong id="station">A1</strong></div></div></div>
+    <div class="scene-controls">
+     
+     <button id="projector" type="button" title="Projektorläge" class="screen-button" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5m6 0h5v5m0 6v5h-5M9 20H4v-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Projektorläge</span></button>
+    </div>
+   </header>
+   <div class="doors" id="doors" tabindex="-1" role="group" aria-label="Luckor från 1 till 24 december"></div>
+   <div class="scene-bottom">
+    <div class="calendar-chip"><span class="pin" aria-hidden="true">✦</span><span id="status" role="status">Första luckan öppnar den 1 december.</span></div>
+    <div class="calendar-controls">
+     <button class="quick" id="quick" type="button" hidden></button>
+     <details class="about"><summary aria-label="Om kalendern" title="Om kalendern"><span aria-hidden="true">i</span></summary><div class="about-note"><h2>Om kalendern</h2><p>Öppna en lucka på lektionen. Gissa tillsammans innan ni visar förklaringen.</p><p>Varje klass har en egen berättelse. Luckorna följer svensk tid. Öppningsmarkering sparas i den här webbläsaren när det går.</p></div></details>
+    </div>
+   </div>
   </div>
-  <div class="board-foot"><div class="board-status"><span class="signal" aria-hidden="true"></span><span id="status" role="status"></span></div><button class="quick" id="quick" type="button" hidden></button></div>
  </section>
- <noscript><p>Aktivera JavaScript för att öppna kalenderluckorna.</p></noscript>
- <div class="after"><div class="legend" aria-label="Teckenförklaring"><span><i class="legend-dot live"></i>Kan öppnas</span><span><i class="legend-dot"></i>Stängd</span><span><i class="legend-dot already">✓</i>Öppnad här</span></div>
- <details class="about"><summary>Om kalendern</summary><div><p>Öppna en lucka på lektionen. Låt någon gissa och visa sedan förklaringen. Varje klass har sin egen berättelse.</p><p>Första utgåvan innehåller lucka 1. Övriga luckor har ännu inte fått innehåll. Datumen följer svensk tid. Markeringen ”öppnad” sparas bara i den här webbläsaren när lagring är tillgänglig.</p></div></details></div>
- </main>
- <footer><span>VINTERPOST <b>·</b> NO</span><span>DECEMBER 2026</span></footer>
-</div>
+ <noscript><p class="no-script">Aktivera JavaScript för att öppna kalenderluckorna.</p></noscript>
+</main>
 <dialog id="story" aria-labelledby="story-title" aria-describedby="story-lead">
  <article class="story-wrap">
   <div class="story-picture"><img id="story-image" alt=""><button type="button" id="enlarge" class="picture-toggle" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5m6 0h5v5m0 6v5h-5M9 20H4v-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><span>Förstora bilden</span></button><div class="story-plaque"><small>LUCKA</small><strong id="story-day">01</strong></div></div>
@@ -120,7 +148,7 @@ dialog{width:min(1150px,calc(100% - 36px))}.story-wrap{grid-template-columns:1.4
   <button type="button" id="close" aria-label="Stäng luckan" title="Stäng luckan">×</button>
  </article>
 </dialog>
-<script type="application/json" id="edition">{"preview":false,"classes":{"a1":{"stories":{}}}}</script>
+<script type="application/json" id="edition">{"preview":false,"classes":{"a1":{"stories":{},"cover":"../art/cover.webp","coverAlt":"Ett snötäckt observatorium med ett teleskop och varmt ljus från fönstren.","position":"50% 47%"}}}</script>
 <script>const Calendar = (() => {
   const zone = 'Europe/Stockholm', year=2026;
   const fmt = new Intl.DateTimeFormat('sv-SE',{timeZone:zone,year:'numeric',month:'2-digit',day:'2-digit'});
@@ -145,7 +173,7 @@ if(typeof module!=='undefined'&&module.exports)module.exports=Calendar;
 (() => {
 'use strict';
 const $=id=>document.getElementById(id), data=JSON.parse($('edition').textContent);
-let key=Object.keys(data.classes)[0],seen=new Set(),lastDate='',openTimer=null,returnTarget=null,viewerFullscreen=false;
+let activeCover='',key=Object.keys(data.classes)[0],seen=new Set(),lastDate='',openTimer=null,returnTarget=null,viewerFullscreen=false;
 const preview=data.preview, scene=$('scene'), deck=$('doors'), modal=$('story'), cover=$('cover');
 const motion=window.matchMedia('(prefers-reduced-motion: reduce)');
 function config(){return data.classes[key]}
@@ -155,20 +183,20 @@ function stat(day){return Calendar.dayState(day,config().stories,lastDate,previe
 function setStatus(s){$('status').textContent=s}
 function render(){
  const keep=deck.contains(document.activeElement)?document.activeElement.dataset.day:null;
- lastDate=Calendar.today(); const spec=config(); $('station').textContent=key.toUpperCase();document.title='Vinterobservatoriet · '+key.toUpperCase()+(preview?' · Lärarvisning':'');
+ lastDate=Calendar.today(); const spec=config(); if(spec.cover && spec.cover!==activeCover){activeCover=spec.cover;cover.style.setProperty('--point',spec.position||'50% 48%');cover.alt=spec.coverAlt||'Illustrerat vinterlandskap';cover.setAttribute('src',spec.cover)} $('station').textContent=key.toUpperCase();document.title='Vinterobservatoriet · '+key.toUpperCase()+(preview?' · Lärarvisning':'');
  const ready=[],allOpenable=[]; const frag=document.createDocumentFragment();
  for(const day of Calendar.orders[key]){
   const state=stat(day), available=state==='ready'||state==='opened', opened=state==='opened',num=String(day).padStart(2,'0');
-  let desc=state==='ready'?'kan öppnas':opened?'öppnad här, visa igen':state==='planned'?'ännu inte publicerad':'stängd';
+  let desc=state==='ready'?'kan öppnas':opened?'öppnad här, visa igen':state==='planned'?(preview?'planerad, inte färdig':'ännu inte publicerad'):'stängd';
   if(available)allOpenable.push(day);if(state==='ready')ready.push(day);
-  const b=document.createElement('button');b.type='button'; b.className='door'+(available?' ready':'')+(opened?' opened':'');b.dataset.day=day;
+  const b=document.createElement('button');b.type='button'; b.className='door'+(available?' ready':'')+(opened?' opened':'')+(state==='planned'?' planned':'');b.dataset.day=day;
   b.setAttribute('aria-label','Lucka '+day+' december: '+desc); b.title='Lucka '+day+' december: '+desc; b.setAttribute('aria-disabled',String(!available)); if(!available)b.tabIndex=-1;
   b.innerHTML='<span class="inside" aria-hidden="true">'+num+'<small>✓</small></span><span class="flap" aria-hidden="true"><span class="door-number">'+num+'</span><i class="latch"></i></span>';
   frag.appendChild(b);
  }
  deck.replaceChildren(frag);const quick=$('quick'),first=ready.sort((a,b)=>b-a)[0]||allOpenable.sort((a,b)=>b-a)[0];quick.hidden=!first;quick.dataset.day=first||'';
  if(first)quick.textContent=(seen.has(first)?'Visa':'Öppna')+' lucka '+first;
- if(preview){setStatus('Förhandsvisning: prova klassens första lucka.')}
+ if(preview){setStatus(allOpenable.length+' färdig'+(allOpenable.length===1?' lucka':'a luckor')+' · '+(24-allOpenable.length)+' planerade')}
  else if(lastDate<'2026-12-01'){setStatus('Första luckan öppnar den 1 december.')}
  else if(ready.length){setStatus(ready.length===1?'En lucka väntar på att öppnas.':ready.length+' luckor väntar på att öppnas.')}
  else if(allOpenable.length){setStatus('Ni har öppnat alla publicerade luckor. De går att besöka igen.')}
@@ -180,10 +208,11 @@ function alignImages(){
  if(!cover.naturalWidth)return;
  const r=scene.getBoundingClientRect(), scale=Math.max(r.width/cover.naturalWidth,r.height/cover.naturalHeight);
  const w=cover.naturalWidth*scale,h=cover.naturalHeight*scale;
+ const pos=(cover.style.getPropertyValue('--point')||'50% 48%').trim().split(/\s+/).map(v=>Number.parseFloat(v)/100);
  scene.style.setProperty('--cover-image','url("'+cover.getAttribute('src')+'")');
  for(const b of deck.children){const f=b.querySelector('.flap'),s=b.getBoundingClientRect();
    f.style.backgroundImage='var(--cover-image)';f.style.backgroundSize=w+'px '+h+'px';
-   f.style.backgroundPosition=((r.width-w)/2+r.left-s.left-1)+'px '+((r.height-h)*0.12+r.top-s.top-1)+'px';
+   f.style.backgroundPosition=((r.width-w)*pos[0]+r.left-s.left-1)+'px '+((r.height-h)*pos[1]+r.top-s.top-1)+'px';
  }
 }
 function open(day,trigger){
