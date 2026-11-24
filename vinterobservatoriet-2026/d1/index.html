@@ -5,7 +5,7 @@
 <meta name="theme-color" content="#101c29"><meta name="referrer" content="no-referrer">
 <meta name="description" content="En naturvetenskaplig julkalender för klassrummet. Öppna, gissa och upptäck tillsammans.">
 <title>Vinterobservatoriet · NO:s julkalender 2026</title>
-<style>:root{color-scheme:dark;--night:#101c29;--deep:#0d1722;--cream:#f7efd9;--haze:#c1cfd4;--faint:#95abb2;--gold:#f2be77;--rule:#37434a;--green:#91ddc5}
+<style id="calendar-css">:root{color-scheme:dark;--night:#101c29;--deep:#0d1722;--cream:#f7efd9;--haze:#c1cfd4;--faint:#95abb2;--gold:#f2be77;--rule:#37434a;--green:#91ddc5}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 86% -15%,#253f4b 0,transparent 52rem),radial-gradient(ellipse at -15% 75%,#243447 0,transparent 48rem),var(--night);color:var(--cream);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;font-size:16px;line-height:1.5;min-height:100vh}
 button,select,summary{font:inherit}button,summary,select{cursor:pointer}button{color:inherit}button:focus-visible,a:focus-visible,select:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:3px solid #ffe39f;outline-offset:4px}
@@ -105,6 +105,49 @@ body{background:#101c29}
 .no-script{position:fixed;z-index:5;bottom:50px;left:14px;background:#102132;padding:.7rem;color:#fff3d4;border-radius:.25rem}
 @media(max-width:590px){.scene,body.projecting .scene{min-height:max(470px,100svh)}.scene-top,.scene-bottom{padding-inline:max(8px,env(safe-area-inset-left)) max(8px,env(safe-area-inset-right))}.scene-top{padding-top:max(8px,env(safe-area-inset-top));gap:.35rem}.scene-bottom{padding-bottom:max(8px,env(safe-area-inset-bottom));gap:.35rem}.scene-controls,.calendar-controls{gap:.32rem}.title-lockup{padding:.36rem .4rem;gap:.32rem}.title-lockup h1,body.projecting .title-lockup h1{font-size:clamp(1.02rem,4.8vw,1.52rem)}.title-lockup>svg{width:24px;height:24px}.top-kicker{font-size:.65rem;letter-spacing:.015em}.screen-button{height:44px;width:44px;padding:0}.screen-button span{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.calendar-chip{padding:.45rem .48rem;font-size:.78rem}.calendar-chip .pin{font-size:.78rem}.quick{font-size:.77rem;padding-inline:.44rem}.teacher select{font-size:.73rem;min-width:3.2rem}}
 @media(max-height:530px) and (orientation:landscape) and (min-width:590px){.scene,body.projecting .scene{min-height:max(295px,100svh)}.doors{grid-template-columns:repeat(8,minmax(0,1fr));grid-template-rows:repeat(3,minmax(0,1fr))}.door-number{font-size:1.05rem}}
+/* Teacher import is a local-only tool, not part of the student calendar data. */
+#teacher-local{width:min(33rem,calc(100% - 24px));max-height:calc(100dvh - 20px)}
+.teacher-panel{padding:clamp(1rem,4vw,1.8rem)}.teacher-panel h2{font-size:clamp(1.74rem,6vw,2.45rem);margin:.3em 1.3rem .3em 0}
+.teacher-panel p{margin:.65rem 0}.teacher-help{color:var(--haze);font-size:.91rem}.teacher-current{color:#9fe0c9;font-size:.86rem}
+.teacher-panel label{display:block;margin:.7rem 0 .26rem;font-weight:650;font-size:.92rem}.teacher-panel label span{font-weight:400;color:var(--haze)}
+.teacher-panel input{width:100%;min-height:44px;border:1px solid #829194;border-radius:6px;background:#14202b;color:#f8eed9;padding:.45rem .6rem}
+.teacher-panel input[type=file]::file-selector-button{min-height:30px;padding:.15rem .5rem;border:1px solid #cec19e;border-radius:4px;background:#f2cf93;color:#232520;cursor:pointer;font:inherit}
+#teacher-unlock{margin-top:.9rem}.teacher-secondary{border:0;background:transparent;font:600 .87rem/1.3 system-ui;text-underline-offset:.2em;text-decoration:underline;color:var(--haze);padding:.55rem .5rem}.teacher-secondary:disabled{opacity:.4;cursor:default}
+#teacher-status{min-height:1.35em;color:#ffd299;font-size:.91rem;margin-bottom:0}
+.teacher-close{position:absolute;right:.6rem;top:.6rem;width:44px;height:44px;border:1px solid #a6a991;border-radius:50%;background:#203846;font:400 1.55rem/1 system-ui;color:#fff3de}
+#teacher-view{position:fixed;inset:0;margin:0;width:100%;height:100%;max-width:100%;max-height:100%;border:0;border-radius:0;background:#101c29;overflow:hidden}
+#teacher-view iframe{position:absolute;inset:0;border:0;width:100%;height:100%}
+.teacher-view-controls{z-index:2;position:absolute;right:max(10px,env(safe-area-inset-right));top:max(63px,calc(env(safe-area-inset-top) + 52px))}
+.teacher-view-controls button{min-height:44px;padding:.3rem .7rem;border:1px solid #e4c18b;border-radius:999px;background:#112739f0;color:#faecd4;font:650 .82rem/1.1 system-ui;box-shadow:0 4px 18px #08101d70}
+body.local-teacher{overflow:hidden}
+@media(max-width:590px){.screen-button.teacher-entry{width:44px;height:44px}.scene-controls{flex-shrink:0}}
+@media(max-width:350px){.title-lockup h1,body.projecting .title-lockup h1{font-size:1.04rem}.title-lockup>svg{width:20px;height:20px}}
+/* Projection shows the illustration first, with only inconspicuous controls remaining. */
+body.projecting .title-lockup .top-kicker{display:none}
+body.projecting .title-lockup{background:#101c2966}
+body.projecting .title-lockup h1{font-size:clamp(1rem,2.1vw,1.55rem)}
+body.projecting .calendar-chip,body.projecting .about,body.projecting #teacher-entry{visibility:hidden;pointer-events:none}
+body.projecting .screen-button span{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+body.projecting .screen-button{width:44px;height:44px;padding:0}
+body.projecting .wide-image .picture-caption{padding:.55rem clamp(.85rem,2vw,1.45rem)}
+body.projecting .wide-image .picture-caption .overline{display:none}
+
+/* A door expands from its actual position; reduced-motion users skip the animation. */
+#story{transform-origin:center}
+#challenge-form label{display:block;margin:.6rem 0 .25rem;color:#f5ebd8;font-weight:650}
+#challenge-answer{width:100%;min-height:44px;background:#121f29;color:#f8f5ed;border:1px solid #8a938a;border-radius:6px;padding:.48rem .65rem;font:inherit}
+.challenge-actions{display:flex;gap:.55rem 1rem;align-items:center;flex-wrap:wrap;margin-top:.3rem}
+.challenge-actions button,.order-move{min-height:44px}
+#challenge-hint{padding:.55rem .7rem;border-inline-start:2px solid #edbe7f;background:#26353c}
+#challenge-feedback:not(:empty){padding:.45rem .6rem;border:1px solid #bb976a;border-radius:6px;margin:.45rem 0;font-weight:680}
+#challenge-feedback[data-state="right"]{border-color:#a2cb9a;color:#dfefdb}
+#challenge-feedback[data-state="try"]{color:#f6d9bc}
+#challenge-order ol{margin:.45rem 0;padding-inline-start:1.65rem}
+#challenge-order li{padding:.15rem 0 .15rem .2rem;border-bottom:1px solid #4b5757}
+#challenge-order li span{display:inline-block;width:calc(100% - 104px);vertical-align:middle}
+.order-move{min-width:44px;margin:.15rem .13rem;background:#263842;color:#fff2db;border:1px solid #85908f;border-radius:6px;font:inherit}
+.order-move[aria-disabled="true"]{opacity:.45}
+#story-question{font-weight:675}
 </style>
 </head>
 <body>
@@ -118,6 +161,7 @@ body{background:#101c29}
     <div class="title-lockup"><svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="18.5" fill="none" stroke="currentColor" opacity=".55"/><path d="M22 3l2.8 14.7L38 11l-10.6 11L38 33l-13.2-6.7L22 41l-2.8-14.7L6 33l10.6-11L6 11l13.2 6.7z" fill="currentColor"/><circle cx="22" cy="22" r="3.5" fill="#172331"/></svg><div><h1>Vinterobservatoriet<span>.</span></h1><div class="top-kicker">NO:s julkalender · <strong id="station">D1</strong></div></div></div>
     <div class="scene-controls">
      
+     <button id="teacher-entry" type="button" class="screen-button teacher-entry" title="Lärarläge" aria-label="Lärarläge"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M8 10V7a4 4 0 018 0v3" fill="none" stroke="currentColor" stroke-width="1.7"/></svg><span>Lärarläge</span></button>
      <button id="projector" type="button" title="Projektorläge" class="screen-button" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5m6 0h5v5m0 6v5h-5M9 20H4v-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Projektorläge</span></button>
     </div>
    </header>
@@ -126,7 +170,7 @@ body{background:#101c29}
     <div class="calendar-chip"><span class="pin" aria-hidden="true">✦</span><span id="status" role="status">Första luckan öppnar den 1 december.</span></div>
     <div class="calendar-controls">
      <button class="quick" id="quick" type="button" hidden></button>
-     <details class="about"><summary aria-label="Om kalendern" title="Om kalendern"><span aria-hidden="true">i</span></summary><div class="about-note"><h2>Om kalendern</h2><p>Öppna en lucka på lektionen. Gissa tillsammans innan ni visar förklaringen.</p><p>Varje klass har en egen berättelse. Luckorna följer svensk tid. Öppningsmarkering sparas i den här webbläsaren när det går.</p></div></details>
+     <details class="about"><summary aria-label="Om kalendern" title="Om kalendern"><span aria-hidden="true">i</span></summary><div class="about-note"><h2>Om kalendern</h2><p>Öppna en lucka på lektionen. Lös dagens korta uppgift tillsammans för att öppna förklaringen.</p><p>Varje klass har en egen berättelse. Luckorna följer svensk tid. Öppningsmarkering sparas i den här webbläsaren när det går.</p></div></details>
     </div>
    </div>
   </div>
@@ -136,20 +180,52 @@ body{background:#101c29}
 <dialog id="story" aria-labelledby="story-title" aria-describedby="story-lead">
  <article class="story-wrap">
   <div class="story-picture"><img id="story-image" alt=""><button type="button" id="enlarge" class="picture-toggle" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5m6 0h5v5m0 6v5h-5M9 20H4v-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><span>Förstora bilden</span></button><div class="story-plaque"><small>LUCKA</small><strong id="story-day">01</strong></div></div>
-  <div id="picture-caption" class="picture-caption" hidden><div><span class="overline">GISSA TILLSAMMANS</span><p id="big-question"></p></div><button id="picture-reveal" type="button" class="reveal">Visa förklaringen</button></div>
+  <div id="picture-caption" class="picture-caption" hidden><div><span class="overline">GISSA TILLSAMMANS</span><p id="big-question"></p></div><button id="picture-reveal" type="button" class="reveal">Till uppgiften</button></div>
   <div class="story-copy" id="story-copy">
    <div class="story-meta" id="story-meta"></div>
    <h2 id="story-title"></h2><p id="story-lead" class="story-lead"></p>
-   <div class="guess-box" id="guess-box"><div class="overline">GISSA TILLSAMMANS</div><p id="question"></p></div>
-   <button type="button" class="reveal" id="reveal" aria-expanded="false" aria-controls="solution">Visa förklaringen</button>
-   <section id="solution" hidden><div class="overline">SÅ HÄNGER DET IHOP</div><p id="explain"></p><div class="twist" id="twist"></div><details class="source-box"><summary>Källor och vidare läsning</summary><ul id="sources"></ul></details></section>
+   <section class="guess-box" id="guess-box" aria-labelledby="challenge-title">
+    <h3 class="overline" id="challenge-title" tabindex="-1">Lös luckans uppgift</h3>
+    <p id="question"></p>
+    <form id="challenge-form">
+     <div id="challenge-text"><label for="challenge-answer">Skriv ert svar</label><input id="challenge-answer" name="answer" autocomplete="off" maxlength="160" aria-describedby="question"></div>
+     <div id="challenge-order" hidden><p class="order-help" id="order-help">Flytta ett steg uppåt eller nedåt med knapparna.</p><ol id="challenge-list" aria-describedby="order-help"></ol></div>
+     <div class="challenge-actions"><button type="submit" class="reveal" id="reveal" aria-controls="solution">Kontrollera svaret</button><button type="button" id="challenge-hint-toggle" class="back" aria-expanded="false" aria-controls="challenge-hint">Visa ledtråd</button></div>
+     <p id="challenge-hint" hidden></p>
+    </form>
+   </section>
+   <p id="challenge-feedback" role="status" aria-live="polite" aria-atomic="true"></p>
+   <section id="solution" hidden><div class="overline">SÅ HÄNGER DET IHOP</div><p id="story-question"></p><p id="explain"></p><div class="twist" id="twist"></div><details class="source-box"><summary>Källor och vidare läsning</summary><ul id="sources"></ul></details></section>
    <button type="button" id="back" class="back">Tillbaka till kalendern</button>
   </div>
   <button type="button" id="close" aria-label="Stäng luckan" title="Stäng luckan">×</button>
  </article>
 </dialog>
+<dialog id="teacher-local" data-teacher-portal aria-labelledby="teacher-local-title">
+ <button class="teacher-close" type="button" id="teacher-close" aria-label="Stäng lärarläget">×</button>
+ <div class="teacher-panel">
+   <div class="overline"><span aria-hidden="true">✦</span> PRIVAT LÄRARLÄGE</div>
+   <h2 id="teacher-local-title">Öppna som lärare</h2>
+   <p>Läs in din krypterade lärarfil en gång per webbläsare. Skriv sedan lärarkoden för att öppna färdiga luckor i förväg.</p>
+   <p class="teacher-help">Filen och koden skickas inte från enheten. Den här webbläsaren sparar bara det krypterade paketet.</p>
+   <p class="teacher-current" id="teacher-current"></p>
+   <form id="teacher-local-form">
+      <label for="teacher-file">Krypterad lärarfil <span>(.html)</span></label>
+      <input id="teacher-file" type="file" accept=".html,.htm,text/html">
+      <label for="teacher-code">Lärarkod</label>
+      <input id="teacher-code" type="password" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" required>
+      <button id="teacher-unlock" class="quick" type="submit">Lås upp</button>
+      <button id="teacher-remove" type="button" class="teacher-secondary" disabled>Ta bort sparad lärarfil</button>
+      <p id="teacher-status" role="status" aria-live="polite"></p>
+   </form>
+ </div>
+</dialog>
+<dialog id="teacher-view" data-teacher-portal aria-label="Upplåst lärarläge">
+ <div class="teacher-view-controls"><button id="teacher-relock" type="button">Lås lärarläget</button></div>
+</dialog>
+
 <script type="application/json" id="edition">{"preview":false,"classes":{"d1":{"stories":{},"cover":"../art/cover-d1.webp","coverAlt":"Vid en snötäckt damm syns en gräsand, ett upplyst observatorium och norrsken.","position":"54% 48%"}}}</script>
-<script>const Calendar = (() => {
+<script id="calendar-runtime">const Calendar = (() => {
   const zone = 'Europe/Stockholm', year=2026;
   const fmt = new Intl.DateTimeFormat('sv-SE',{timeZone:zone,year:'numeric',month:'2-digit',day:'2-digit'});
   const orders={
@@ -165,15 +241,29 @@ body{background:#101c29}
     if(!exists) return 'planned';
     return seen.has(day)?'opened':'ready';
   }
-  function storageId(key,preview){return 'vinterpost-'+year+'-'+key+'-'+(preview?'prov':'elev')}
-  return {today,dayState,orders,storageId}
+  function storageId(key,preview){return 'vinterpost-utmaning-v1-'+year+'-'+key+'-'+(preview?'prov':'elev')}
+  const answerKey = value => String(value).normalize('NFKC').toLocaleLowerCase('sv-SE')
+    .replace(/[\p{P}\p{Z}\s]+/gu,' ').trim();
+  function acceptsText(input, answers) {
+    const key=answerKey(input);
+    return !!key && answers.some(answer=>answerKey(answer)===key);
+  }
+  function shuffledOrder(length) {
+    const steps=Array.from({length},(_,id)=>id);
+    for(let i=length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[steps[i],steps[j]]=[steps[j],steps[i]]}
+    if(isCorrectOrder(steps)&&length>1)[steps[0],steps[1]]=[steps[1],steps[0]];
+    return steps;
+  }
+  function isCorrectOrder(steps){return steps.length>=3 && steps.every((value,i)=>value===i)}
+  return {today,dayState,orders,storageId,acceptsText,shuffledOrder,isCorrectOrder}
 })();
 if(typeof module!=='undefined'&&module.exports)module.exports=Calendar;
 
 (() => {
 'use strict';
 const $=id=>document.getElementById(id), data=JSON.parse($('edition').textContent);
-let activeCover='',key=Object.keys(data.classes)[0],seen=new Set(),lastDate='',openTimer=null,returnTarget=null,viewerFullscreen=false;
+let activeCover='',key=Object.keys(data.classes)[0],seen=new Set(),lastDate='',returnTarget=null,viewerFullscreen=false;
+let pendingDay=null,currentChallenge=null,stepOrder=[],zoom=null;
 const preview=data.preview, scene=$('scene'), deck=$('doors'), modal=$('story'), cover=$('cover');
 const motion=window.matchMedia('(prefers-reduced-motion: reduce)');
 function config(){return data.classes[key]}
@@ -215,46 +305,265 @@ function alignImages(){
    f.style.backgroundPosition=((r.width-w)*pos[0]+r.left-s.left-1)+'px '+((r.height-h)*pos[1]+r.top-s.top-1)+'px';
  }
 }
+function animateFromDoor(door){
+ if(motion.matches||!modal.animate||!door)return;
+ const source=door.getBoundingClientRect(),target=modal.getBoundingClientRect();
+ if(!target.width||!target.height||!source.width||!source.height)return;
+ const sx=Math.min(.94,source.width/target.width),sy=Math.min(.94,source.height/target.height);
+ const dx=source.left+source.width/2-target.left-target.width/2,dy=source.top+source.height/2-target.top-target.height/2;
+ zoom=modal.animate([{transform:'translate('+dx+'px,'+dy+'px) scale('+sx+','+sy+')',opacity:.66},
+   {transform:'translate(0,0) scale(1,1)',opacity:1}],{duration:520,easing:'cubic-bezier(.17,.76,.22,1)'});
+}
+function feedback(text,state='') {const el=$('challenge-feedback');el.dataset.state=state;el.textContent=text}
+function orderButtons(){
+ const list=$('challenge-list');list.replaceChildren();
+ for(const [position,id] of stepOrder.entries()){
+  const line=document.createElement('li'),label=document.createElement('span');label.textContent=currentChallenge.items[id];line.append(label);
+  for(const [move,word,arrow] of [[-1,'upp','↑'],[1,'ned','↓']]){
+   const button=document.createElement('button');button.type='button';button.className='order-move';
+   button.dataset.key=String(id)+':'+move;button.textContent=arrow;
+   button.setAttribute('aria-label','Flytta '+label.textContent+' '+word);
+   button.setAttribute('aria-disabled',String(position+move<0||position+move>=stepOrder.length));
+   button.addEventListener('click',()=>{
+    const dest=position+move;if(dest<0||dest>=stepOrder.length)return;
+    [stepOrder[position],stepOrder[dest]]=[stepOrder[dest],stepOrder[position]];orderButtons();
+    const same=list.querySelector('[data-key="'+id+':'+move+'"]');
+    (same.getAttribute('aria-disabled')==='true'?list.querySelector('[data-key="'+id+':'+(-move)+'"]'):same).focus();
+    feedback(label.textContent+' flyttades till plats '+(dest+1)+' av '+stepOrder.length+'.');
+   });line.append(button);
+  }
+  list.append(line);
+ }
+}
+function reveal(first){
+ if(!currentChallenge||!pendingDay)return;
+ if(first){remember(pendingDay);feedback('Rätt! Förklaringen är upplåst.','right')}
+ else feedback('');
+ $('solution').hidden=false;$('guess-box').hidden=true;
+ $('solution').tabIndex=-1;$('solution').focus({preventScroll:true});
+ if(first)$('solution').scrollIntoView({block:'nearest',behavior:motion.matches?'instant':'smooth'});
+}
 function open(day,trigger){
- if(openTimer!==null||modal.open)return;
+ if(modal.open)return;
  const st=stat(day),story=config().stories[day];
  if(st!=='ready'&&st!=='opened'){setStatus(st==='planned'?'Lucka '+day+' har ännu inte publicerats.':'Lucka '+day+' är stängd till den '+day+' december.');return}
- const b=deck.querySelector('[data-day="'+day+'"]');
- b.classList.add('opened');if(st!=='opened')b.classList.add('opening');returnTarget=trigger||b;remember(day);
- b.setAttribute('aria-label','Lucka '+day+' december: öppnad här, visa igen');
+ const door=deck.querySelector('[data-day="'+day+'"]');
+ returnTarget=trigger||door;
+ pendingDay=day;currentChallenge=story.challenge;
+ dialogSetup(story,day);
+ modal.showModal();document.body.classList.add('reading');modal.scrollTop=0;animateFromDoor(door);
+ if(st==='opened')reveal(false);else $('challenge-title').focus({preventScroll:true});
+}
+function dialogSetup(story,day){
  modal.dataset.station=key;$('story-image').src=story.image;$('story-image').alt=story.alt;$('story-day').textContent=String(day).padStart(2,'0');
  $('story-meta').textContent=key.toUpperCase()+'  /  '+story.subject.toLocaleUpperCase('sv')+'  /  '+day+' DECEMBER';
- $('story-title').textContent=story.title;$('story-lead').textContent=story.lead;$('question').textContent=story.question;$('big-question').textContent=story.question;$('explain').textContent=story.answer;$('twist').textContent=story.twist;
+ $('story-title').textContent=story.title;$('story-lead').textContent=story.lead;
+ $('question').textContent=currentChallenge.prompt;$('big-question').textContent=currentChallenge.prompt;
+ $('story-question').textContent=story.question;$('explain').textContent=story.answer;$('twist').textContent=story.twist;
  $('sources').replaceChildren();for(const [label,url] of story.sources){let li=document.createElement('li'),a=document.createElement('a');a.href=url;a.textContent=label;a.target='_blank';a.rel='noopener noreferrer';li.append(a);$('sources').append(li)}
- $('solution').hidden=true;$('guess-box').hidden=false;$('reveal').hidden=false;$('reveal').setAttribute('aria-expanded','false');modal.querySelector('details').open=false;
- const wait=st==='opened'||motion.matches?0:530;
- openTimer=setTimeout(()=>{openTimer=null;modal.showModal();document.body.classList.add('reading');modal.scrollTop=0;$('reveal').focus({preventScroll:true})},wait);
+ const ordering=currentChallenge.type==='order';
+ $('challenge-text').hidden=ordering;$('challenge-order').hidden=!ordering;$('challenge-answer').value='';
+ $('reveal').textContent=ordering?'Kontrollera ordningen':'Kontrollera svaret';
+ $('challenge-hint').hidden=true;$('challenge-hint').textContent=currentChallenge.hint;$('challenge-hint-toggle').textContent='Visa ledtråd';
+ $('challenge-hint-toggle').setAttribute('aria-expanded','false');feedback('');
+ if(ordering){stepOrder=Calendar.shuffledOrder(currentChallenge.items.length);orderButtons();}
+ $('solution').hidden=true;$('guess-box').hidden=false;modal.querySelector('details').open=false;
 }
 deck.addEventListener('click',e=>{const b=e.target.closest('.door');if(b)open(Number(b.dataset.day),b)});
 $('quick').addEventListener('click',()=>open(Number($('quick').dataset.day),$('quick')));
-function reveal(){$('solution').hidden=false;$('guess-box').hidden=true;$('reveal').setAttribute('aria-expanded','true');$('reveal').hidden=true;$('solution').tabIndex=-1;$('solution').focus({preventScroll:true});$('solution').scrollIntoView({block:'nearest',behavior:motion.matches?'instant':'smooth'})}
-$('reveal').addEventListener('click',reveal);
+$('challenge-hint-toggle').addEventListener('click',()=>{
+ const h=$('challenge-hint');h.hidden=!h.hidden;
+ $('challenge-hint-toggle').setAttribute('aria-expanded',String(!h.hidden));
+ $('challenge-hint-toggle').textContent=h.hidden?'Visa ledtråd':'Dölj ledtråd';
+});
+$('challenge-form').addEventListener('submit',ev=>{
+ ev.preventDefault();if(!currentChallenge||$('guess-box').hidden)return;
+ const order=currentChallenge.type==='order', input=$('challenge-answer');
+ if(order?Calendar.isCorrectOrder(stepOrder):Calendar.acceptsText(input.value,currentChallenge.answers))reveal(true);
+ else {
+  feedback(!order&&!input.value.trim()?'Skriv ett svar först.':order?'Inte riktigt. Ändra ordningen eller ta en ledtråd.':'Inte riktigt. Försök igen eller ta en ledtråd.','try');
+  if(!order)input.focus();
+ }
+});
 function imageMode(on,request,keepFullscreen=false){
  modal.classList.toggle('wide-image',on);$('enlarge').setAttribute('aria-pressed',String(on));$('enlarge').querySelector('span').textContent=on?'Tillbaka till luckan':'Förstora bilden';
- $('picture-caption').hidden=!on;$('story-copy').hidden=on;$('picture-reveal').textContent=$('solution').hidden?'Visa förklaringen':'Till förklaringen';
+ $('picture-caption').hidden=!on;$('story-copy').hidden=on;$('picture-reveal').textContent=$('solution').hidden?'Till uppgiften':'Till förklaringen';
  if(on){modal.scrollTop=0;if(request&&!document.fullscreenElement&&document.documentElement.requestFullscreen){try{const req=document.documentElement.requestFullscreen();if(req&&req.then)req.then(()=>{if(modal.open)viewerFullscreen=true;else if(document.fullscreenElement)document.exitFullscreen().catch(()=>{})}).catch(()=>{})}catch{}}}
  else if(!keepFullscreen&&viewerFullscreen){viewerFullscreen=false;if(document.fullscreenElement)document.exitFullscreen().catch(()=>{})}
 }
 $('enlarge').addEventListener('click',()=>imageMode(!modal.classList.contains('wide-image'),true));
-$('picture-reveal').addEventListener('click',()=>{imageMode(false,false,true);reveal()});
+$('picture-reveal').addEventListener('click',()=>{imageMode(false,false,true);($('solution').hidden?$('challenge-title'):$('solution')).focus()});
 function close(){if(modal.open)modal.close()}
 $('close').addEventListener('click',close);$('back').addEventListener('click',close);
 modal.addEventListener('click',e=>{if(e.target!==modal)return;const r=modal.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)close()});
-modal.addEventListener('close',()=>{imageMode(false,false);document.body.classList.remove('reading');const day=returnTarget?.dataset.day;const toQuick=returnTarget===$('quick');render();(toQuick?$('quick'):deck.querySelector('[data-day="'+day+'"]'))?.focus({preventScroll:true});returnTarget=null});
+modal.addEventListener('close',()=>{zoom?.cancel();zoom=null;pendingDay=null;currentChallenge=null;imageMode(false,false);document.body.classList.remove('reading');const day=returnTarget?.dataset.day;const toQuick=returnTarget===$('quick');render();(toQuick?$('quick'):deck.querySelector('[data-day="'+day+'"]'))?.focus({preventScroll:true});returnTarget=null});
 const select=$('select-class');
-if(select)select.addEventListener('change',()=>{if(openTimer!==null){clearTimeout(openTimer);openTimer=null}if(!Object.hasOwn(data.classes,select.value))return;key=select.value;loadSeen();render()});
-function projector(on){document.body.classList.toggle('projecting',on);$('projector').setAttribute('aria-pressed',String(on));$('projector').querySelector('span').textContent=on?'Avsluta projektorläge':'Projektorläge';requestAnimationFrame(alignImages)}
+if(select)select.addEventListener('change',()=>{if(modal.open)close();if(!Object.hasOwn(data.classes,select.value))return;key=select.value;loadSeen();render()});
+function projector(on){document.body.classList.toggle('projecting',on);$('projector').setAttribute('aria-pressed',String(on));$('projector').querySelector('span').textContent=on?'Avsluta projektorläge':'Projektorläge';$('projector').title=on?'Avsluta projektorläge':'Projektorläge';requestAnimationFrame(alignImages)}
 $('projector').addEventListener('click',async()=>{let on=!document.body.classList.contains('projecting');projector(on);try{if(on&&document.documentElement.requestFullscreen){await document.documentElement.requestFullscreen()}else if(!on&&document.fullscreenElement){await document.exitFullscreen()}}catch{}});
 document.addEventListener('fullscreenchange',()=>{if(!document.fullscreenElement){viewerFullscreen=false;projector(false);if(modal.open&&modal.classList.contains('wide-image'))imageMode(false,false)}});
-function checkClock(){if(Calendar.today()!==lastDate&&!modal.open&&openTimer===null)render()}
+function checkClock(){if(Calendar.today()!==lastDate&&!modal.open)render()}
 document.addEventListener('visibilitychange',checkClock);window.addEventListener('focus',checkClock);setInterval(checkClock,30000);
 cover.addEventListener('load',alignImages);if('ResizeObserver' in window)new ResizeObserver(()=>requestAnimationFrame(alignImages)).observe(scene);else window.addEventListener('resize',alignImages,{passive:true});
 loadSeen();render();
+})();
+</script>
+<script id="teacher-local-js">(() => {
+'use strict';
+const $=id=>document.getElementById(id), entry=$('teacher-entry'), gate=$('teacher-local'), viewer=$('teacher-view');
+const input=$('teacher-file'), field=$('teacher-code'), status=$('teacher-status'), label=$('teacher-current'), confirm=$('teacher-unlock'), remove=$('teacher-remove');
+const encoder=new TextEncoder(), decoder=new TextDecoder('utf-8',{fatal:true}), CLASSES=['a1','d1','e1'];
+const student=Object.keys(JSON.parse($('edition').textContent).classes)[0];
+const MAX=28*1024*1024, DB='vinterobservatoriet-2026-private', STORE='calendars', ID='teacher-2026', AAD=encoder.encode('vinterpost-lararvisning-v2');
+const base=document.documentElement.cloneNode(true);
+let dbPromise,stored=null,pending=null,seq=0,busy=false,frame=null;
+const B64=/^[A-Za-z0-9+/]+={0,2}$/;
+function syntax(s,n){return typeof s==='string'&&s.length<=n&&s.length>0&&s.length%4===0&&B64.test(s)}
+function bytes(s){const raw=atob(s), b=new Uint8Array(raw.length);for(let i=0;i<raw.length;i++)b[i]=raw.charCodeAt(i);return b}
+function clean(claim){
+ if(!claim||claim.v!==2||claim.iterations!==600000||!syntax(claim.salt,32)||bytes(claim.salt).length!==24||!syntax(claim.iv,16)||bytes(claim.iv).length!==12||
+ !syntax(claim.payload,MAX)||claim.payload.length<32)throw new Error('Ogiltigt krypteringsformat');
+ return {v:2,iterations:600000,salt:claim.salt,iv:claim.iv,payload:claim.payload};
+}
+function onlyJSON(source,id){
+ // Extract JSON text, not the file's DOM. Parsing any arbitrary HTML could initiate
+ // resource loads even in an inert document. Restrict to one script body with no tags.
+ const escaped=id.replace(/[^a-z]/g,'');
+ const p=new RegExp('<script\\b(?=[^<>]*\\bid=["\']'+escaped+'["\'])(?=[^<>]*\\btype=["\']application/json["\'])[^<>]*>([^<]*)'+'<\\/script\\s*>','gi');
+ const m=p.exec(source);if(!m||p.exec(source))throw new Error('Saknar ett entydigt paket');
+ const doc=new DOMParser().parseFromString('<script type="application/json" id="'+escaped+'">'+m[1]+'<\/script>','text/html');
+ return JSON.parse(doc.getElementById(escaped).textContent);
+}
+function db(){
+ if(!dbPromise)dbPromise=new Promise((resolve,reject)=>{
+  try{const r=indexedDB.open(DB,1);r.onupgradeneeded=()=>r.result.createObjectStore(STORE);r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error);r.onblocked=()=>reject(new Error('Lagringen är blockerad'))}
+  catch(e){reject(e)}
+ });
+ return dbPromise;
+}
+async function tx(mode,op){
+ const d=await db();return new Promise((resolve,reject)=>{
+ const t=d.transaction(STORE,mode),r=op(t.objectStore(STORE));
+ t.oncomplete=()=>resolve(r.result);t.onerror=()=>reject(t.error);t.onabort=()=>reject(t.error);
+ });
+}
+function update(){
+ label.textContent=pending?'Ny fil vald. Skriv lärarkoden för att kontrollera den.':stored?'Lärarfil finns sparad i den här webbläsaren.':'Ingen lärarfil är inläst här än.';
+ remove.disabled=busy||!stored;confirm.disabled=busy;input.disabled=busy;
+}
+async function readStored(){
+ try{const raw=await tx('readonly',o=>o.get(ID));stored=raw?clean(raw):null}catch{stored=null}
+ if(gate.open)update();
+}
+function reqString(v,limit){if(typeof v!=='string'||!v.trim()||v.length>limit)throw new Error('Ogiltig kalenderdata');return v}
+function webp(v){
+ if(typeof v!=='string'||!v.startsWith('data:image/webp;base64,'))throw new Error('Ogiltig bild');
+ const e=v.slice(23);if(!syntax(e,2200000)||e.length<20)throw new Error('Ogiltig bild');
+ const prefix=atob(e.slice(0,16));if(prefix.slice(0,4)!=='RIFF'||prefix.slice(8,12)!=='WEBP')throw new Error('Ogiltig bild');
+ return v;
+}
+function validatedChallenge(value){
+ if(!value||!['text','order'].includes(value.type))throw new Error('Lärarfilen saknar aktuell luckutmaning');
+ const order=value.type==='order',field=order?'items':'answers';
+ if(!Array.isArray(value[field])||value[field].length<(order?3:1)||value[field].length>35)
+   throw new Error('Ogiltig luckutmaning');
+ const parts=value[field].map(v=>reqString(v,250));
+ if(order&&new Set(parts).size!==parts.length)throw new Error('Ogiltig ordning');
+ return {type:value.type,prompt:reqString(value.prompt,500),hint:reqString(value.hint,350),[field]:parts};
+}
+function teacherData(value){
+ if(!value||value.preview!==true||!value.classes||Object.keys(value.classes).length!==3)throw new Error('Fel typ av lärarpaket');
+ const classes={};
+ for(const cls of [student,...CLASSES.filter(x=>x!==student)]){
+  if(!CLASSES.includes(cls)||!Object.hasOwn(value.classes,cls))throw new Error('Fel klass');
+  const v=value.classes[cls];if(!v||!v.stories||Object.keys(v.stories).length>24)throw new Error('Ogiltiga luckor');
+  const stories={};
+  for(const [k,s] of Object.entries(v.stories)){
+   if(!/^(?:[1-9]|1[0-9]|2[0-4])$/.test(k)||!s||!Array.isArray(s.sources)||s.sources.length>12)throw new Error('Ogiltig lucka');
+   let story={};for(const f of ['title','lead','question','answer','twist','subject','alt'])story[f]=reqString(s[f],2500);
+   story.challenge=validatedChallenge(s.challenge);
+   story.image=webp(s.image);
+   story.sources=s.sources.map(x=>{
+    if(!Array.isArray(x)||x.length!==2)throw new Error('Ogiltig källa');
+    const url=new URL(reqString(x[1],1800));if(url.protocol!=='https:'||url.username||url.password)throw new Error('Ogiltig källa');
+    return [reqString(x[0],800),url.href];
+   });
+   stories[k]=story;
+  }
+  const position=typeof v.position==='string'&&/^\d{1,3}% \d{1,3}%$/.test(v.position)?v.position:'50% 48%';
+  classes[cls]={stories,position,cover:webp(v.cover),coverAlt:reqString(v.coverAlt,350)};
+ }
+ return {preview:true,classes};
+}
+function newFrame(data){
+ const root=base.cloneNode(true);
+ for(const n of root.querySelectorAll('[data-teacher-portal],#teacher-entry,#teacher-local-js'))n.remove();
+ // This shell is from current public page, not from the uploaded or decrypted HTML.
+ const owner=root.ownerDocument, meta=owner.createElement('meta');
+ meta.httpEquiv='Content-Security-Policy';
+ meta.content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'";
+ root.querySelector('head').prepend(meta);
+ root.querySelector('#cover').removeAttribute('src');root.querySelector('#cover').removeAttribute('style');root.querySelector('#cover').alt='';root.querySelector('#scene').removeAttribute('style');
+ const options=owner.createElement('select'); options.id='select-class';options.setAttribute('aria-label','Välj klass');
+ for(const k of Object.keys(data.classes)){const o=owner.createElement('option');o.value=k;o.textContent=k.toUpperCase();options.append(o)}
+ const tools=owner.createElement('div');tools.className='teacher teacher-preview-tag';
+ tools.append(options);root.querySelector('.scene-controls').prepend(tools);
+ root.querySelector('.top-kicker').firstChild.textContent='Lärarläge · ';
+ root.querySelector('#edition').textContent=JSON.stringify(data).replace(/</g,'\\u003c').replace(/>/g,'\\u003e');
+ root.querySelector('#doors').textContent='';root.querySelector('#status').textContent='';
+ const next=owner.createElement('iframe');next.title='Lärarkalender · tre klasser';
+ next.setAttribute('sandbox','allow-scripts allow-popups allow-popups-to-escape-sandbox allow-presentation');
+ next.setAttribute('allow','fullscreen');next.allowFullscreen=true;
+ next.srcdoc='<!doctype html>'+root.outerHTML;return next;
+}
+entry.addEventListener('click',()=>{
+ if(!gate.open){gate.showModal();update();readStored();status.textContent='';(stored?field:input).focus()}
+});
+$('teacher-close').addEventListener('click',()=>gate.close());
+gate.addEventListener('close',()=>{seq++;busy=false;pending=null;field.value='';input.value='';update();if(!viewer.open)entry.focus()});
+input.addEventListener('change',async ()=>{
+ const f=input.files?.[0];pending=null;status.textContent='';if(!f){update();return}
+ if(f.size<128||f.size>MAX){status.textContent='Filen är tom eller för stor. Välj den krypterade lärarfilen.';update();return}
+ const token=++seq;
+ try{const text=await f.text();if(token!==seq||!gate.open)return;pending=clean(onlyJSON(text,'sealed'));field.focus()}
+ catch{if(token===seq){status.textContent='Filen känns inte igen. Välj den krypterade lärarfilen (.html).';input.value=''}}
+ update();
+});
+$('teacher-local-form').addEventListener('submit',async e=>{
+ e.preventDefault();if(busy)return;
+ const sealed=pending||stored;
+ if(!sealed){field.value='';status.textContent='Läs först in den krypterade lärarfilen.';input.focus();return}
+ if(!window.isSecureContext||!crypto?.subtle){status.textContent='Använd kalenderns HTTPS-länk i en aktuell webbläsare.';return}
+ if(!field.value)return;
+ const token=++seq;busy=true;update();status.textContent='Låser upp …';const secret=encoder.encode(field.value);field.value='';
+ let clear=null;
+ try{
+  const material=await crypto.subtle.importKey('raw',secret,'PBKDF2',false,['deriveKey']);secret.fill(0);
+  const key=await crypto.subtle.deriveKey({name:'PBKDF2',hash:'SHA-256',salt:bytes(sealed.salt),iterations:sealed.iterations},material,{name:'AES-GCM',length:256},false,['decrypt']);
+  clear=await crypto.subtle.decrypt({name:'AES-GCM',iv:bytes(sealed.iv),additionalData:AAD},key,bytes(sealed.payload));
+  if(token!==seq||!gate.open)return;
+  const trusted=teacherData(onlyJSON(decoder.decode(clear),'edition'));
+  const next=newFrame(trusted);
+  if(pending){try{await tx('readwrite',o=>o.put(sealed,ID));stored=sealed}catch{stored=null;next.title+=' · ej sparad på enheten'}}
+  if(token!==seq||!gate.open)return;
+  frame=next;
+  try{viewer.prepend(frame);viewer.showModal()}catch(error){frame.removeAttribute('srcdoc');frame.remove();frame=null;throw error}
+  gate.close();
+  document.body.classList.add('local-teacher');$('teacher-relock').focus();
+ }catch{if(token===seq&&gate.open){status.textContent='Kunde inte låsa upp. Kontrollera lärarkoden och att filen är rätt.';field.focus()}}
+ finally{secret.fill(0);if(clear)new Uint8Array(clear).fill(0);if(token===seq){busy=false;update()}}
+});
+remove.addEventListener('click',async ()=>{
+ if(!stored||busy)return;
+ busy=true;update();
+ try{await tx('readwrite',o=>o.delete(ID));stored=null;pending=null;field.value='';input.value='';status.textContent='Lärarfilen har tagits bort från den här webbläsaren.';update();input.focus()}
+ catch{status.textContent='Kunde inte ta bort den lokalt sparade lärarfilen.'}
+ finally{busy=false;update()}
+});
+function lock(){if(frame){frame.removeAttribute('srcdoc');frame.remove();frame=null}document.body.classList.remove('local-teacher');if(viewer.open)viewer.close()}
+$('teacher-relock').addEventListener('click',lock);
+viewer.addEventListener('close',()=>{lock();if(!gate.open)entry.focus()});
+window.addEventListener('pagehide',()=>{seq++;lock();if(gate.open)gate.close()});
 })();
 </script>
 </body></html>
