@@ -22,7 +22,7 @@ vm.runInContext(`
 assert.equal(BOARDS.length,2);
 for(const [i,p] of BOARDS.entries()){
  loadBoard(i);
- assert.equal(p.entries.length,i===0?12:10);
+ assert.equal(p.entries.length,i===0?38:49);
  for(const e of p.entries){
   const k=coords(e);
   k.forEach((v,j)=>{assert.equal(tiles.get(v).answer,e.a[j]);assert.ok(tiles.get(v).entries.length<=2);});
@@ -31,6 +31,9 @@ for(const [i,p] of BOARDS.entries()){
  let got=new Set([p.entries[0]]);
  for(let j=0;j<p.entries.length;j++) for(const e of got) for(const k of coords(e)) for(const n of tiles.get(k).entries)got.add(n);
  assert.equal(got.size,p.entries.length,"Sammanhängande rutnät");
+ assert.equal([...tiles.values()].filter(t=>t.entries.length===2).length,p.crossings);
+ for(const e of p.entries){const k=coords(e);assert.ok(!tiles.has(key(e.x-(e.d==="h"?1:0),e.y-(e.d==="v"?1:0))));assert.ok(!tiles.has(key(e.x+(e.d==="h"?k.length:0),e.y+(e.d==="v"?k.length:0))));}
+ select(p.entries[0],null,false);$("whole").value=p.entries[0].a;$("wordform").handlers.submit({preventDefault(){}});assert.ok(correct(active));values.clear();save();loadBoard(i);
  select(p.entries[0],null,false);
  $("check").onclick(); assert.match($("status").textContent,/alla rutor/);
  const first=coords(active)[0]; $("spark").onclick(); assert.equal(values.get(first),active.a[0]);
@@ -45,4 +48,4 @@ for(const [i,p] of BOARDS.entries()){
 }
 assert.equal(glyphs("ström-åäö").join(""),"STRÖMÅÄÖ");
 `,context);
-console.log("2 bräden och 22 ord: geometri, hjälp, rättning, svensk inmatning, separat lagring, slutförande och återställning godkända.");
+console.log("2 bräden och 87 ord: geometri, hjälp, rättning, svensk inmatning, separat lagring, slutförande och återställning godkända.");

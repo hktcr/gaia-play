@@ -1,0 +1,360 @@
+[
+  {
+    "title": "Ellära från grunden",
+    "entries": [
+      {
+        "a": "ÖPPEN",
+        "q": "En krets med en avbruten väg. Genom den enkla kretsen går då ingen stadig ström."
+      },
+      {
+        "a": "BRYTARE",
+        "q": "Den här delen öppnar eller sluter kretsen utan att man behöver ta bort en sladd."
+      },
+      {
+        "a": "LAMPA",
+        "q": "I ett vanligt kopplingsschema ritas den som ett kryss i en cirkel."
+      },
+      {
+        "a": "RESISTANS",
+        "q": "Egenskapen som begränsar strömmen: vid samma spänning ger mer av den här egenskapen mindre ström."
+      },
+      {
+        "a": "SPÄNNING",
+        "q": "Energi per mängd laddning mellan två punkter. Mäts i volt."
+      },
+      {
+        "a": "SCHEMA",
+        "q": "När vi ritar kretsen med symboler i stället för att avbilda delarna: ett kopplings…"
+      },
+      {
+        "a": "AMPERE",
+        "q": "Enheten för ström."
+      },
+      {
+        "a": "STRÖM",
+        "q": "Hur mycket elektrisk laddning som passerar en plats per sekund."
+      },
+      {
+        "a": "KRETS",
+        "q": "En elektrisk väg med komponenter, till exempel batteri, brytare och lampa."
+      },
+      {
+        "a": "SLUTEN",
+        "q": "Så beskriver vi kretsen när det finns en obruten väg hela vägen runt."
+      },
+      {
+        "a": "BATTERI",
+        "q": "Omvandlar kemisk energi och håller en spänning mellan sina poler."
+      },
+      {
+        "a": "LEDNING",
+        "q": "Förbinder komponenter. I kopplingsschemat ritas den oftast som ett streck."
+      },
+      {
+        "a": "VOLT",
+        "q": "Enheten för spänning."
+      },
+      {
+        "a": "OHM",
+        "q": "Enheten för resistans."
+      },
+      {
+        "a": "VOLTMETER",
+        "q": "Instrument som mäter spänningen mellan två punkter."
+      },
+      {
+        "a": "AMPEREMETER",
+        "q": "Instrument som mäter strömmen genom den gren det kopplas in i."
+      },
+      {
+        "a": "ISOLATOR",
+        "q": "Material där elektrisk laddning har svårt att förflytta sig, till exempel torr plast."
+      },
+      {
+        "a": "LEDARE",
+        "q": "Material där laddningar kan röra sig lätt, till exempel en metall."
+      },
+      {
+        "a": "LIKSTRÖM",
+        "q": "Elektrisk ström som behåller samma riktning, som i en enkel batterikrets."
+      },
+      {
+        "a": "VÄXELSTRÖM",
+        "q": "Elektrisk ström som regelbundet byter riktning."
+      },
+      {
+        "a": "SERIEKOPPLING",
+        "q": "Komponenterna ligger efter varandra på en enda väg för strömmen."
+      },
+      {
+        "a": "PARALLELLKOPPLING",
+        "q": "Komponenterna ligger i olika grenar mellan samma två punkter."
+      },
+      {
+        "a": "KORTSLUTNING",
+        "q": "En oavsiktlig väg med mycket liten resistans. Strömmen kan bli så stor att ledningar överhettas."
+      },
+      {
+        "a": "SÄKRING",
+        "q": "Bryter strömmen om den blir för stor under tillräcklig tid och skyddar ledningarna."
+      },
+      {
+        "a": "JORDFELSBRYTARE",
+        "q": "Bryter snabbt om en del av strömmen tar en oväntad väg, så att lika mycket inte kommer tillbaka."
+      },
+      {
+        "a": "ELEKTRON",
+        "q": "Negativt laddad partikel. I en metall är det den här sortens laddningsbärare som rör sig."
+      },
+      {
+        "a": "PROTON",
+        "q": "Positivt laddad partikel i atomkärnan."
+      },
+      {
+        "a": "LADDNING",
+        "q": "Den elektriska egenskap som är negativ hos elektronen och positiv hos protonen."
+      },
+      {
+        "a": "OHMSLAG",
+        "q": "Vid konstant resistans blir strömmen dubbelt så stor om spänningen fördubblas. Vilken lag? Skriv ihop orden."
+      },
+      {
+        "a": "EFFEKT",
+        "q": "Hur snabbt energi överförs. För en apparat mäts storheten i watt."
+      },
+      {
+        "a": "WATT",
+        "q": "Enheten för effekt."
+      },
+      {
+        "a": "ENERGI",
+        "q": "Det som överförs från batteriet och bland annat blir ljus och värme i glödlampan. Mäts i joule."
+      },
+      {
+        "a": "JOULE",
+        "q": "Enheten för energi i SI-systemet."
+      },
+      {
+        "a": "GLÖDTRÅD",
+        "q": "Den tunna delen i en gammaldags lampa som blir så het att den lyser."
+      },
+      {
+        "a": "GNISTA",
+        "q": "En liten och kortvarig elektrisk urladdning genom luft."
+      },
+      {
+        "a": "ÅSKA",
+        "q": "Väderfenomen med elektriska urladdningar i luften, ofta följda av muller."
+      },
+      {
+        "a": "URLADDNING",
+        "q": "När en skillnad i elektrisk laddning minskar genom att laddning snabbt flyttas, till exempel vid en blixt."
+      },
+      {
+        "a": "POL",
+        "q": "En av ett batteris två anslutningspunkter, märkt plus eller minus."
+      }
+    ]
+  },
+  {
+    "title": "Hela krysset: el och magnetism",
+    "entries": [
+      {
+        "a": "MAGNETFÄLT",
+        "q": "Det som finns runt en magnet eller en strömförande ledare och kan påverka en kompassnål."
+      },
+      {
+        "a": "ATTRAHERA",
+        "q": "Att dra till sig, som två olika magnetpoler gör."
+      },
+      {
+        "a": "ELEKTROMAGNET",
+        "q": "När en ström genom en spole används för att skapa en magnet som går att slå av och på."
+      },
+      {
+        "a": "NORDPOL",
+        "q": "Den ände av en kompassnål som pekar ungefär mot geografiska norr."
+      },
+      {
+        "a": "KOPPAR",
+        "q": "Metallen i många lindningstrådar; den väljs för sin goda elektriska ledningsförmåga."
+      },
+      {
+        "a": "KOMPASS",
+        "q": "Instrument med en magnetisk nål som kan hjälpa oss hitta riktningen."
+      },
+      {
+        "a": "JÄRN",
+        "q": "Grundämne som ofta används som kärna i en elektromagnet. Har symbolen Fe."
+      },
+      {
+        "a": "MAGNET",
+        "q": "Föremål som kan dra till sig till exempel järn, även utan att röra vid det."
+      },
+      {
+        "a": "SPOLE",
+        "q": "Ledande tråd lindad i flera varv. Den kan ge ett magnetfält när ström går genom den."
+      },
+      {
+        "a": "REPELLERA",
+        "q": "Ett annat ord för att stöta bort, som två likadana magnetpoler gör. Börjar på R."
+      },
+      {
+        "a": "SYDPOL",
+        "q": "Den magnetiska pol som en magnets nordpol dras mot."
+      },
+      {
+        "a": "FÄLTLINJE",
+        "q": "En ritad linje som hjälper oss visa magnetfältets riktning i en bild. Linjen är inte ett verkligt snöre i rummet."
+      },
+      {
+        "a": "INDUKTION",
+        "q": "Det som kan ge upphov till en spänning när magnetfältet genom en spole förändras."
+      },
+      {
+        "a": "GENERATOR",
+        "q": "Omvandlar rörelseenergi till elektrisk energi genom induktion."
+      },
+      {
+        "a": "ELMOTOR",
+        "q": "Omvandlar elektrisk energi till rörelse med hjälp av magnetiska krafter."
+      },
+      {
+        "a": "TRANSFORMATOR",
+        "q": "Används för att höja eller sänka en växelspänning, ofta med två spolar kring en gemensam järnkärna."
+      },
+      {
+        "a": "PERMANENTMAGNET",
+        "q": "Behåller sin magnetism utan en elektrisk ström."
+      },
+      {
+        "a": "MAGNETPOL",
+        "q": "En av de två ändar på en stavmagnet där magnetens verkan ofta är starkast."
+      },
+      {
+        "a": "RELÄ",
+        "q": "En elektriskt styrd brytare, som i en vanlig variant påverkas av en elektromagnet."
+      },
+      {
+        "a": "STRÖM",
+        "q": "Hur mycket elektrisk laddning som passerar en plats per sekund."
+      },
+      {
+        "a": "SPÄNNING",
+        "q": "Energi per mängd laddning mellan två punkter. Mäts i volt."
+      },
+      {
+        "a": "RESISTANS",
+        "q": "Egenskapen som begränsar strömmen: vid samma spänning ger mer av den här egenskapen mindre ström."
+      },
+      {
+        "a": "BATTERI",
+        "q": "Omvandlar kemisk energi och håller en spänning mellan sina poler."
+      },
+      {
+        "a": "BRYTARE",
+        "q": "Den här delen öppnar eller sluter kretsen utan att man behöver ta bort en sladd."
+      },
+      {
+        "a": "KRETS",
+        "q": "En elektrisk väg med komponenter, till exempel batteri, brytare och lampa."
+      },
+      {
+        "a": "VOLT",
+        "q": "Enheten för spänning."
+      },
+      {
+        "a": "AMPERE",
+        "q": "Enheten för ström."
+      },
+      {
+        "a": "LEDNING",
+        "q": "Förbinder komponenter. I kopplingsschemat ritas den oftast som ett streck."
+      },
+      {
+        "a": "LEDARE",
+        "q": "Material där laddningar kan röra sig lätt, till exempel en metall."
+      },
+      {
+        "a": "ISOLATOR",
+        "q": "Material där elektrisk laddning har svårt att förflytta sig, till exempel torr plast."
+      },
+      {
+        "a": "ELEKTRON",
+        "q": "Negativt laddad partikel. I en metall är det den här sortens laddningsbärare som rör sig."
+      },
+      {
+        "a": "EFFEKT",
+        "q": "Hur snabbt energi överförs. För en apparat mäts storheten i watt."
+      },
+      {
+        "a": "ENERGI",
+        "q": "Det som överförs från batteriet och bland annat blir ljus och värme i glödlampan. Mäts i joule."
+      },
+      {
+        "a": "SERIEKOPPLING",
+        "q": "Komponenterna ligger efter varandra på en enda väg för strömmen."
+      },
+      {
+        "a": "PARALLELLKOPPLING",
+        "q": "Komponenterna ligger i olika grenar mellan samma två punkter."
+      },
+      {
+        "a": "LIKSTRÖM",
+        "q": "Elektrisk ström som behåller samma riktning, som i en enkel batterikrets."
+      },
+      {
+        "a": "VÄXELSTRÖM",
+        "q": "Elektrisk ström som regelbundet byter riktning."
+      },
+      {
+        "a": "AMPEREMETER",
+        "q": "Instrument som mäter strömmen genom den gren det kopplas in i."
+      },
+      {
+        "a": "VOLTMETER",
+        "q": "Instrument som mäter spänningen mellan två punkter."
+      },
+      {
+        "a": "SÄKRING",
+        "q": "Bryter strömmen om den blir för stor under tillräcklig tid och skyddar ledningarna."
+      },
+      {
+        "a": "JORDFELSBRYTARE",
+        "q": "Bryter snabbt om en del av strömmen tar en oväntad väg, så att lika mycket inte kommer tillbaka."
+      },
+      {
+        "a": "KORTSLUTNING",
+        "q": "En oavsiktlig väg med mycket liten resistans. Strömmen kan bli så stor att ledningar överhettas."
+      },
+      {
+        "a": "OHMSLAG",
+        "q": "Vid konstant resistans blir strömmen dubbelt så stor om spänningen fördubblas. Vilken lag? Skriv ihop orden."
+      },
+      {
+        "a": "WATT",
+        "q": "Enheten för effekt."
+      },
+      {
+        "a": "LAMPA",
+        "q": "I ett vanligt kopplingsschema ritas den som ett kryss i en cirkel."
+      },
+      {
+        "a": "SLUTEN",
+        "q": "Så beskriver vi kretsen när det finns en obruten väg hela vägen runt."
+      },
+      {
+        "a": "ÖPPEN",
+        "q": "En krets med en avbruten väg. Genom den enkla kretsen går då ingen stadig ström."
+      },
+      {
+        "a": "GLÖDTRÅD",
+        "q": "Den tunna delen i en gammaldags lampa som blir så het att den lyser."
+      },
+      {
+        "a": "PROTON",
+        "q": "Positivt laddad partikel i atomkärnan."
+      }
+    ]
+  }
+]
