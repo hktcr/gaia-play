@@ -1,0 +1,1 @@
+#board .tile.solved input{background:#96e6ad;color:#103020;border-color:#6ec789;box-shadow:inset 0 0 0 1px #66b582}#board .tile.solved b{color:#18422a}#board .tile.solved input:focus-visible{outline-color:var(--gold)}.sibling span{margin:0 .3rem}
