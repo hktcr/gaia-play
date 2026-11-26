@@ -1,1 +1,9 @@
 #board .tile.solved input{background:#96e6ad;color:#103020;border-color:#6ec789;box-shadow:inset 0 0 0 1px #66b582}#board .tile.solved b{color:#18422a}#board .tile.solved input:focus-visible{outline-color:var(--gold)}.sibling span{margin:0 .3rem}
+/* A single, modest strike, without a page flash or repeated animation. */
+#board .tile.thunder input{outline:2px solid #af771e;outline-offset:-3px;animation:thunder-arrival .65s ease-out}
+@keyframes thunder-arrival{0%{box-shadow:inset 0 0 0 3px #ffae35;background-color:#fff1b0}100%{box-shadow:inset 0 0 0 0 transparent}}
+@media(prefers-reduced-motion:reduce){#board .tile.thunder input{animation:none}}
+#board .tile.thunder{position:relative}
+#board .tile.thunder::after{content:"";pointer-events:none;position:absolute;width:12px;height:19px;left:calc(50% - 6px);top:calc(50% - 15px);background:#ffcb69;clip-path:polygon(53% 0%,14% 53%,46% 53%,32% 100%,87% 40%,55% 40%,71% 0%);opacity:0;z-index:4;animation:thunder-bolt .65s ease-out}
+@keyframes thunder-bolt{0%{transform:translateY(-10px);opacity:0}25%{transform:translateY(0);opacity:1}100%{opacity:0}}
+@media(prefers-reduced-motion:reduce){#board .tile.thunder::after{display:none}}

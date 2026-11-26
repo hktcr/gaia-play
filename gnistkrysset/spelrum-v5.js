@@ -1,0 +1,89 @@
+
+const $=id=>document.getElementById(id);
+const english=PUZZLE_DATA.locale==="en";
+const L=(sv,en)=>english?en:sv;
+const glyphs=s=>Array.from(s.toLocaleUpperCase(L("sv-SE","en-GB")).normalize("NFC").replace(english?/[^A-Z]/g:/[^A-ZÅÄÖ]/g,""));
+const PUZZLE=PUZZLE_DATA.board;
+const KEY=english?"gnistkrysset:en:v1":"gnistkrysset:v2:"+PUZZLE_DATA.originalIndex;
+let verified=new Set(), flagged=new Set();
+const THUNDER_KEY=KEY+":thunder-unlocked-v1";
+function maybeThunder(){
+  if(verified.size<5)return "";
+  // Do not complete another word automatically or overwrite anyone’s input.
+  const candidates=[...tiles.entries()].filter(([k,t])=>!values.has(k)&&t.entries.every(e=>coords(e).filter(pos=>!values.has(pos)).length>=2));
+  if(!candidates.length)return "";
+  const view=$("board").parentElement.getBoundingClientRect();
+  const visible=candidates.filter(([,t])=>{const b=t.el.getBoundingClientRect();return b.width>0&&b.top>=view.top&&b.left>=view.left&&b.bottom<=Math.min(view.bottom,window.innerHeight)&&b.right<=Math.min(view.right,window.innerWidth);});
+  const [k,t]=(visible.length?visible:candidates)[0];
+  try{if(localStorage.getItem(THUNDER_KEY))return "";localStorage.setItem(THUNDER_KEY,"1");}catch{return "";}
+  set(k,t.answer);
+  t.el.classList.add("thunder");
+  save();
+  const e=t.entries[0],i=coords(e).indexOf(k)+1;
+  return L(" Åskan slog ner! En bokstav dök upp vid "," Lightning strike! One letter appeared at ")+heading(e)+L(", ruta ",", square ")+i+" ("+t.answer+").";
+}
+const paint=()=>{const green=new Set([...verified].flatMap(coords));for(const [k,t] of tiles){t.el.classList.toggle("solved",green.has(k));t.el.classList.toggle("wrong",!green.has(k)&&flagged.has(k));}};
+let board,values=new Map(),tiles=new Map(),active,focusKey=null;
+const key=(x,y)=>x+","+y;
+const coords=e=>Array.from(e.a,(_,i)=>key(e.x+(e.d==="h"?i:0),e.y+(e.d==="v"?i:0)));
+const heading=e=>e.n+" "+(e.d==="h"?L("Vågrätt","Across"):L("Lodrätt","Down"));
+function save(){try{localStorage.setItem(KEY,JSON.stringify([...values]));}catch{}}
+function mark(s){$("status").textContent=s;}
+function set(k,v){if((values.get(k)||"")!==v){for(const ent of tiles.get(k).entries)verified.delete(ent);flagged.delete(k);}if(v)values.set(k,v);else values.delete(k);tiles.get(k).input.value=v;}
+function focus(k){const q=tiles.get(k);if(!q)return;focusKey=k;q.input.focus({preventScroll:true});const area=$("board").parentElement,rb=area.getBoundingClientRect(),rt=q.input.getBoundingClientRect();if(rt.left<rb.left||rt.right>rb.right)area.scrollLeft+=rt.left-rb.left-30;if(rt.top<rb.top||rt.bottom>rb.bottom)area.scrollTop+=rt.top-rb.top-32;for(const [pos,t] of tiles)t.input.tabIndex=pos===k?0:-1;}
+function next(k,delta=1){const s=coords(active);const i=s.indexOf(k);if(s[i+delta])focus(s[i+delta]);}
+function select(e,ks,move){active=e;focusKey=ks||coords(e)[0];const s=new Set(coords(e));for(const [k,t] of tiles){t.el.classList.toggle("word",s.has(k));t.input.tabIndex=k===focusKey?0:-1;}for(const a of $("clues").querySelectorAll("button"))a.setAttribute("aria-current",String(a.dataset.word===heading(e)));$("active").textContent=heading(e)+" · "+e.q+" ("+e.a.length+L(" bokstäver)"," letters)"); setDirection(e.d); if(!$("hintbox").hidden){resetHelp();}if(move)focus(focusKey);}
+const correct=e=>coords(e).every((k,i)=>values.get(k)===e.a[i]);
+function refreshed(){paint();const n=board.entries.filter(correct).length;$("count").textContent=n+L(" av "," of ")+board.entries.length+L(" ord"," words");$("meter").max=board.entries.length;$("meter").value=n;if(n===board.entries.length)mark(L("Kretsen är sluten! Du har löst hela krysset.","Circuit complete! You solved the whole crossword."));}
+function write(k,letters){let list=coords(active),at=list.indexOf(k);mark("");for(const [i,c] of letters.entries()){const q=list[at+i];if(!q)break;set(q,c);tiles.get(q).el.classList.remove("wrong","solved");}if(letters.length)focus(list[Math.min(list.length-1,at+letters.length)]);save();refreshed();}
+function create(tag,props={},content=""){const el=document.createElement(tag);Object.assign(el,props);el.textContent=content;return el;}
+function loadBoard(){
+board=PUZZLE;tiles=new Map();values=new Map();verified=new Set();flagged=new Set();
+try{for(const [k,v] of JSON.parse(localStorage.getItem(KEY)||"[]"))if(typeof v==="string"&&glyphs(v).length===1)values.set(k,glyphs(v)[0]);}catch{}
+$("board").replaceChildren();$("clues").replaceChildren();$("board").style.setProperty("--w",board.w);
+for(const e of board.entries)for(const [i,k] of coords(e).entries()){
+const t=tiles.get(k)||{entries:[],answer:e.a[i]};t.entries.push(e);if(i===0)t.n=e.n;tiles.set(k,t);}
+for(let y=0;y<board.h;y++)for(let x=0;x<board.w;x++){
+const k=key(x,y),t=tiles.get(k),el=create("div",{className:"tile"});$("board").append(el);if(!t){el.setAttribute("aria-hidden","true");continue;}t.el=el;
+if(t.n)el.append(create("b",{},t.n));const input=create("input",{type:"text",autocomplete:"off",spellcheck:false,value:values.get(k)||""});input.setAttribute("aria-label",t.entries.map(e=>heading(e)+L(", bokstav ",", letter ")+(coords(e).indexOf(k)+1)).join(" / "));el.append(input);t.input=input;input.tabIndex=-1;
+input.addEventListener("click",()=>{const choice=t.entries.includes(active)?(focusKey===k&&t.entries.length===2?t.entries.find(e=>e!==active):active):t.entries[0];select(choice,k,false);input.select();refreshed();});
+input.addEventListener("input",ev=>{if(ev.isComposing)return;if(!t.entries.includes(active))select(t.entries[0],k,false);const l=glyphs(input.value);if(ev.inputType==="deleteContentBackward"||ev.inputType==="deleteContentForward"){write(k,[]);set(k,"");save();refreshed();return;}if(!l.length){input.value=values.get(k)||"";return;}write(k,[l.at(-1)]);});
+input.addEventListener("paste",ev=>{ev.preventDefault();if(!t.entries.includes(active))select(t.entries[0],k,false);write(k,glyphs(ev.clipboardData.getData("text")));});
+input.addEventListener("keydown",ev=>{if(ev.ctrlKey||ev.metaKey||ev.altKey)return;if(!t.entries.includes(active))select(t.entries[0],k,false);const arrows={ArrowUp:[0,-1],ArrowDown:[0,1],ArrowLeft:[-1,0],ArrowRight:[1,0]};if(ev.key==="Tab"){ev.preventDefault();stepWord(ev.shiftKey?-1:1);}else if(ev.key==="Escape"){ev.preventDefault();$("answer").focus();}else if(ev.key==="Enter"){ev.preventDefault();select(t.entries.find(e=>e!==active)||active,k,false);refreshed();}else if(arrows[ev.key]){ev.preventDefault();const [a,b]=arrows[ev.key],n=key(x+a,y+b),nt=tiles.get(n);if(nt)select(nt.entries.find(e=>e.d===(a?"h":"v"))||nt.entries[0],n,true);refreshed();}else if(ev.key==="Backspace"){ev.preventDefault();if(values.has(k)){set(k,"");tiles.get(k).el.classList.remove("wrong","solved");}else next(k,-1);mark("");save();refreshed();}else if(ev.key.length===1&&glyphs(ev.key).length){ev.preventDefault();write(k,glyphs(ev.key));}});
+}
+for(const [d,title] of [["h",L("Vågrätt","Across")],["v",L("Lodrätt","Down")]]){
+const column=create("section",{className:"clue-column"});column.dataset.direction=d;column.append(create("h2",{},title));const ul=create("ul");for(const e of board.entries.filter(e=>e.d===d)){const li=create("li"),bt=create("button");bt.dataset.word=heading(e);bt.append(create("strong",{},e.n),create("span",{},e.q+" ("+e.a.length+")"));bt.onclick=()=>{const s=coords(e),k=s.find(k=>!values.has(k))||s[0];select(e,k,true);const r=$("board").getBoundingClientRect();if(r.bottom<0||r.top>window.innerHeight)$("active").scrollIntoView({block:"nearest",inline:"nearest"});mark("");refreshed();};li.append(bt);ul.append(li);}column.append(ul);$("clues").append(column);}
+select(board.entries[0],null,false);mark("");refreshed();
+}
+$("check").onclick=()=>{const a=coords(active),n=a.filter(k=>values.has(k)).length;if(n<a.length){mark(L("Skriv i alla rutor i ordet först.","Fill in all the squares for this answer first."));return;}const good=correct(active);
+if(good){verified.add(active);for(const k of a)flagged.delete(k);}else{for(const k of a)flagged.add(k);}mark(good?L("Ordet stämmer.","Correct!"):L("Något i ordet behöver ändras. Läs ledtråden igen.","Something in this answer needs changing. Read the clue again."));if(good){const bonus=maybeThunder();if(bonus)mark($("status").textContent+bonus);}refreshed();};
+$("reset").onclick=()=>{$("confirm").returnValue="";$("confirm").showModal();};$("confirm").addEventListener("close",()=>{if($("confirm").returnValue==="ja"){values.clear();save();loadBoard();mark(L("Rutorna är tömda.","The grid has been cleared."));}});
+$("size").addEventListener("input",()=>{$("board").classList.remove("overview");$("board").style.setProperty("--cell",$("size").value+"px");});
+$("fit").onclick=()=>{$("board").classList.add("overview");$("board").style.setProperty("--cell","max(6px, min(32px, calc(100cqi / var(--w) - 2px)))");mark(L("Överblick. Använd reglaget för större rutor.","Overview. Use the slider for larger squares."));};
+
+function setDirection(d){$("clues").dataset.direction=d;$("across").setAttribute("aria-pressed",String(d==="h"));$("down").setAttribute("aria-pressed",String(d==="v"));}
+$("across").onclick=()=>setDirection("h");$("down").onclick=()=>setDirection("v");
+function stepWord(delta){const list=board.entries, i=list.indexOf(active), e=list[(i+list.length+delta)%list.length];select(e,null,true);refreshed();}
+$("prev").onclick=()=>stepWord(-1);$("next").onclick=()=>stepWord(1);
+function resetHelp(){$("hintsteps").replaceChildren(create("li",{},active.h));$("more").hidden=false;}
+$("help").onclick=()=>{const h=$("hintbox");h.hidden=!h.hidden;$("help").setAttribute("aria-expanded",String(!h.hidden));$("help").textContent=h.hidden?L("Visa hjälp","Show help"):L("Dölj hjälp","Hide help");if(!h.hidden)resetHelp();};
+$("more").onclick=()=>{$("hintsteps").append(create("li",{},(active.related?L("Bakgrund i häftet, s. ","Background in the Electricity and Magnetism booklet, p. "):L("Ellära och magnetism, s. ","Electricity and Magnetism booklet, p. "))+active.p+"."));$("more").hidden=true;};
+let wordInputs=[];
+function paintWordInputs(letters,start=0){for(const [i,v] of letters.entries())if(wordInputs[start+i])wordInputs[start+i].value=v;}
+function fillFromWhole(){const letters=glyphs($("whole").value);if(letters.length!==wordInputs.length){$("word-error").textContent=L("Skriv ett ord med ","Use ")+wordInputs.length+L(" bokstäver."," letters.");return false;}paintWordInputs(letters);$("whole").value="";$("word-error").textContent=L("Ordet är ifyllt i dialogen. Spara för att föra över det till brädet.","The answer is filled in here. Save to put it on the grid.");return true;}
+$("answer").onclick=()=>{const dialog=$("word-dialog");$("word-title").textContent=L("Skriv svar · ","Enter answer · ")+heading(active);$("word-question").textContent=active.q;$("word-error").textContent="";$("whole").value="";$("word-cells").replaceChildren();wordInputs=[];
+ const ks=coords(active);for(const [i,k] of ks.entries()){
+  const f=create("input",{type:"text",autocomplete:"off",spellcheck:false,value:values.get(k)||""});f.setAttribute("aria-label",L("Bokstav ","Letter ")+(i+1)+L(" av "," of ")+ks.length);if(f.value)f.classList.add("prefilled");
+  f.addEventListener("focus",()=>f.select());
+  f.addEventListener("input",ev=>{if(ev.isComposing)return;const l=glyphs(f.value);f.value=l.at(-1)||"";f.classList.remove("prefilled");if(l.length)wordInputs[i+1]?.focus();});
+  f.addEventListener("keydown",ev=>{if(ev.key==="Backspace"&&!f.value&&i){ev.preventDefault();wordInputs[i-1].focus();}if(ev.key==="ArrowLeft"&&i){ev.preventDefault();wordInputs[i-1].focus();}if(ev.key==="ArrowRight"&&i+1<ks.length){ev.preventDefault();wordInputs[i+1].focus();}});
+  f.addEventListener("paste",ev=>{ev.preventDefault();paintWordInputs(glyphs(ev.clipboardData.getData("text")),i);});
+  wordInputs.push(f);$("word-cells").append(f);
+ }
+ dialog.showModal();(wordInputs.find(f=>!f.value)||wordInputs[0]).focus();};
+$("word-copy").onclick=fillFromWhole;
+$("word-cancel").onclick=()=>$("word-dialog").close();
+$("word-dialog-form").addEventListener("submit",ev=>{ev.preventDefault();if($("whole").value&&!fillFromWhole())return;let ks=coords(active);ks.forEach((k,i)=>{set(k,glyphs(wordInputs[i].value)[0]||"");tiles.get(k).el.classList.remove("wrong","solved");});save();$("word-dialog").close();mark(L("Svar sparat i krysset.","Answer saved to the grid."));refreshed();});
+$("checkall").onclick=()=>{const complete=board.entries.filter(e=>coords(e).every(k=>values.has(k)));const pass=complete.filter(correct).length;mark(pass+L(" ord stämmer. "," correct. ")+(complete.length-pass)+L(" ifyllda ord behöver ses över. "," completed answers to review. ")+(board.entries.length-complete.length)+L(" återstår att fylla i."," still to fill in."));verified=new Set(complete.filter(correct));flagged=new Set(complete.filter(e=>!correct(e)).flatMap(coords));const bonus=maybeThunder();if(bonus)mark($("status").textContent+bonus);refreshed();};
+if(document.fullscreenEnabled&&$("play").requestFullscreen){$("full").hidden=false;$("full").onclick=async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await $("play").requestFullscreen();}catch{mark(L("Helskärm är inte tillgänglig här.","Full screen is unavailable here."));}};document.addEventListener("fullscreenchange",()=>{$("full").textContent=document.fullscreenElement?L("Avsluta helskärm","Exit full screen"):L("Helskärm","Full screen");});}
+loadBoard();
